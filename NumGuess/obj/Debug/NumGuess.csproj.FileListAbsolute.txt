@@ -1,0 +1,7 @@
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\obj\Debug\NumGuess.csprojAssemblyReference.cache
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\obj\Debug\NumGuess.csproj.CoreCompileInputs.cache
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\bin\Debug\NumGuess.exe.config
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\bin\Debug\NumGuess.exe
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\bin\Debug\NumGuess.pdb
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\obj\Debug\NumGuess.exe
+C:\Users\drjac\Documents\GITHUB\1st-C-Project\NumGuess\obj\Debug\NumGuess.pdb
