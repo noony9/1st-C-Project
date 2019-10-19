@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 
 namespace Practice
 {
-    class Account
+    class Account // lesson: auto-implemented properties; constructor
     {
-        private string name; // instance variable
+        public string Name { get; set; }
+        public Account(string accountName)
+        {
+            Name = accountName;
+        }
+        /*private string name; // instance variable
 
-        //method that sets the acount ame in the object
-        public void SetName(string accountName)
+        public string Name
         {
-            name = accountName;
-        }
-        public string GetName()
-        {
-            return name;
-        }
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value; // remember that value is a keyword only in a property's context
+            }
+                 
+        }*/
     }
 }
