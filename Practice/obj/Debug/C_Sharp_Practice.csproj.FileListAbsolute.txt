@@ -1,7 +1,7 @@
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\NumGuess.exe.config
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\NumGuess.exe
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\NumGuess.pdb
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.csprojAssemblyReference.cache
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.csproj.CoreCompileInputs.cache
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\NumGuess.exe
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\NumGuess.pdb
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\Practice.exe.config
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\Practice.exe
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\Practice.pdb
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\Practice.exe
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\Practice.pdb
