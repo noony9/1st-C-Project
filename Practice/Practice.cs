@@ -6,29 +6,23 @@ using System.Threading.Tasks;
 
 namespace Practice
 {
-    class ClassAverage
+    class Practice
     {
        
         static void Main()
         {
-            // Lesson: Prefix increment and postfix increment operators & note on C# simple types
+            // Lesson: Counter-controlled iteration with the for iteration statement
 
-            // demonstrate postfix increment operator
-            int c = 10; // assign 10 to c
-            Console.WriteLine($"c before postincrement: {c}"); // displays 10
-            Console.WriteLine($"c before postincrement: {c++}"); // displays 10
-            Console.WriteLine($"c before postincrement: {c}"); // displays 11
-
-            // demonstrate prefix increment operator
-            c = 10; // assign 10 to c
-            Console.WriteLine($"c before postincrement: {c}"); // displays 10
-            Console.WriteLine($"c before postincrement: {++c}"); // displays 11
-            Console.WriteLine($"c before postincrement: {c}"); // displays 11
-
-            //In C and C++, you frequently have to write separate versions of apps to support different computer platforms,
-            //because the simple types are not guaranteed to be identical from computer to computer. For example, an int value
-            //on one machine might be represented by 16 bits (2 bytes) of storage, while an int value on another machine might be represented
-            //by 32 bits (4 bytes) of storage. In C#, int values are always 32 bits (4 bytes). In fact, all C# numeric types have fixed sizes
+            // for statement header includes initialization, loop-continuation condition and increment
+            for (int counter = 1; counter <= 10; ++counter)
+            {
+                Console.WriteLine($"{counter}");
+            }
+            // for statement header that iterates in decrements of 10
+            for (int i = 100; i >= 0; i -= 10)
+            {
+                Console.WriteLine($"{i}");
+            }
         }
     }                        
 }
