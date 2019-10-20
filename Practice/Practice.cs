@@ -11,74 +11,85 @@ namespace Practice
        
         static void Main()
         {
-            // Lesson: Using switch multiple-selection statement
-            // Using a switch statement, count A, B, C, D and F grades
-            int total = 0; // sum of grades
-            int gradeCounter = 0; // number of grades entered
-            int aCount = 0;
-            int bCount = 0;
-            int cCount = 0;
-            int dCount = 0;
-            int fCount = 0;
-
-            Console.WriteLine("Enter integer grades in the range of 0-100.");
-            Console.WriteLine("Type <Ctrl> z and press Enter to terminate input: ");
-
-            string input = Console.ReadLine(); // read user input
-                // loop until user enters the end-of-file indicator (<Ctrl> z)
-            while (input != null) // if <Ctrl> z is entered while the program is awaiting input with a ReadLine method, NULL is returned!
+            // Lesson: using continue statement to skip an iteration of a for statement
+            for (int count = 1; count <= 10; ++count) // loop 10 times
             {
-                int grade = int.Parse(input); // read grade from user input
-                total += grade; // add grade to total
-                ++gradeCounter; // increment number of grades
-                
-                // determine which grade was entered by user
-                switch (grade / 10) // the switch expression performs integer division, which truncates the fractional part of the result, attempting to match thevalue of the switch expression with a case label
+                if (count == 5) // if count is 5
                 {
-                    case 10: // grade was 100 --No fall through in C# switch statement
-                    case 9: // grade was 90s
-                        ++aCount; // increment aCount
-                        break; // exit switch
-                    case 8: // grade was 80s
-                        ++bCount;
-                        break;
-                    case 7: // grade was 70s
-                        ++cCount;
-                        break;
-                    case 6: // grade was 60s
-                        ++dCount;
-                        break;
-                    default: // grade was less than 60
-                        ++fCount;
-                        break;
+                    continue; // skip remaining code in the loop
                 }
-               
-                input = Console.ReadLine(); // read user input
-            }
-            // if user entered at least one grade:
-            if (gradeCounter != 0)
-            {
-                // calculate the average of all grades entered
-                double average = (double)total / gradeCounter;
-
-                // output summary of results
-                Console.WriteLine($"Total of the {gradeCounter} grades entereed is {total}");
-                Console.WriteLine($"Class average is {average:F}");
-                Console.WriteLine($"Number of students who received each grade:");
-                Console.WriteLine($"A: {aCount}");
-                Console.WriteLine($"B: {bCount}");
-                Console.WriteLine($"C: {cCount}");
-                Console.WriteLine($"D: {dCount}");
-                Console.WriteLine($"F: {fCount}");
-            }
-            else
-            {
-                Console.WriteLine("No grades were entered mister.......");
+                Console.WriteLine($"{count}");
             }
         }
     }                        
 }
 
+/*
+          // Lesson: Using switch multiple-selection statement
+          // Using a switch statement, count A, B, C, D and F grades
+          int total = 0; // sum of grades
+          int gradeCounter = 0; // number of grades entered
+          int aCount = 0;
+          int bCount = 0;
+          int cCount = 0;
+          int dCount = 0;
+          int fCount = 0;
+
+          Console.WriteLine("Enter integer grades in the range of 0-100.");
+          Console.WriteLine("Type <Ctrl> z and press Enter to terminate input: ");
+
+          string input = Console.ReadLine(); // read user input
+              // loop until user enters the end-of-file indicator (<Ctrl> z)
+          while (input != null) // if <Ctrl> z is entered while the program is awaiting input with a ReadLine method, NULL is returned!
+          {
+              int grade = int.Parse(input); // read grade from user input
+              total += grade; // add grade to total
+              ++gradeCounter; // increment number of grades
+
+              // determine which grade was entered by user
+              switch (grade / 10) // the switch expression performs integer division, which truncates the fractional part of the result, attempting to match thevalue of the switch expression with a case label
+              {
+                  case 10: // grade was 100 --No fall through in C# switch statement
+                  case 9: // grade was 90s
+                      ++aCount; // increment aCount
+                      break; // exit switch
+                  case 8: // grade was 80s
+                      ++bCount;
+                      break;
+                  case 7: // grade was 70s
+                      ++cCount;
+                      break;
+                  case 6: // grade was 60s
+                      ++dCount;
+                      break;
+                  default: // grade was less than 60
+                      ++fCount;
+                      break;
+              }
+
+              input = Console.ReadLine(); // read user input
+          }
+          // if user entered at least one grade:
+          if (gradeCounter != 0)
+          {
+              // calculate the average of all grades entered
+              double average = (double)total / gradeCounter;
+
+              // output summary of results
+              Console.WriteLine($"Total of the {gradeCounter} grades entereed is {total}");
+              Console.WriteLine($"Class average is {average:F}");
+              Console.WriteLine($"Number of students who received each grade:");
+              Console.WriteLine($"A: {aCount}");
+              Console.WriteLine($"B: {bCount}");
+              Console.WriteLine($"C: {cCount}");
+              Console.WriteLine($"D: {dCount}");
+              Console.WriteLine($"F: {fCount}");
+          }
+          else
+          {
+              Console.WriteLine("No grades were entered mister.......");
+          }
+          */
 /*
         // Lesson: Compound-Interest Calculations; Performing interest calculations with Math's static method Pow; Formatting with Field Widths and Alignment
         // Problem: A person invests $1,000 in a savings account yielding 5% interest. Assuming that all the interest is left on deposit,
