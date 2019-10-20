@@ -6,51 +6,44 @@ using System.Threading.Tasks;
 
 namespace Practice
 {
-    class AccountTest
+    class ClassAverage
     {
        
-        static void Main() // Lesson: using properties rather than set and get methods
+        static void Main()
         {
-            Account account1 = new Account("Jim Bob", 50.00m);
-            Account account2 = new Account("Jane Bob", -7.53m);
+            // Lesson: class average, using counter-controlled iteration
+            // Psedocode algorithm with counter-controlled iteration
+                /* Set total to zero
+                   Set grade counter to 1
+                   While grade counter is less than or equal to 10 (students)
+                       prompt the user to enter the next grade
+                       input the next grade
+                       add the grade into the total
+                       add one to the grade counter
+                   Set the class average to the total divided by 10
+                   Display the class average */
 
-            // display initial balance of each object
-            Console.WriteLine($"{account1.Name}'s balance: {account1.Balance}");
-            Console.WriteLine($"{account2.Name}'s balance: {account2.Balance}");
+            // initialization
+            int total = 0; // initialize sum of grades entered by the user
+            int gradeCounter = 1; // initialize grade # to be entered next
 
-            // prompt for, read input, then deposit
-            Console.Write("\nEnter deposit amount for account1: ");
-            decimal depositAmount = decimal.Parse(Console.ReadLine());
+            // processing phase uses counter-controlled iteration
+            while (gradeCounter <= 10)
+            {
+                Console.Write("Enter Grade: "); // prompt user
+                int grade = int.Parse(Console.ReadLine()); // input grade
+                total += grade; // add the grade total
+                gradeCounter++;
+            }
 
-            Console.WriteLine($"Adding deposit to account1 balance\n");
-            account1.Deposit(depositAmount); // add to account1's balance
+            // termination phase
+            int average = total / 10; // integer division yeilds integer result
 
-            // prompt for, read input, then deposit
-            Console.Write("\nEnter deposit amount for account2: ");
-            depositAmount = decimal.Parse(Console.ReadLine());
-
-            Console.WriteLine($"Adding deposit to account2 balance\n");
-            account2.Deposit(depositAmount); // add to account2's balance
-
-            // display new balances
-            Console.WriteLine($"{account1.Name}'s balance: {account1.Balance:C}"); // using a format specifier ":C"
-            Console.WriteLine($"{account2.Name}'s balance: {account2.Balance:C}");
-
-            /*
-             // create an account object and assign it to myAccount
-             Account myAccount = new Account("billy", 0.0m);
-
-             // display myAccount's initial name (there isn't one yet)
-             Console.WriteLine($"Initial name is: {myAccount.Name}");
-
-             // prompt for and read the name, then put the name in the objet
-             Console.Write("Enter the name: "); // prompt
-             string theName = Console.ReadLine(); // read the name
-             myAccount.Name = theName; // put theName in the myAccount object
-
-             // display the name stored in the myAccount object
-             Console.WriteLine($"myAccount's name is: {myAccount.Name}");
-             */
+            // display total and average of rades
+            Console.WriteLine($"\nTotal of all 10 grades is { total }");
+            Console.WriteLine($"Class average is {average}");
+        
+            
         }
     }                        
 }
