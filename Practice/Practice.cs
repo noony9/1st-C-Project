@@ -11,21 +11,54 @@ namespace Practice
        
         static void Main()
         {
-            // Lesson: Counter-controlled iteration with the for iteration statement
+            // Lesson: Compound-Interest Calculations; Performing interest calculations with Math's static method Pow; Formatting with Field Widths and Alignment
+            // Problem: A person invests $1,000 in a savings account yielding 5% interest. Assuming that all the interest is left on deposit,
+            // calculate and print the amount of money in the account at the end of each year for 10 years. Use the following formula to determine 
+            // the amounts:
+            // Where 
+            // p is the original amount invested(i.e., the principal)
+            // r is the annual interest rate(e.g., use 0.05 for 5 %)
+            // n is the number of years
+            // a is the amount on deposit at the end of the nth year.
+         
+            decimal principal = 1000; // initial amount before interest
+            double rate = 0.05; // interest rate
 
-            // for statement header includes initialization, loop-continuation condition and increment
-            for (int counter = 1; counter <= 10; ++counter)
+            // display heaers
+            Console.WriteLine("Year Amount on deposit: ");
+
+            // calculate amount on deposit for each of ten years
+            for (int year = 1; year <= 10; ++year)
             {
-                Console.WriteLine($"{counter}");
-            }
-            // for statement header that iterates in decrements of 10
-            for (int i = 100; i >= 0; i -= 10)
-            {
-                Console.WriteLine($"{i}");
+                // calculate new amount for specified year
+                decimal amount = principal * ((decimal)Math.Pow(1.0 + rate, year));
+                            // Notes: Many classes provie methods to perform common tasks that do not require specific objects
+                            // they must be called using a class name.  Such methods are called static methods, such as Console
+                            // methods Write, WriteLine and ReadLine.  You call a static method by specifying the class name followed by
+                            // the member-access operator (.) and the method name as in ClassName.MethodName(arguments).
+                            // DO NOT USE FLOAT OR DOUBLE FOR MONETARY AMOUNTS!!!!!!!  Decimal for precise monetary representation and calc.
+
+                // display the year and the amount
+                Console.WriteLine($"{year,4}{amount,20:C}"); //Formatting with Field Widths and Alignment: field width of 4; right-aligned in a field of at least 20 characters (use negative field width for left-align)
             }
         }
     }                        
 }
+
+/*
+           // Lesson: Counter-controlled iteration with the for iteration statement
+
+           // for statement header includes initialization, loop-continuation condition and increment
+           for (int counter = 1; counter <= 10; ++counter)
+           {
+               Console.WriteLine($"{counter}");
+           }
+           // for statement header that iterates in decrements of 10
+           for (int i = 100; i >= 0; i -= 10)
+           {
+               Console.WriteLine($"{i}");
+           }
+           */
 
 /*
            // Lesson: Formulating Algorithms: Sentinel-Controlled Iteration; Top-Down, Stepwise Refinement
