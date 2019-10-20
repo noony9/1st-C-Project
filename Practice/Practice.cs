@@ -11,40 +11,106 @@ namespace Practice
        
         static void Main()
         {
-            // Lesson: Compound-Interest Calculations; Performing interest calculations with Math's static method Pow; Formatting with Field Widths and Alignment
-            // Problem: A person invests $1,000 in a savings account yielding 5% interest. Assuming that all the interest is left on deposit,
-            // calculate and print the amount of money in the account at the end of each year for 10 years. Use the following formula to determine 
-            // the amounts:
-            // Where 
-            // p is the original amount invested(i.e., the principal)
-            // r is the annual interest rate(e.g., use 0.05 for 5 %)
-            // n is the number of years
-            // a is the amount on deposit at the end of the nth year.
-         
-            decimal principal = 1000; // initial amount before interest
-            double rate = 0.05; // interest rate
+            // Lesson: Using switch multiple-selection statement
+            // Using a switch statement, count A, B, C, D and F grades
+            int total = 0; // sum of grades
+            int gradeCounter = 0; // number of grades entered
+            int aCount = 0;
+            int bCount = 0;
+            int cCount = 0;
+            int dCount = 0;
+            int fCount = 0;
 
-            // display heaers
-            Console.WriteLine("Year Amount on deposit: ");
+            Console.WriteLine("Enter integer grades in the range of 0-100.");
+            Console.WriteLine("Type <Ctrl> z and press Enter to terminate input: ");
 
-            // calculate amount on deposit for each of ten years
-            for (int year = 1; year <= 10; ++year)
+            string input = Console.ReadLine(); // read user input
+                // loop until user enters the end-of-file indicator (<Ctrl> z)
+            while (input != null) // if <Ctrl> z is entered while the program is awaiting input with a ReadLine method, NULL is returned!
             {
-                // calculate new amount for specified year
-                decimal amount = principal * ((decimal)Math.Pow(1.0 + rate, year));
-                            // Notes: Many classes provie methods to perform common tasks that do not require specific objects
-                            // they must be called using a class name.  Such methods are called static methods, such as Console
-                            // methods Write, WriteLine and ReadLine.  You call a static method by specifying the class name followed by
-                            // the member-access operator (.) and the method name as in ClassName.MethodName(arguments).
-                            // DO NOT USE FLOAT OR DOUBLE FOR MONETARY AMOUNTS!!!!!!!  Decimal for precise monetary representation and calc.
+                int grade = int.Parse(input); // read grade from user input
+                total += grade; // add grade to total
+                ++gradeCounter; // increment number of grades
+                
+                // determine which grade was entered by user
+                switch (grade / 10) // the switch expression performs integer division, which truncates the fractional part of the result, attempting to match thevalue of the switch expression with a case label
+                {
+                    case 10: // grade was 100 --No fall through in C# switch statement
+                    case 9: // grade was 90s
+                        ++aCount; // increment aCount
+                        break; // exit switch
+                    case 8: // grade was 80s
+                        ++bCount;
+                        break;
+                    case 7: // grade was 70s
+                        ++cCount;
+                        break;
+                    case 6: // grade was 60s
+                        ++dCount;
+                        break;
+                    default: // grade was less than 60
+                        ++fCount;
+                        break;
+                }
+               
+                input = Console.ReadLine(); // read user input
+            }
+            // if user entered at least one grade:
+            if (gradeCounter != 0)
+            {
+                // calculate the average of all grades entered
+                double average = (double)total / gradeCounter;
 
-                // display the year and the amount
-                Console.WriteLine($"{year,4}{amount,20:C}"); //Formatting with Field Widths and Alignment: field width of 4; right-aligned in a field of at least 20 characters (use negative field width for left-align)
+                // output summary of results
+                Console.WriteLine($"Total of the {gradeCounter} grades entereed is {total}");
+                Console.WriteLine($"Class average is {average:F}");
+                Console.WriteLine($"Number of students who received each grade:");
+                Console.WriteLine($"A: {aCount}");
+                Console.WriteLine($"B: {bCount}");
+                Console.WriteLine($"C: {cCount}");
+                Console.WriteLine($"D: {dCount}");
+                Console.WriteLine($"F: {fCount}");
+            }
+            else
+            {
+                Console.WriteLine("No grades were entered mister.......");
             }
         }
     }                        
 }
 
+/*
+        // Lesson: Compound-Interest Calculations; Performing interest calculations with Math's static method Pow; Formatting with Field Widths and Alignment
+        // Problem: A person invests $1,000 in a savings account yielding 5% interest. Assuming that all the interest is left on deposit,
+        // calculate and print the amount of money in the account at the end of each year for 10 years. Use the following formula to determine 
+        // the amounts:
+        // Where 
+        // p is the original amount invested(i.e., the principal)
+        // r is the annual interest rate(e.g., use 0.05 for 5 %)
+        // n is the number of years
+        // a is the amount on deposit at the end of the nth year.
+
+        decimal principal = 1000; // initial amount before interest
+        double rate = 0.05; // interest rate
+
+        // display heaers
+        Console.WriteLine("Year Amount on deposit: ");
+
+        // calculate amount on deposit for each of ten years
+        for (int year = 1; year <= 10; ++year)
+        {
+            // calculate new amount for specified year
+            decimal amount = principal * ((decimal)Math.Pow(1.0 + rate, year));
+                        // Notes: Many classes provie methods to perform common tasks that do not require specific objects
+                        // they must be called using a class name.  Such methods are called static methods, such as Console
+                        // methods Write, WriteLine and ReadLine.  You call a static method by specifying the class name followed by
+                        // the member-access operator (.) and the method name as in ClassName.MethodName(arguments).
+                        // DO NOT USE FLOAT OR DOUBLE FOR MONETARY AMOUNTS!!!!!!!  Decimal for precise monetary representation and calc.
+
+            // display the year and the amount
+            Console.WriteLine($"{year,4}{amount,20:C}"); //Formatting with Field Widths and Alignment: field width of 4; right-aligned in a field of at least 20 characters (use negative field width for left-align)
+        }
+        */
 /*
            // Lesson: Counter-controlled iteration with the for iteration statement
 
