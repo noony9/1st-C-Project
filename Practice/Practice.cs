@@ -8,22 +8,161 @@ namespace Practice
 {
     class Practice
     {
-       
+
         static void Main()
         {
-            // Lesson: using continue statement to skip an iteration of a for statement
-            for (int count = 1; count <= 10; ++count) // loop 10 times
+            // Lesson: Arrays II
+            // multi-dimentional arrays
+
+            // 2D array
+            string[,] twoD;
+
+            // 3D array
+            string[,,] threeD;
+
+            int[,] array2D = new int[,]
             {
-                if (count == 5) // if count is 5
+                {1, 2, 3}, // row 0
+                {4, 5, 6}, // row 1
+                {7, 8, 9}  // row 2
+            };
+            Console.WriteLine("Middle value is {0}", array2D[1, 1]); // row 1, index 1
+            Console.ReadKey();
+
+            // 3D array
+            string[,,] array3D = new string[,,]
+            { // first dimention (Depth)
+                { // second dimention (Height)
+                    {"000", "001"}, // third dimention (Length)
+                    {"010", "011"}
+                },
                 {
-                    continue; // skip remaining code in the loop
+                    {"100", "101"},
+                    {"110", "111"}
                 }
-                Console.WriteLine($"{count}");
-            }
+            };
+            Console.WriteLine("The value is {0}", array3D[1, 1, 0]); // entries are named exactly as required to access them.
+            Console.ReadKey();
+
+            // another way to create 2D array
+            string[,] array2DString = new string[3, 2] // 3 rows and 2 indices per row
+            { 
+                { "one", "two" }, 
+                { "three", "four" }, 
+                { "five", "six" }
+            };
+
+            // update an indice 
+            array2DString[0, 1] = "million";
+            Console.WriteLine("The value is {0}", array2DString[0, 1]);
+            Console.ReadKey();
         }
     }                        
 }
 
+/*
+            // Lesson: Arrays
+            // Arrays occupy space in memory. Since they're objects, they're typically created with keyword new.1 To create an array object, 
+            // you specify the type and the number of array elements in an array-creation expression that uses keyword new and returns a reference
+            // that can be stored in an array variable.
+            // When you create an array with new, each element of the array receives the default value for the array's element type—0 for the numeric 
+            // simple type elements, false for bool elements and null for references. 
+
+            // create the space for an array and initialize to default (zeros)
+            int[] array = new int[5]; // array contains 5 int elements
+            // display index and values headings
+            Console.WriteLine($"{"Index"}{"Value",8}"); // right-aligned with "8"
+
+            // output each array element's value
+            for (int counter = 0; counter < array.Length; ++counter)
+            {
+                Console.WriteLine($"{counter,5}{array[counter],8}");
+            }
+
+            //using an array initializer
+            int[] myArray = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }; // comma-seprated list of expressions (initializer list)
+            Console.WriteLine("myArray values are: ");
+            for (int counter = 0; counter < myArray.Length; ++counter)
+            {
+                Console.WriteLine($"{counter,5}{myArray[counter],8}");
+            }
+
+            int[] favNums = new int[5];
+            favNums[0] = 5;
+            favNums[1] = 67;
+            favNums[2] = 27;
+            favNums[3] = 55;
+            favNums[4] = 96;
+
+            Console.WriteLine("My favorite numbers are: ");
+            for (int counter = 0; counter < favNums.Length; ++counter)
+            {
+                Console.WriteLine($"{counter,5}{favNums[counter],8}");
+            }
+            Console.ReadKey(); // Pauses for user's keystroke
+            Console.WriteLine("What are your favorite numbers? ");
+            for (int counter = 0; counter < favNums.Length; ++counter) {
+                string input = Console.ReadLine();
+                favNums[counter] = int.Parse(input);
+                Console.WriteLine($"Favorite number {counter} is {input}");
+            }
+            // can also display the array list by: Console.WriteLine("Element{0} = {1}", counter, favNums[counter]);
+
+            // Tip.....  CW then double tab to get Console.WriteLine()....... ... .
+            // foreach loop
+            string[] myFriends = { "Daniel", "Jerry", "Nick" };
+            foreach (string name in myFriends)
+            {
+                Console.WriteLine("Hello {0}, my friend", name);
+            }
+            Console.ReadKey();
+            */
+// Lesson:  The .NET Framework Class Library 
+// 'using' directives allow us to use library classes from the Framework Class Library without specifying their namespace names.  For
+// example, an app would include the declaration 'using System;' in order to use the class names from the 'System' namespace without
+// fully qualifying their names.  This allows you to use the 'unqualified' name 'Console', rather than the 'fully qualified' name
+// 'System.Console', in code.
+
+// Lesson: Few notes on Methods.
+// ***Three ways to call a method.  1.) Using a method name by itself to call a method of the same class.
+// 2.) Using a referene to an object followed by the member-access operator (.) and the method name to call a non-static method of
+// the referenced object.  3.) Using the class name and the member-acess operator(.) to call a static method of a class.
+// ***A static method or property can call only other statick methods or properties of the same class directly (i.e., using the method 
+// name by itself) and can manipulate only static variables in the same class directly.  To access a class's non-static members, a 
+// static method or property must use a reference to an object of that class.
+
+// Lesson: Argument Promotion and Casting
+/*
+Type	Conversion types
+*****bool	no possible implicit conversions to other simple types
+byte	ushort, short, uint, int, ulong, long, decimal, float or double
+char	ushort, int, uint, long, ulong, decimal, float or double
+*****decimal	no possible implicit conversions to other simple types
+*****double	no possible implicit conversions to other simple types
+float	double
+int	    long, decimal, float or double
+long	decimal, float or double
+sbyte	short, int, long, decimal, float or double
+short	int, long, decimal, float or double
+uint	ulong, long, decimal, float or double
+ulong	decimal, float or double
+ushort	uint, int, ulong, long, decimal, float or double
+*/
+// By default, C# does not allow you to implicitly convert values between simple types if the target type cannot represent every value
+// of the original type (e.g., the int value 2000000 cannot be represented as a short, and any floating-pint number with nonzero digits
+// after its decimal point cannot be represented in an integery type such as long, int or short.
+
+/*
+// Lesson: using continue statement to skip an iteration of a for statement
+for (int count = 1; count <= 10; ++count) // loop 10 times
+{
+    if (count == 5) // if count is 5
+    {
+        continue; // skip remaining code in the loop
+    }
+    Console.WriteLine($"{count}");
+}
+*/
 /*
           // Lesson: Using switch multiple-selection statement
           // Using a switch statement, count A, B, C, D and F grades
