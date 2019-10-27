@@ -11,63 +11,101 @@ namespace Practice
 
         static void Main()
         {
-            // Lesson: create an array of friends
-            // create a foreach loop that greets all of them
+            // Lesson: Jagged Arrays
 
-            string[] myFriends = { "Nick", "Kevin", "Glenn", "Jim", "Brad" }; // create and initialize string array
-            foreach (string name in myFriends)
-            {
-                Console.WriteLine("Greetings {0}", name);
-            }
+            // declare a jagged array ---multiple arrays within an array
+           /* int[][] jaggedArray = new int[3][];
+            jaggedArray[0] = new int[5];
+            jaggedArray[1] = new int[3];
+            jaggedArray[2] = new int[2];
 
-            // Lesson: Passing Arrays and Array Elements to Methods
-
-            // create and initialize array with 5 values
-            int[] array = { 1, 2, 3, 4, 5 };
-
-            Console.WriteLine("Effects of passing reference to entire array:");
-            Console.WriteLine("The values of the original array are:");
-
-            // output original array elements
-            foreach (var value in array)
-            {
-                Console.WriteLine($" {value}");
-            }
-            Console.ReadKey();
-            /*
-            // pass array reference
-            ModifyArray(array);
-
-            // output modified array elements
-            foreach (var value in array)
-            {
-                Console.WriteLine($" {value}");
-            }
+            // initilize jaggedArray
+            jaggedArray[0] = new int[] { 1, 2, 3, 4, 5 };
+            jaggedArray[1] = new int[] { 6, 7, 8 };
+            jaggedArray[2] = new int[] { 9, 10 };
             */
-            Console.WriteLine("Adding 10 to the elements in the array...");
-            AddTenToArray(array);
+            // alternatively declare and initialize
+            int[][] jagArray = new int[][]
+            {
+                new int[] { 10, 20, 30 },
+                new int[] { 40, 50 },
+                new int[] { 60 }
+            };
 
-            Console.WriteLine("Outputting array elements...");
-            OutputIntArray(array);
-        }
-        static void AddTenToArray(int[] array2)
-        {
-            for (int i = 0; i < array2.Length; i++)
+            // accessing in jagged array
+            // access middle element of first row
+            Console.WriteLine($"{jagArray[0][1]}");
+            Console.ReadLine();
+
+            // output jagged array
+            foreach (var row in jagArray)
             {
-                array2[i] = array2[i] + 10;
-                //Console.WriteLine($"{array2[i]}");
-            }
-        }
-        static void OutputIntArray(int [] array)
-        {
-            foreach(int value in array)
-            {
-                Console.WriteLine($"{value}");
+                 // loop through each element in current row
+                 foreach (var element in row)
+                {
+                    Console.WriteLine($"{element}");
+                }
             }
         }
     }                        
-}
+} 
 
+/*
+           // Lesson: create an array of friends
+           // create a foreach loop that greets all of them
+
+           string[] myFriends = { "Nick", "Kevin", "Glenn", "Jim", "Brad" }; // create and initialize string array
+           foreach (string name in myFriends)
+           {
+               Console.WriteLine("Greetings {0}", name);
+           }
+
+           // Lesson: Passing Arrays and Array Elements to Methods
+
+           // create and initialize array with 5 values
+           int[] array = { 1, 2, 3, 4, 5 };
+
+           Console.WriteLine("Effects of passing reference to entire array:");
+           Console.WriteLine("The values of the original array are:");
+
+           // output original array elements
+           foreach (var value in array)
+           {
+               Console.WriteLine($" {value}");
+           }
+           Console.ReadKey();
+           /*
+           // pass array reference
+           ModifyArray(array);
+
+           // output modified array elements
+           foreach (var value in array)
+           {
+               Console.WriteLine($" {value}");
+           }
+           Console.WriteLine("Adding 10 to the elements in the array...");
+           AddTenToArray(array);
+
+           Console.WriteLine("Outputting array elements...");
+           OutputIntArray(array);
+
+           // methods outside of main()----
+           static void AddTenToArray(int[] array2)
+           {
+               for (int i = 0; i < array2.Length; i++)
+               {
+                   array2[i] = array2[i] + 10;
+                   //Console.WriteLine($"{array2[i]}");
+               }
+           }
+           static void OutputIntArray(int[] array)
+           {
+               foreach (int value in array)
+               {
+                   Console.WriteLine($"{value}");
+               }
+           }
+           */
 /*
            // Lesson: more on arrays
            // myArray.Rank; will indicate how many dimentions an array is
