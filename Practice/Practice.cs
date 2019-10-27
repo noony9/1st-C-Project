@@ -11,88 +11,141 @@ namespace Practice
 
         static void Main()
         {
-            // Lesson: more on arrays
-            // myArray.Rank; will indicate how many dimentions an array is
-            // correct declaration of an integer array that contains three rows and five columns:
-            // Int[,] myArray = new int[3,5];
+            // Lesson: create an array of friends
+            // create a foreach loop that greets all of them
 
-            // initialize loop
-            int[] nums = new int[10];
-
-            // populate array
-            for (int i = 0; i < nums.Length; i++)
+            string[] myFriends = { "Nick", "Kevin", "Glenn", "Jim", "Brad" }; // create and initialize string array
+            foreach (string name in myFriends)
             {
-                nums[i] = i;
+                Console.WriteLine("Greetings {0}", name);
             }
+
+            // Lesson: Passing Arrays and Array Elements to Methods
+
+            // create and initialize array with 5 values
+            int[] array = { 1, 2, 3, 4, 5 };
+
+            Console.WriteLine("Effects of passing reference to entire array:");
+            Console.WriteLine("The values of the original array are:");
+
             // output original array elements
-            for (int j = 0; j < nums.Length; j++)
+            foreach (var value in array)
             {
-                Console.WriteLine("Element{0} = {1}", j, nums[j]);
+                Console.WriteLine($" {value}");
             }
             Console.ReadKey();
+            /*
+            // pass array reference
+            ModifyArray(array);
 
-            // use foreach loop to output original array elements
-            foreach (int value in nums)
+            // output modified array elements
+            foreach (var value in array)
             {
-                Console.WriteLine($"Element {0} is {1}", nums, value);
+                Console.WriteLine($" {value}");
             }
-            //SPECIAL NOTES:  
-            // Limitations of foreach Loop: 
-            // 1. Foreach loops are not appropriate when you want to MODIFY the ARRAY "foreach(int num in array) -only changes num not the array element
-            // 2. Foreach loops do NOT KEEP TRACK of INDEX.  So you cannot obtain array index using foreach loop
-            // 3. Foreach loops ONLY ITERATES FOWARD over the array in SINGLE STEPS.  Cannot iterate backwards
+            */
+            Console.WriteLine("Adding 10 to the elements in the array...");
+            AddTenToArray(array);
 
-
+            Console.WriteLine("Outputting array elements...");
+            OutputIntArray(array);
+        }
+        static void AddTenToArray(int[] array2)
+        {
+            for (int i = 0; i < array2.Length; i++)
+            {
+                array2[i] = array2[i] + 10;
+                //Console.WriteLine($"{array2[i]}");
+            }
+        }
+        static void OutputIntArray(int [] array)
+        {
+            foreach(int value in array)
+            {
+                Console.WriteLine($"{value}");
+            }
         }
     }                        
 }
 
-    /* // Lesson: Arrays II
-            // multi-dimentional arrays
+/*
+           // Lesson: more on arrays
+           // myArray.Rank; will indicate how many dimentions an array is
+           // correct declaration of an integer array that contains three rows and five columns:
+           // Int[,] myArray = new int[3,5];
 
-            // 2D array
-            string[,] twoD;
+           // initialize loop
+           int[] nums = new int[10];
 
-            // 3D array
-            string[,,] threeD;
+           // populate array
+           for (int i = 0; i < nums.Length; i++)
+           {
+               nums[i] = i;
+           }
+           // output original array elements
+           for (int j = 0; j < nums.Length; j++)
+           {
+               Console.WriteLine("Element{0} = {1}", j, nums[j]);
+           }
+           Console.ReadKey();
 
-            int[,] array2D = new int[,]
+           // use foreach loop to output original array elements
+           foreach (int value in nums)
+           {
+               Console.WriteLine($"Element {0} is {1}", nums, value);
+           }
+           //SPECIAL NOTES:  
+           // Limitations of foreach Loop: 
+           // 1. Foreach loops are not appropriate when you want to MODIFY the ARRAY "foreach(int num in array) -only changes num not the array element
+           // 2. Foreach loops do NOT KEEP TRACK of INDEX.  So you cannot obtain array index using foreach loop
+           // 3. Foreach loops ONLY ITERATES FOWARD over the array in SINGLE STEPS.  Cannot iterate backwards
+           */
+/* // Lesson: Arrays II
+        // multi-dimentional arrays
+
+        // 2D array
+        string[,] twoD;
+
+        // 3D array
+        string[,,] threeD;
+
+        int[,] array2D = new int[,]
+        {
+            {1, 2, 3}, // row 0
+            {4, 5, 6}, // row 1
+            {7, 8, 9}  // row 2
+        };
+        Console.WriteLine("Middle value is {0}", array2D[1, 1]); // row 1, index 1
+        Console.ReadKey();
+
+        // 3D array
+        string[,,] array3D = new string[,,]
+        { // first dimention (Depth)
+            { // second dimention (Height)
+                {"000", "001"}, // third dimention (Length)
+                {"010", "011"}
+            },
             {
-                {1, 2, 3}, // row 0
-                {4, 5, 6}, // row 1
-                {7, 8, 9}  // row 2
-            };
-            Console.WriteLine("Middle value is {0}", array2D[1, 1]); // row 1, index 1
-            Console.ReadKey();
+                {"100", "101"},
+                {"110", "111"}
+            }
+        };
+        Console.WriteLine("The value is {0}", array3D[1, 1, 0]); // entries are named exactly as required to access them.
+        Console.ReadKey();
 
-            // 3D array
-            string[,,] array3D = new string[,,]
-            { // first dimention (Depth)
-                { // second dimention (Height)
-                    {"000", "001"}, // third dimention (Length)
-                    {"010", "011"}
-                },
-                {
-                    {"100", "101"},
-                    {"110", "111"}
-                }
-            };
-            Console.WriteLine("The value is {0}", array3D[1, 1, 0]); // entries are named exactly as required to access them.
-            Console.ReadKey();
+        // another way to create 2D array
+        string[,] array2DString = new string[3, 2] // 3 rows and 2 indices per row
+        { 
+            { "one", "two" }, 
+            { "three", "four" }, 
+            { "five", "six" }
+        };
 
-            // another way to create 2D array
-            string[,] array2DString = new string[3, 2] // 3 rows and 2 indices per row
-            { 
-                { "one", "two" }, 
-                { "three", "four" }, 
-                { "five", "six" }
-            };
-
-            // update an indice 
-            array2DString[0, 1] = "million";
-            Console.WriteLine("The value is {0}", array2DString[0, 1]);
-            Console.ReadKey();
-        */
+        // update an indice 
+        array2DString[0, 1] = "million";
+        Console.WriteLine("The value is {0}", array2DString[0, 1]);
+        Console.ReadKey();
+    */
 /*
             // Lesson: Arrays
             // Arrays occupy space in memory. Since they're objects, they're typically created with keyword new.1 To create an array object, 
@@ -150,11 +203,11 @@ namespace Practice
             }
             Console.ReadKey();
             */
-    // Lesson:  The .NET Framework Class Library 
-    // 'using' directives allow us to use library classes from the Framework Class Library without specifying their namespace names.  For
-    // example, an app would include the declaration 'using System;' in order to use the class names from the 'System' namespace without
-    // fully qualifying their names.  This allows you to use the 'unqualified' name 'Console', rather than the 'fully qualified' name
-    // 'System.Console', in code.
+// Lesson:  The .NET Framework Class Library 
+// 'using' directives allow us to use library classes from the Framework Class Library without specifying their namespace names.  For
+// example, an app would include the declaration 'using System;' in order to use the class names from the 'System' namespace without
+// fully qualifying their names.  This allows you to use the 'unqualified' name 'Console', rather than the 'fully qualified' name
+// 'System.Console', in code.
 
 // Lesson: Few notes on Methods.
 // ***Three ways to call a method.  1.) Using a method name by itself to call a method of the same class.
