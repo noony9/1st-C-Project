@@ -11,7 +11,43 @@ namespace Practice
 
         static void Main()
         {
-            // Lesson: Arrays II
+            // Lesson: more on arrays
+            // myArray.Rank; will indicate how many dimentions an array is
+            // correct declaration of an integer array that contains three rows and five columns:
+            // Int[,] myArray = new int[3,5];
+
+            // initialize loop
+            int[] nums = new int[10];
+
+            // populate array
+            for (int i = 0; i < nums.Length; i++)
+            {
+                nums[i] = i;
+            }
+            // output original array elements
+            for (int j = 0; j < nums.Length; j++)
+            {
+                Console.WriteLine("Element{0} = {1}", j, nums[j]);
+            }
+            Console.ReadKey();
+
+            // use foreach loop to output original array elements
+            foreach (int value in nums)
+            {
+                Console.WriteLine($"Element {0} is {1}", nums, value);
+            }
+            //SPECIAL NOTES:  
+            // Limitations of foreach Loop: 
+            // 1. Foreach loops are not appropriate when you want to MODIFY the ARRAY "foreach(int num in array) -only changes num not the array element
+            // 2. Foreach loops do NOT KEEP TRACK of INDEX.  So you cannot obtain array index using foreach loop
+            // 3. Foreach loops ONLY ITERATES FOWARD over the array in SINGLE STEPS.  Cannot iterate backwards
+
+
+        }
+    }                        
+}
+
+    /* // Lesson: Arrays II
             // multi-dimentional arrays
 
             // 2D array
@@ -56,10 +92,7 @@ namespace Practice
             array2DString[0, 1] = "million";
             Console.WriteLine("The value is {0}", array2DString[0, 1]);
             Console.ReadKey();
-        }
-    }                        
-}
-
+        */
 /*
             // Lesson: Arrays
             // Arrays occupy space in memory. Since they're objects, they're typically created with keyword new.1 To create an array object, 
@@ -117,11 +150,11 @@ namespace Practice
             }
             Console.ReadKey();
             */
-// Lesson:  The .NET Framework Class Library 
-// 'using' directives allow us to use library classes from the Framework Class Library without specifying their namespace names.  For
-// example, an app would include the declaration 'using System;' in order to use the class names from the 'System' namespace without
-// fully qualifying their names.  This allows you to use the 'unqualified' name 'Console', rather than the 'fully qualified' name
-// 'System.Console', in code.
+    // Lesson:  The .NET Framework Class Library 
+    // 'using' directives allow us to use library classes from the Framework Class Library without specifying their namespace names.  For
+    // example, an app would include the declaration 'using System;' in order to use the class names from the 'System' namespace without
+    // fully qualifying their names.  This allows you to use the 'unqualified' name 'Console', rather than the 'fully qualified' name
+    // 'System.Console', in code.
 
 // Lesson: Few notes on Methods.
 // ***Three ways to call a method.  1.) Using a method name by itself to call a method of the same class.
