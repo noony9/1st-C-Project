@@ -11,45 +11,61 @@ namespace Practice
 
         static void Main()
         {
-            // Lesson: Jagged Arrays
-
-            // declare a jagged array ---multiple arrays within an array
-           /* int[][] jaggedArray = new int[3][];
-            jaggedArray[0] = new int[5];
-            jaggedArray[1] = new int[3];
-            jaggedArray[2] = new int[2];
-
-            // initilize jaggedArray
-            jaggedArray[0] = new int[] { 1, 2, 3, 4, 5 };
-            jaggedArray[1] = new int[] { 6, 7, 8 };
-            jaggedArray[2] = new int[] { 9, 10 };
-            */
-            // alternatively declare and initialize
-            int[][] jagArray = new int[][]
+            // Lesson: Rectangular Arrays
+            int[,] rectArray =
             {
-                new int[] { 10, 20, 30 },
-                new int[] { 40, 50 },
-                new int[] { 60 }
+                {1, 2, 3},
+                {4, 5, 6}
             };
-
-            // accessing in jagged array
-            // access middle element of first row
-            Console.WriteLine($"{jagArray[0][1]}");
-            Console.ReadLine();
-
-            // output jagged array
-            foreach (var row in jagArray)
+            // loop through array rows
+            for (var row = 0; row < rectArray.GetLength(0); ++row) // get length of the first dimention = GetLength(0)
             {
-                 // loop through each element in current row
-                 foreach (var element in row)
+                // loop through columns of current row
+                for (var column = 0; column < rectArray.GetLength(1); ++column)
                 {
-                    Console.WriteLine($"{element}");
+                    Console.WriteLine($"{rectArray[row, column]}");
                 }
             }
-        }
-    }                        
-} 
 
+        }
+    }
+}
+
+// Lesson: Jagged Arrays
+
+// declare a jagged array ---multiple arrays within an array
+/* int[][] jaggedArray = new int[3][];
+ jaggedArray[0] = new int[5];
+ jaggedArray[1] = new int[3];
+ jaggedArray[2] = new int[2];
+
+ // initilize jaggedArray
+ jaggedArray[0] = new int[] { 1, 2, 3, 4, 5 };
+ jaggedArray[1] = new int[] { 6, 7, 8 };
+ jaggedArray[2] = new int[] { 9, 10 };
+
+ // alternatively declare and initialize
+ int[][] jagArray = new int[][]
+ {
+     new int[] { 10, 20, 30 },
+     new int[] { 40, 50 },
+     new int[] { 60 }
+ };
+
+ // accessing in jagged array
+ // access middle element of first row
+ Console.WriteLine($"{jagArray[0][1]}");
+ Console.ReadLine();
+
+ // output jagged array
+ foreach (var row in jagArray)
+ {
+      // loop through each element in current row
+      foreach (var element in row)
+     {
+         Console.WriteLine($"{element}");
+     }
+ } */
 /*
            // Lesson: create an array of friends
            // create a foreach loop that greets all of them
