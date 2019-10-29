@@ -6,31 +6,97 @@ using System.Threading.Tasks;
 
 namespace Practice
 {
-    class Practice
+    class Program
     {
 
         static void Main()
         {
-            // Lesson: Rectangular Arrays
-            int[,] rectArray =
-            {
-                {1, 2, 3},
-                {4, 5, 6}
-            };
-            // loop through array rows
-            for (var row = 0; row < rectArray.GetLength(0); ++row) // get length of the first dimention = GetLength(0)
-            {
-                // loop through columns of current row
-                for (var column = 0; column < rectArray.GetLength(1); ++column)
-                {
-                    Console.WriteLine($"{rectArray[row, column]}");
-                }
-            }
+            // relearning with codewithmosh.com :)
 
+            // try catch
+            try
+            {
+                string number = "1234";
+                byte b = Convert.ToByte(number);
+                Console.WriteLine(b);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("The number coult not be converted to a byte.");
+            }
+            
+
+           
         }
     }
 }
 
+/* implicit type conversion
+
+           // explicit type conversion
+           /*
+           float f = 1.0f;
+           int i = (int)f; // we are aware of the data loss, but use casting to cast float to int.
+           */
+
+// non- compatible types
+/*
+string s = "1";
+int i = Convert.ToInt32(s);
+int j = int.Parse(s);
+Console.WriteLine($"{s}{i}{j}");
+*/
+
+// variables and constants
+/*
+Console.WriteLine("{0} {1}", float.MinValue, float.MaxValue);
+const float Pi = 3.14f; // cannot modify
+*/
+
+/*
+byte number = 2;
+Console.WriteLine(number);
+
+int count = 10;
+float totalPrice = 20.95f; // tell the compiler explicitly that we want a float by appending an f at the end
+char character = 'A';
+string firstName = "Mosh";
+bool isWorking = true;
+
+Console.WriteLine(number);
+Console.WriteLine($"{count}{character}{firstName}{isWorking}");
+*/
+
+// Overflowing
+/*
+byte number = 255;
+number += number; // 0 when compiled, exceeded the boundry of the data type
+
+// use the checked keyword
+checked
+{
+    byte number = 255;
+    number += number;
+}
+*/
+
+/*
+          // Lesson: Rectangular Arrays
+          int[,] rectArray =
+          {
+              {1, 2, 3},
+              {4, 5, 6}
+          };
+          // loop through array rows
+          for (var row = 0; row < rectArray.GetLength(0); ++row) // get length of the first dimention = GetLength(0)
+          {
+              // loop through columns of current row
+              for (var column = 0; column < rectArray.GetLength(1); ++column)
+              {
+                  Console.WriteLine($"{rectArray[row, column]}");
+              }
+          }
+          */
 // Lesson: Jagged Arrays
 
 // declare a jagged array ---multiple arrays within an array
