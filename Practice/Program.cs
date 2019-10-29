@@ -3,17 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using C_Sharp_Practice.Calculations;
+using C_Sharp_Practice.People;
 
-namespace Practice
+namespace C_Sharp_Practice
 {
     class Program
     {
 
         static void Main()
         {
-            // relearning with codewithmosh.com :)
+            // Non-Primitive Types: classes
+            Person timmy = new Person();
+            timmy.FirstName = "Timmy";
+            timmy.LastName = "Smith";
+            timmy.Introduce();
 
-            // try catch
+            // declare a new GenericCalculator object then print it's value (sum)
+            GenericCalculator gencalc = new GenericCalculator();
+
+            // use object's inherited Add method to add two numbers
+            int result = gencalc.Add(5, 5);
+            Console.WriteLine($"Result is: {result}");
+
+            // prompt user to input two integers to be added
+            Console.WriteLine("User, please enter two integers to be added together: ");
+
+            // read user entered string, convert to int32 and store in variables userEntry1 and userEntry2 respectively
+            int userEntry1 = Convert.ToInt32(Console.ReadLine());
+            int userEntry2 = Convert.ToInt32(Console.ReadLine());
+
+            // use gencalc's inherited Add method to sum the numbers and assign the calculated result into userResult
+            int userResult = gencalc.Add(userEntry1, userEntry2);
+
+            // output the result
+            Console.WriteLine($"Result is: {userResult}");
+
+
+
+        }
+
+    }
+}
+/*
+    public class Person // access modifier 'public'
+    {
+        public string Name;  // variables called fields capitalize these in classes
+        public int Age;
+        Person() { } // default constructor
+        Person(string name, int age) // constructor
+        {
+            string Name = name;
+            int Age = age;
+        }
+        public int Add(int a, int b) // methods
+        {
+            return a + b;
+        }
+        Person person = new Person("Jim", 20); // creating object - in C# classes are treated differently from primative types, must allocate memory to them.
+                                               // also has garbage collecting for unused classes    
+    }
+    */
+/*
             try
             {
                 string number = "1234";
@@ -24,13 +75,7 @@ namespace Practice
             {
                 Console.WriteLine("The number coult not be converted to a byte.");
             }
-            
-
-           
-        }
-    }
-}
-
+           */
 /* implicit type conversion
 
            // explicit type conversion
@@ -39,7 +84,7 @@ namespace Practice
            int i = (int)f; // we are aware of the data loss, but use casting to cast float to int.
            */
 
-// non- compatible types
+// non compatible types
 /*
 string s = "1";
 int i = Convert.ToInt32(s);
