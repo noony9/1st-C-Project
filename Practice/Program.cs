@@ -8,25 +8,74 @@ using C_Sharp_Practice.People;
 
 namespace C_Sharp_Practice
 {
-    // declare an enum at the namespace level becaue it's a new type
-    public enum ShippingMethod // best practices are to assign values during declaration
+    public class Person
     {
-        RegularAirMail = 1,
-        RegisteredAirMail = 2,
-        Express = 3
+        public int Age;
     }
-
+    
     class Program
     {
 
         static void Main()
         {
-            // Enum practice
-            // Enum: A set of name/value pairs (constants) -use: instead of declaring multiple constants, declare an enum.
-            // An Enum is internally an integer, can specify another type in declaration.
+            int number = 1; // this variable with the scope of the Main() method and the parameter in method Increment() are in two places in memory
+            Increment(number); // when method is called that new location is created called number, incremented by 10 then immediately destroyed....
 
-            // use enum
-            var method = ShippingMethod.Express;
+            // now look at a reference type
+            Person person = new Person() { Age = 20 };
+            MakeOld(person); // note that this parameter is not going to be copied, but referenced, so it will be changed.
+            Console.WriteLine($"person's age = {person.Age}");
+            
+
+        }
+        
+        public static void Increment(int number) // scope of number here is limited to the Increment method
+        {
+            number += 10;
+        }
+        
+        public static void MakeOld(Person person) //this object and the one in main passed into the function will be referencing the object on the heap
+        {
+            person.Age += 10;
+        }
+
+    }
+}
+/*
+            // Reference Types and Value Types
+            // in C# there are 2 main types from which we create new types:  Classes and Structures
+            // Structures are value type (allocated on stack; allocated automaticaly; immediately removed when out of scope)
+            // Classes are reference type (allocated on heap; you need to allocate memory "new" compiler allocates to heap at runtime; garbage collected by CLR)
+
+            // copying value types and reference types in action
+            int a = 10;
+            int b = a;
+            b++;
+            // what will value of a be at this point?  It is 10 still.
+            // when you copy of value is stored in another variable, only a COPY of it is stored, original unmodified on the stack
+
+            // now lets do reference
+            var array1 = new int[3] { 1, 2, 3 }; // First an object created on heap at a memory location with address an array with three elements, next CLR creates a variable on stack named array1 with memory address of array on the heap.
+            var array2 = array1; // Second, runtime creates a variable on the stack identified as array2 with memory address to the object array on the heap.
+            // when we make any changes on the object on the heap, either through array1 or array2, it's changes are visible on either, that's why it is called reference.
+            array2[0] = 0; // 
+            Console.WriteLine(array1[0]);
+            */
+/*
+   // Enum practice
+
+            // declare an enum at the namespace level becaue it's a new type
+        public enum ShippingMethod // best practices are to assign values during declaration
+        {
+            RegularAirMail = 1,
+            RegisteredAirMail = 2,
+            Express = 3
+        }
+        // Enum: A set of name/value pairs (constants) -use: instead of declaring multiple constants, declare an enum.
+        // An Enum is internally an integer, can specify another type in declaration.
+
+        // use enum
+        var method = ShippingMethod.Express;
             Console.WriteLine(method);
             // cast it to an integer "should see 3"
             Console.WriteLine((int)method);
@@ -37,12 +86,7 @@ namespace C_Sharp_Practice
             var methodName = "Express";
             var shippingMethod = (ShippingMethod)Enum.Parse(typeof(ShippingMethod), methodName);
             Console.WriteLine(shippingMethod);
-            
-
-        }
-
-    }
-}
+        */
 /*
            // Create Strings, Characters and Verbatim Strings
 
