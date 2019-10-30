@@ -8,28 +8,156 @@ using C_Sharp_Practice.People;
 
 namespace C_Sharp_Practice
 {
-    public class Person
-    {
-        public int Age;
-    }
     
     class Program
     {
-
+       /* public static string LandscapeOrPortrait(int length, int width)
+        {
+            if (length >= 12 && width <= 8)
+            {
+                return ("Portrait");
+            }
+            else
+            {
+                return ("Landscape");
+            }
+            
+        }
+        */
         static void Main()
         {
-            int number = 1; // this variable with the scope of the Main() method and the parameter in method Increment() are in two places in memory
+            // Control Flow
+
+            // Exercises
+
+            /*
+                       // 1.) Write a program that asks user to enter a number between 1 and 10.
+                       Console.WriteLine("Please enter an integer between 1 and 10.");
+                       int userEntry = Int32.Parse(Console.ReadLine());
+                       // test parse
+                       // Console.WriteLine(userEntry + 5);
+
+                       // If the user enters a valid number, display "Valid" on the console. Otherwise 
+                       // display "Invalid" (This logic is used a lot in applications where values entered into input boxes need validated.
+                       if (userEntry > 0 && userEntry < 11)
+                       {
+                           Console.WriteLine("Valid");
+                       }
+                       else
+                       {
+                           Console.WriteLine("Invalid");
+                       }
+           */
+            /*
+             // 2.) Write a program and ask the user to enter the width and height of an image.  
+             Console.WriteLine("Enter the length and width in inches of a picture of your choice: ");
+             int userInput1 = Int32.Parse(Console.ReadLine());
+             int userInput2 = Int32.Parse(Console.ReadLine());
+             // test parse
+             // Console.WriteLine(userInput1 * 10 + userInput2);
+
+             // Then tell if the image is landscape or portrait.
+             Console.WriteLine(LandscapeOrPortrait(userInput1, userInput2));
+             */
+
+            // 3.) Your job is to write a program for a speed camera. For simplicity, ignore the details such as camera, 
+            // sensors, etc and focus purely on the logic. 
+
+            // Write a program that asks the user to enter the speed limit. 
+            Console.WriteLine("Enter the local speed limit in km/hr: ");
+            try
+            {
+                int speedLimit = Int32.Parse(Console.ReadLine());
+            } catch (FormatException fex)
+            {
+                Console.WriteLine(fex.Message);
+            }
+            
+
+            // Once set, the program asks for the speed of a car in km/hr. 
+            Console.WriteLine("Enter the speed you are going in km/hr: ");
+            int currentSpeed = Int32.Parse(Console.ReadLine());
+
+            // If the user enters a value less than the speed limit, program should display Ok on the console. 
+            if (currentSpeed <= speedLimit)
+            {
+                Console.WriteLine("OK");
+            }
+
+            // If the value is above the speed limit, the program should calculate the number of demerit points.
+            else if (currentSpeed > speedLimit)
+            {
+                int overSpeed = currentSpeed - speedLimit; // declare variable to hold the different in speed (to be used for loop condition)
+
+                // For every 5km/hr above the speed limit, 1 demerit points should be incurred and displayed on the console.
+                // If the number of demerit points is above 12, the program should display License Suspended.
+                switch (overSpeed)
+                {
+                    case int n when n >= 5 && n < 10:
+                        Console.WriteLine("You've received 1 demerit point!");
+                        break;
+                    case int n when n >= 10 && n < 12:
+                        Console.WriteLine("You've received 2 demerit points!");
+                        break;
+                    case int n when n >= 12:
+                        Console.WriteLine("Your license is suspended!!");
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+            
+    }
+}
+/*
+            bool isGoldCustomer = true;
+            
+            /*float price;
+            if (isGoldCustomer)
+            {
+                price = 19.95f;
+            }
+            else
+            {
+                price = 29.95f;
+            } 
+// rewrite using conditional operator
+float price = (isGoldCustomer) ? 19.95f : 29.95f;
+Console.WriteLine(price);
+
+            /*
+            int hour = 10;
+            if (hour > 0 && hour < 12)
+            {
+                Console.WriteLine("It's morning.");
+            }
+            else if (hour >= 12 && hour < 18)
+            {
+                Console.WriteLine("It's afternoon.");
+            }
+            else
+            {
+                Console.WriteLine("It's evening.");
+            }
+            Console.ReadLine();
+            */
+/*
+public class Person
+{
+    public int Age;
+}
+
+     int number = 1; // this variable with the scope of the Main() method and the parameter in method Increment() are in two places in memory
             Increment(number); // when method is called that new location is created called number, incremented by 10 then immediately destroyed....
 
             // now look at a reference type
             Person person = new Person() { Age = 20 };
             MakeOld(person); // note that this parameter is not going to be copied, but referenced, so it will be changed.
             Console.WriteLine($"person's age = {person.Age}");
-            
 
-        }
-        
-        public static void Increment(int number) // scope of number here is limited to the Increment method
+     public static void Increment(int number) // scope of number here is limited to the Increment method
         {
             number += 10;
         }
@@ -38,9 +166,8 @@ namespace C_Sharp_Practice
         {
             person.Age += 10;
         }
+    */       
 
-    }
-}
 /*
             // Reference Types and Value Types
             // in C# there are 2 main types from which we create new types:  Classes and Structures
