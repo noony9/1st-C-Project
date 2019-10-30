@@ -13,38 +13,55 @@ namespace C_Sharp_Practice
 
         static void Main()
         {
-            // Non-Primitive Types: classes
-            Person timmy = new Person();
-            timmy.FirstName = "Timmy";
-            timmy.LastName = "Smith";
-            timmy.Introduce();
+            // Create Strings, Characters and Verbatim Strings
 
-            // declare a new GenericCalculator object then print it's value (sum)
-            GenericCalculator gencalc = new GenericCalculator();
+            // concatenation
+            string firstName = "Tim";
+            string lastName = "Robbins";
+            string name = firstName + " " + lastName;
 
-            // use object's inherited Add method to add two numbers
-            int result = gencalc.Add(5, 5);
-            Console.WriteLine($"Result is: {result}");
+            // use string format
+            string favoriteNumber1 = "five";
+            string favoriteNumber2 = "fifteen";
+            string favoriteNumbers = string.Format("{0} {1}", favoriteNumber1, favoriteNumber2); // Format is a static method
+            Console.WriteLine(favoriteNumbers);
 
-            // prompt user to input two integers to be added
-            Console.WriteLine("User, please enter two integers to be added together: ");
-
-            // read user entered string, convert to int32 and store in variables userEntry1 and userEntry2 respectively
-            int userEntry1 = Convert.ToInt32(Console.ReadLine());
-            int userEntry2 = Convert.ToInt32(Console.ReadLine());
-
-            // use gencalc's inherited Add method to sum the numbers and assign the calculated result into userResult
-            int userResult = gencalc.Add(userEntry1, userEntry2);
-
-            // output the result
-            Console.WriteLine($"Result is: {userResult}");
-
-
-
+            // use string join
+            var numbers = new int[3] { 1, 2, 3 };
+            // combine the three integers seperated by a comma
+            string list = string.Join(",", numbers);
+            Console.WriteLine(list);
         }
 
     }
 }
+// Non-Primitive Types: classes
+/*
+           Person timmy = new Person();
+           timmy.FirstName = "Timmy";
+           timmy.LastName = "Smith";
+           timmy.Introduce();
+
+           // declare a new GenericCalculator object then print it's value (sum)
+           GenericCalculator gencalc = new GenericCalculator();
+
+           // use object's inherited Add method to add two numbers
+           int result = gencalc.Add(5, 5);
+           Console.WriteLine($"Result is: {result}");
+
+           // prompt user to input two integers to be added
+           Console.WriteLine("User, please enter two integers to be added together: ");
+
+           // read user entered string, convert to int32 and store in variables userEntry1 and userEntry2 respectively
+           int userEntry1 = Convert.ToInt32(Console.ReadLine());
+           int userEntry2 = Convert.ToInt32(Console.ReadLine());
+
+           // use gencalc's inherited Add method to sum the numbers and assign the calculated result into userResult
+           int userResult = gencalc.Add(userEntry1, userEntry2);
+
+           // output the result
+           Console.WriteLine($"Result is: {userResult}");
+           */
 /*
     public class Person // access modifier 'public'
     {
