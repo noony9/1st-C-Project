@@ -8,33 +8,69 @@ using C_Sharp_Practice.People;
 
 namespace C_Sharp_Practice
 {
+    // declare an enum at the namespace level becaue it's a new type
+    public enum ShippingMethod // best practices are to assign values during declaration
+    {
+        RegularAirMail = 1,
+        RegisteredAirMail = 2,
+        Express = 3
+    }
+
     class Program
     {
 
         static void Main()
         {
-            // Create Strings, Characters and Verbatim Strings
+            // Enum practice
+            // Enum: A set of name/value pairs (constants) -use: instead of declaring multiple constants, declare an enum.
+            // An Enum is internally an integer, can specify another type in declaration.
 
-            // concatenation
-            string firstName = "Tim";
-            string lastName = "Robbins";
-            string name = firstName + " " + lastName;
+            // use enum
+            var method = ShippingMethod.Express;
+            Console.WriteLine(method);
+            // cast it to an integer "should see 3"
+            Console.WriteLine((int)method);
+            // convert an integer to a ShippingMethod
+            var methodID = 3;
+            Console.WriteLine((ShippingMethod)methodID);
+            // convert a string variable to an enum (Parse the String)
+            var methodName = "Express";
+            var shippingMethod = (ShippingMethod)Enum.Parse(typeof(ShippingMethod), methodName);
+            Console.WriteLine(shippingMethod);
+            
 
-            // use string format
-            string favoriteNumber1 = "five";
-            string favoriteNumber2 = "fifteen";
-            string favoriteNumbers = string.Format("{0} {1}", favoriteNumber1, favoriteNumber2); // Format is a static method
-            Console.WriteLine(favoriteNumbers);
-
-            // use string join
-            var numbers = new int[3] { 1, 2, 3 };
-            // combine the three integers seperated by a comma
-            string list = string.Join(",", numbers);
-            Console.WriteLine(list);
         }
 
     }
 }
+/*
+           // Create Strings, Characters and Verbatim Strings
+
+           // concatenation
+           string firstName = "Tim";
+           string lastName = "Robbins";
+           string name = firstName + " " + lastName;
+
+           // use string format
+           string favoriteNumber1 = "five";
+           string favoriteNumber2 = "fifteen";
+           string favoriteNumbers = string.Format("{0} {1}", favoriteNumber1, favoriteNumber2); // Format is a static method
+           Console.WriteLine(favoriteNumbers);
+
+           // use string join
+           var numbers = new int[3] { 1, 2, 3 };
+           // combine the three integers seperated by a comma
+           string list = string.Join(",", numbers);
+           Console.WriteLine(list);
+
+           // Strings are immutable, once created you cannot change it.  There are methods in the string class that allow you to manipulate strings and modify their values, but the methods return a new string.
+           // Common escape characters:  \n New Line, \t Tab, \\ Backslash, \' Single Quote, \" Double Quote
+           // Verbatim Strings
+
+               // example: string path = "c:\\projects\\project1\\folder1"; --looks messy
+               // can use: string path = @"c:\projects\project1\folder1";
+           */
+
 // Non-Primitive Types: classes
 /*
            Person timmy = new Person();
