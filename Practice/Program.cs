@@ -11,7 +11,99 @@ namespace C_Sharp_Practice
     
     class Program
     {
-       /* public static string LandscapeOrPortrait(int length, int width)
+    
+        static void Main()
+        {
+            // Control Flow
+            // Foreach loops: used to iterate over elements of an innumerable(definition: too many to be counted) object (list or array nature)
+
+            // Random Class
+
+            var random = new Random();
+
+            const int passwordLength = 10; // declaring a constant so code is cleaner and easier to maintain
+
+            var buffer = new char[passwordLength];
+            for (int i = 0; i < passwordLength; i++)
+            {
+                buffer[i] = (char)('a' + random.Next(0, 26));
+            }
+            var password = new string(buffer); // better way than var password = ""; and can created it initialize it with 'buffer' array
+            Console.WriteLine(password);
+
+            
+            /* var random = new Random();
+            // generate a few random numbers and display them on the console
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(random.Next());
+                Console.WriteLine(random.Next(1, 10)); // parameters as range: min and max values
+
+            }
+            */
+            /*
+            var numbers = new int[] { 1, 2, 3, 4 };
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            */
+            /*
+            string name = "John Smith";
+            // iterate over the string and display new character on a new line
+            for (int i = 0; i < name.Length; i++)
+            {
+                Console.WriteLine(name[i]);
+            }
+            // now with foreach
+            foreach (var character in name)
+            {
+                Console.WriteLine(character);
+            }
+            */
+            /* Loop Demo
+            for (int i = 1; i <= 10; i++)
+            {
+                // check the remainder of division of i by 2
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            // reverse
+            for (int i = 10; i >= 1; i--)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            */
+        }
+            
+    }
+}
+/*
+ * // Exercises
+                     // 1.) Write a program that asks user to enter a number between 1 and 10.
+                     Console.WriteLine("Please enter an integer between 1 and 10.");
+                     int userEntry = Int32.Parse(Console.ReadLine());
+                     // test parse
+                     // Console.WriteLine(userEntry + 5);
+
+                     // If the user enters a valid number, display "Valid" on the console. Otherwise 
+                     // display "Invalid" (This logic is used a lot in applications where values entered into input boxes need validated.
+                     if (userEntry > 0 && userEntry < 11)
+                     {
+                         Console.WriteLine("Valid");
+                     }
+                     else
+                     {
+                         Console.WriteLine("Invalid");
+                     }
+         */
+/*
+    public static string LandscapeOrPortrait(int length, int width)
         {
             if (length >= 12 && width <= 8)
             {
@@ -23,56 +115,24 @@ namespace C_Sharp_Practice
             }
             
         }
-        */
-        static void Main()
-        {
-            // Control Flow
+        
+// 2.) Write a program and ask the user to enter the width and height of an image.  
+Console.WriteLine("Enter the length and width in inches of a picture of your choice: ");
+ int userInput1 = Int32.Parse(Console.ReadLine());
+ int userInput2 = Int32.Parse(Console.ReadLine());
+ // test parse
+ // Console.WriteLine(userInput1 * 10 + userInput2);
 
-            // Exercises
-
-            /*
-                       // 1.) Write a program that asks user to enter a number between 1 and 10.
-                       Console.WriteLine("Please enter an integer between 1 and 10.");
-                       int userEntry = Int32.Parse(Console.ReadLine());
-                       // test parse
-                       // Console.WriteLine(userEntry + 5);
-
-                       // If the user enters a valid number, display "Valid" on the console. Otherwise 
-                       // display "Invalid" (This logic is used a lot in applications where values entered into input boxes need validated.
-                       if (userEntry > 0 && userEntry < 11)
-                       {
-                           Console.WriteLine("Valid");
-                       }
-                       else
-                       {
-                           Console.WriteLine("Invalid");
-                       }
-           */
-            /*
-             // 2.) Write a program and ask the user to enter the width and height of an image.  
-             Console.WriteLine("Enter the length and width in inches of a picture of your choice: ");
-             int userInput1 = Int32.Parse(Console.ReadLine());
-             int userInput2 = Int32.Parse(Console.ReadLine());
-             // test parse
-             // Console.WriteLine(userInput1 * 10 + userInput2);
-
-             // Then tell if the image is landscape or portrait.
-             Console.WriteLine(LandscapeOrPortrait(userInput1, userInput2));
-             */
-
+ // Then tell if the image is landscape or portrait.
+ Console.WriteLine(LandscapeOrPortrait(userInput1, userInput2));
+ */
+/*
             // 3.) Your job is to write a program for a speed camera. For simplicity, ignore the details such as camera, 
             // sensors, etc and focus purely on the logic. 
 
             // Write a program that asks the user to enter the speed limit. 
             Console.WriteLine("Enter the local speed limit in km/hr: ");
-            try
-            {
-                int speedLimit = Int32.Parse(Console.ReadLine());
-            } catch (FormatException fex)
-            {
-                Console.WriteLine(fex.Message);
-            }
-            
+            int speedLimit = Int32.Parse(Console.ReadLine());
 
             // Once set, the program asks for the speed of a car in km/hr. 
             Console.WriteLine("Enter the speed you are going in km/hr: ");
@@ -107,10 +167,7 @@ namespace C_Sharp_Practice
                 }
 
             }
-        }
-            
-    }
-}
+            */
 /*
             bool isGoldCustomer = true;
             
@@ -166,7 +223,7 @@ public class Person
         {
             person.Age += 10;
         }
-    */       
+    */
 
 /*
             // Reference Types and Value Types
