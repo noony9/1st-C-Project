@@ -14,75 +14,165 @@ namespace C_Sharp_Practice
     
         static void Main()
         {
-            // Control Flow
-            // Foreach loops: used to iterate over elements of an innumerable(definition: too many to be counted) object (list or array nature)
+            // Control Flow Exercises
 
-            // Random Class
+            // 5- Write a program and ask the user to enter a series of numbers separated by comma. Find the maximum of the 
+            // numbers and display it on the console. For example, if the user enters “5, 3, 8, 1, 4", the program should 
+            // display 8.
 
-            var random = new Random();
+            // Ask the user to enter a series of numbers separated by commas
+            Console.WriteLine("Enter a series of numbers separated by commas then press enter: ");
+            // get input and store it in a string variable
+            var userInput = Console.ReadLine();
+            // split user's input into a string array, delimeted by comma
+            var numbers = userInput.Split(',');
 
-            const int passwordLength = 10; // declaring a constant so code is cleaner and easier to maintain
-
-            var buffer = new char[passwordLength];
-            for (int i = 0; i < passwordLength; i++)
+            // declare and initialize an int variable to store max user input
+            var max = Convert.ToInt32(numbers[0]);
+            foreach (var str in numbers)
             {
-                buffer[i] = (char)('a' + random.Next(0, 26));
-            }
-            var password = new string(buffer); // better way than var password = ""; and can created it initialize it with 'buffer' array
-            Console.WriteLine(password);
-
-            
-            /* var random = new Random();
-            // generate a few random numbers and display them on the console
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine(random.Next());
-                Console.WriteLine(random.Next(1, 10)); // parameters as range: min and max values
-
-            }
-            */
-            /*
-            var numbers = new int[] { 1, 2, 3, 4 };
-            foreach (int number in numbers)
-            {
-                Console.WriteLine(number);
-            }
-            */
-            /*
-            string name = "John Smith";
-            // iterate over the string and display new character on a new line
-            for (int i = 0; i < name.Length; i++)
-            {
-                Console.WriteLine(name[i]);
-            }
-            // now with foreach
-            foreach (var character in name)
-            {
-                Console.WriteLine(character);
-            }
-            */
-            /* Loop Demo
-            for (int i = 1; i <= 10; i++)
-            {
-                // check the remainder of division of i by 2
-                if (i % 2 == 0)
+                var number = Convert.ToInt32(str);
+                if (number > max)
                 {
-                    Console.WriteLine(i);
+                    max = number;
                 }
             }
-            // reverse
-            for (int i = 10; i >= 1; i--)
+            Console.WriteLine($"Max number of the values entered is: {max}");
+        
+
+
+            /*
+            // 4- Write a program that picks a random number between 1 and 10. Give the user 4 chances to guess the number. 
+            // If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is 
+            // behaving correctly, you can display the secret number on the console first.)
+
+            // generate a random number between 1 and 10 and store it in variable secretNumber
+            var secretNumber = new Random().Next(1, 10);
+            // give the user 4 chances to guess the number by looping four times
+            int i = 0; // counter
+            while (true)
             {
-                if (i % 2 == 0)
+                ++i;
+                // prompt user to enter a number
+                Console.WriteLine("Guess a number between 1 and 10.  You have four chances: ");
+                // get input and store in variable
+                var userInput = Convert.ToInt32(Console.ReadLine());
+                // display the secret number for testing
+                Console.WriteLine(secretNumber);
+                // if user guesses the number correctly, display "You won"; otherwisse display "You lost".
+                if (userInput == secretNumber)
                 {
-                    Console.WriteLine(i);
+                    Console.WriteLine("You win");
+                    Console.ReadKey();
+                    break;
+                }
+                else if (i == 4)
+                {
+                    Console.WriteLine("You lost");
+                    break;
+                }   
+            }
+            */
+
+            /*
+            // 2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the 
+            // previously entered numbers and display it on the console
+            int sum = 0; // declare a variable to hold sum of user entered integers
+            while (true)
+            {
+                Console.WriteLine("Enter a number or \"ok\" to exit");
+                string userInput = Console.ReadLine();
+                if (userInput.ToLower() == "ok")
+                {
+                    break;
+                }
+                sum += Convert.ToInt32(userInput);
+            }
+            Console.WriteLine(sum);
+            */
+
+            /*// 1 - Write a program to count how many numbers between 1 and 100 are divisible by 3 with no remainder.Display 
+            // the count on the console.
+            int total = 0; // variable to hold the count
+            for (int i = 1; i < 100; i++)
+            {
+                if (i%3 == 0)
+                {
+                    ++total;
                 }
             }
+            Console.WriteLine(total); 
             */
         }
-            
+
     }
 }
+
+/*
+           // Control Flow: iteration, for, foreach, while and random class
+           // Foreach loops: used to iterate over elements of an innumerable(definition: too many to be counted) object (list or array nature)
+
+           // Random Class
+           var random = new Random();
+
+           const int passwordLength = 10; // declaring a constant so code is cleaner and easier to maintain
+
+           var buffer = new char[passwordLength];
+           for (int i = 0; i < passwordLength; i++)
+           {
+               buffer[i] = (char)('a' + random.Next(0, 26));
+           }
+           var password = new string(buffer); // better way than var password = ""; and can created it initialize it with 'buffer' array
+           Console.WriteLine(password);
+
+
+           /* var random = new Random();
+           // generate a few random numbers and display them on the console
+           for (int i = 0; i < 10; i++)
+           {
+               Console.WriteLine(random.Next());
+               Console.WriteLine(random.Next(1, 10)); // parameters as range: min and max values
+
+           }
+           */
+/*
+var numbers = new int[] { 1, 2, 3, 4 };
+foreach (int number in numbers)
+{
+    Console.WriteLine(number);
+}
+*/
+/*
+string name = "John Smith";
+// iterate over the string and display new character on a new line
+for (int i = 0; i < name.Length; i++)
+{
+    Console.WriteLine(name[i]);
+}
+// now with foreach
+foreach (var character in name)
+{
+    Console.WriteLine(character);
+}
+*/
+/* Loop Demo
+for (int i = 1; i <= 10; i++)
+{
+    // check the remainder of division of i by 2
+    if (i % 2 == 0)
+    {
+        Console.WriteLine(i);
+    }
+}
+// reverse
+for (int i = 10; i >= 1; i--)
+{
+    if (i % 2 == 0)
+    {
+        Console.WriteLine(i);
+    }
+}
+*/
 /*
  * // Exercises
                      // 1.) Write a program that asks user to enter a number between 1 and 10.
