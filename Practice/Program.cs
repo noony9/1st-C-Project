@@ -11,9 +11,115 @@ namespace C_Sharp_Practice
     
     class Program
     {
-    
+
         static void Main()
         {
+            // Arrays and Lists
+
+            // Lists
+            // List is a generic type, can tell by <>
+
+            var numbers = new List<int>() { 10, 80, 5, 2, 9 };
+            // add 1 object to list
+            numbers.Add(5);
+            // add array to list
+            numbers.AddRange(new int[] { 9, 8, 7, 2 });
+            // iterate list
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            // IndexOf
+            Console.WriteLine("index of 2 is: " + numbers.IndexOf(2));
+            Console.WriteLine("Last of index of 2 is: " + numbers.LastIndexOf(2));
+            // Count
+            Console.WriteLine("Count: " + numbers.Count);
+            // Remove
+            numbers.Remove(80);
+            foreach (var e in numbers)
+            {
+                Console.WriteLine(e);
+            }
+            // remove all instances of 2
+            numbers.Remove(2);
+
+            /*
+           foreach (var e in numbers) // In C# we are NOT ALLOWED to MODIFY a COLLECTION USING FOREACH LOOP
+           {
+               if (e == 2)
+               {
+                   numbers.Remove(e);
+               }
+           }
+
+           foreach (var e in numbers)
+           {
+               Console.WriteLine(e);
+           }
+           */
+
+            // use a for loop to modify a collection
+            for (var i = 0; i < numbers.Count; i++)
+            {
+                if (i == 2)
+                {
+                    numbers.Remove(i);
+                }
+            }
+            foreach (var e in numbers)
+            {
+                Console.WriteLine(e);
+            }
+            // Clear()
+            numbers.Clear();
+            foreach(var e in numbers)
+            {
+                Console.WriteLine(e);
+            }
+            /*
+            // two types: single dimention and multi Dimention arrays(Rectangular -same number of columns in each row & Jagged -column length varies, a.k.a. array of arrays)
+
+            int[] numbers = new int[] { 8, 15, 2, 10 };
+
+            // Length
+            Console.WriteLine("Length: " + numbers.Length);
+            // IndexOf()
+            int index = Array.IndexOf(numbers, 3);
+            Console.WriteLine("Index of 3 is: " + index);
+            // Clear()
+            //Array.Clear(numbers, 0, 3);
+            // iterate with foreach to display elements
+            //foreach (var e in numbers)
+           // {
+               // Console.WriteLine(e);
+          //  }
+            // Copy()
+            var array2 = new int[] { 9, 8, 7 };
+            Array.Copy(numbers, array2, 3);
+            foreach (var e in array2)
+            {
+                Console.WriteLine(e);
+            }
+            // Sort()
+            Array.Sort(numbers);
+            foreach (var e in numbers)
+            {
+                Console.WriteLine(e);
+            }
+            // Reverse()
+            Array.Reverse(numbers);
+            foreach (var e in numbers)
+            {
+                Console.WriteLine(e);
+            }
+            */
+
+
+        }
+
+    }
+}
+/*
             // Control Flow Exercises
 
             // 5- Write a program and ask the user to enter a series of numbers separated by comma. Find the maximum of the 
@@ -29,85 +135,83 @@ namespace C_Sharp_Practice
 
             // declare and initialize an int variable to store max user input
             var max = Convert.ToInt32(numbers[0]);
+            // loop through the full string array
             foreach (var str in numbers)
             {
+                // declare a variable to hold the value at index and convert it to integer
                 var number = Convert.ToInt32(str);
+                // compare value at index with variable max, if greater, assign value at index to max
                 if (number > max)
                 {
                     max = number;
                 }
             }
             Console.WriteLine($"Max number of the values entered is: {max}");
-        
-
-
-            /*
-            // 4- Write a program that picks a random number between 1 and 10. Give the user 4 chances to guess the number. 
-            // If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is 
-            // behaving correctly, you can display the secret number on the console first.)
-
-            // generate a random number between 1 and 10 and store it in variable secretNumber
-            var secretNumber = new Random().Next(1, 10);
-            // give the user 4 chances to guess the number by looping four times
-            int i = 0; // counter
-            while (true)
-            {
-                ++i;
-                // prompt user to enter a number
-                Console.WriteLine("Guess a number between 1 and 10.  You have four chances: ");
-                // get input and store in variable
-                var userInput = Convert.ToInt32(Console.ReadLine());
-                // display the secret number for testing
-                Console.WriteLine(secretNumber);
-                // if user guesses the number correctly, display "You won"; otherwisse display "You lost".
-                if (userInput == secretNumber)
-                {
-                    Console.WriteLine("You win");
-                    Console.ReadKey();
-                    break;
-                }
-                else if (i == 4)
-                {
-                    Console.WriteLine("You lost");
-                    break;
-                }   
-            }
             */
 
-            /*
-            // 2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the 
-            // previously entered numbers and display it on the console
-            int sum = 0; // declare a variable to hold sum of user entered integers
-            while (true)
-            {
-                Console.WriteLine("Enter a number or \"ok\" to exit");
-                string userInput = Console.ReadLine();
-                if (userInput.ToLower() == "ok")
-                {
-                    break;
-                }
-                sum += Convert.ToInt32(userInput);
-            }
-            Console.WriteLine(sum);
-            */
 
-            /*// 1 - Write a program to count how many numbers between 1 and 100 are divisible by 3 with no remainder.Display 
-            // the count on the console.
-            int total = 0; // variable to hold the count
-            for (int i = 1; i < 100; i++)
-            {
-                if (i%3 == 0)
-                {
-                    ++total;
-                }
-            }
-            Console.WriteLine(total); 
-            */
-        }
+/*
+// 4- Write a program that picks a random number between 1 and 10. Give the user 4 chances to guess the number. 
+// If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is 
+// behaving correctly, you can display the secret number on the console first.)
 
+// generate a random number between 1 and 10 and store it in variable secretNumber
+var secretNumber = new Random().Next(1, 10);
+// give the user 4 chances to guess the number by looping four times
+int i = 0; // counter
+while (true)
+{
+    ++i;
+    // prompt user to enter a number
+    Console.WriteLine("Guess a number between 1 and 10.  You have four chances: ");
+    // get input and store in variable
+    var userInput = Convert.ToInt32(Console.ReadLine());
+    // display the secret number for testing
+    Console.WriteLine(secretNumber);
+    // if user guesses the number correctly, display "You won"; otherwisse display "You lost".
+    if (userInput == secretNumber)
+    {
+        Console.WriteLine("You win");
+        Console.ReadKey();
+        break;
+    }
+    else if (i == 4)
+    {
+        Console.WriteLine("You lost");
+        break;
+    }   
+}
+*/
+
+/*
+// 2- Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the 
+// previously entered numbers and display it on the console
+int sum = 0; // declare a variable to hold sum of user entered integers
+while (true)
+{
+    Console.WriteLine("Enter a number or \"ok\" to exit");
+    string userInput = Console.ReadLine();
+    if (userInput.ToLower() == "ok")
+    {
+        break;
+    }
+    sum += Convert.ToInt32(userInput);
+}
+Console.WriteLine(sum);
+*/
+
+/*// 1 - Write a program to count how many numbers between 1 and 100 are divisible by 3 with no remainder.Display 
+// the count on the console.
+int total = 0; // variable to hold the count
+for (int i = 1; i < 100; i++)
+{
+    if (i%3 == 0)
+    {
+        ++total;
     }
 }
-
+Console.WriteLine(total); 
+*/
 /*
            // Control Flow: iteration, for, foreach, while and random class
            // Foreach loops: used to iterate over elements of an innumerable(definition: too many to be counted) object (list or array nature)
