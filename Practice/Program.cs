@@ -14,6 +14,172 @@ namespace C_Sharp_Practice
 
         static void Main()
         {
+            // Array Exercises
+
+            // 5- Write a program and ask the user to supply a list of comma separated numbers (e.g 5, 1, 9, 2, 10). If the list
+            // is empty or includes less than 5 numbers, display "Invalid List" and ask the user to re-try; otherwise, display 
+            // the 3 smallest numbers in the list.
+                // declare a list to hold user entered strings
+            string[] numbers;
+                // prompt user
+            Console.WriteLine("Please enter a list of comma separated numbers and press \"Enter\" to exit: ");
+            // keep the loop going until user exits
+            while (true)
+            {
+                var entry = Console.ReadLine();
+
+                if (!String.IsNullOrWhiteSpace(entry))
+                {
+                    numbers = entry.Split(',');
+                    if (numbers.Length >= 5)
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Invalid List");
+            }
+            var numberList = new List<int>();
+            foreach (var n in numbers)
+            {
+                numberList.Add(Convert.ToInt32(n));
+            }
+            var smalliest = new List<int>();
+
+            while (smalliest.Count < 3)
+            {
+                var min = numberList[0];
+                foreach (var n in numberList)
+                {
+                    if (n < min)
+                    {
+                        min = n;
+                    }
+                }
+                smalliest.Add(min);
+                numberList.Remove(min);
+            }
+            Console.WriteLine("The three smallest numbers are: ");
+            foreach (var n in smalliest)
+            {
+                Console.WriteLine(n);
+            }
+
+            /*
+            // Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
+            // include duplicates. Display the unique numbers that the user has entered.
+            var numbers = new List<int>();
+            Console.WriteLine("Continuously enter numbers or type \"Quit\" to exit: ");
+                // loop to continuously ask user to enter a number
+            while (true)
+            {
+                var number = Console.ReadLine(); // get input, convert to int32
+                if (number.ToLower() == "quit") // if user enters "Quit" exit the loop
+                {
+                    break;
+                }
+                // convert user inputs to int and add to numbers list
+                numbers.Add(Convert.ToInt32(number));
+            }
+            // create new list to store unique user inputs
+            var uniques = new List<int>();
+            // iterate through numbers list
+            foreach (var number in numbers)
+            {
+                if(!uniques.Contains(number)) // if unique, add to uniques list
+                {
+                    uniques.Add(number);
+                }
+            }
+            Console.WriteLine($"Unique numbers entered are: ");
+            foreach (var n in uniques)
+            {
+                Console.WriteLine(n);
+            }
+            Console.ReadLine();
+            */
+
+            /*
+            // 3- Write a program and ask the user to enter 5 numbers. If a number has been previously entered, display an error 
+            // message and ask the user to re-try. Once the user successfully enters 5 unique numbers, sort them and display the 
+            // result on the console.
+            var numbers = new List<int>();
+            Console.WriteLine("Enter 5 numbers: ");
+            while (numbers.Count < 5)
+            {
+                var number = Convert.ToInt32(Console.ReadLine());
+                if (numbers.Contains(number))
+                {
+                    Console.WriteLine("You've already entered that number, please enter another: ");
+                    continue;
+                }
+                numbers.Add(number);
+            }
+            numbers.Sort();
+            Console.WriteLine("You entered: ");
+            foreach (var n in numbers)
+            {
+                Console.Write($"{ n}, ");
+            }
+            */
+            /*
+            // 2- Write a program and ask the user to enter their name. Use an array to reverse the name and then store the 
+            // result in a new string. Display the reversed name on the console.
+            Console.WriteLine("Please enter your name: ");
+            var name = Console.ReadLine();
+            var nameArray = new char[name.Length];
+            for (int i = nameArray.Length; i > 0; i--)
+            {
+                nameArray[name.Length - i] = name[i - 1];
+            }
+            var reversed = new string(nameArray);
+            Console.WriteLine("Reversed name is: " + reversed);
+            */
+
+            /*
+            1- When you post a message on Facebook, depending on the number of people who like your post, Facebook displays 
+            different information.
+            If no one likes your post, it doesn't display anything.
+            If only one person likes your post, it displays: [Friend's Name] likes your post.
+            If two people like your post, it displays: [Friend 1] and[Friend 2] like your post.
+            If more than two people like your post, it displays: [Friend 1], [Friend 2] and[Number of Other People] others 
+            like your post.
+            Write a program and continuously ask the user to enter different names, until the user presses Enter 
+            (without supplying a name). Depending on the number of names provided, display a message based on the above 
+            pattern.
+            
+            var friendLikes = new List<string>();
+            while (true)
+            {
+                Console.WriteLine("Type a name or hit enter to quit: ");
+                var input = Console.ReadLine();
+                if (String.IsNullOrWhiteSpace(input))
+                {
+                    break;
+                }
+                friendLikes.Add(input);
+            }
+            if (friendLikes.Count == 1)
+            {
+                Console.WriteLine($"{friendLikes[0]} likes your post");
+            }
+            else if (friendLikes.Count == 2)
+            {
+                Console.WriteLine($"{friendLikes[0]} & {friendLikes[1]} like your post");
+            }
+            else if (friendLikes.Count > 2)
+            {
+                Console.WriteLine($"{friendLikes.Count} people like your post!");
+            }
+            else
+            {
+                Console.ReadLine();
+            }
+            */
+        }
+
+    }
+}
+/*
             // Arrays and Lists
 
             // Lists
@@ -57,68 +223,63 @@ namespace C_Sharp_Practice
                Console.WriteLine(e);
            }
            */
+/*
+ // use a for loop to modify a collection
+ for (var i = 0; i < numbers.Count; i++)
+ {
+     if (i == 2)
+     {
+         numbers.Remove(i);
+     }
+ }
+ foreach (var e in numbers)
+ {
+     Console.WriteLine(e);
+ }
+ // Clear()
+ numbers.Clear();
+ foreach(var e in numbers)
+ {
+     Console.WriteLine(e);
+ }
+ */
+/*
+// two types: single dimention and multi Dimention arrays(Rectangular -same number of columns in each row & Jagged -column length varies, a.k.a. array of arrays)
 
-            // use a for loop to modify a collection
-            for (var i = 0; i < numbers.Count; i++)
-            {
-                if (i == 2)
-                {
-                    numbers.Remove(i);
-                }
-            }
-            foreach (var e in numbers)
-            {
-                Console.WriteLine(e);
-            }
-            // Clear()
-            numbers.Clear();
-            foreach(var e in numbers)
-            {
-                Console.WriteLine(e);
-            }
-            /*
-            // two types: single dimention and multi Dimention arrays(Rectangular -same number of columns in each row & Jagged -column length varies, a.k.a. array of arrays)
+int[] numbers = new int[] { 8, 15, 2, 10 };
 
-            int[] numbers = new int[] { 8, 15, 2, 10 };
-
-            // Length
-            Console.WriteLine("Length: " + numbers.Length);
-            // IndexOf()
-            int index = Array.IndexOf(numbers, 3);
-            Console.WriteLine("Index of 3 is: " + index);
-            // Clear()
-            //Array.Clear(numbers, 0, 3);
-            // iterate with foreach to display elements
-            //foreach (var e in numbers)
-           // {
-               // Console.WriteLine(e);
-          //  }
-            // Copy()
-            var array2 = new int[] { 9, 8, 7 };
-            Array.Copy(numbers, array2, 3);
-            foreach (var e in array2)
-            {
-                Console.WriteLine(e);
-            }
-            // Sort()
-            Array.Sort(numbers);
-            foreach (var e in numbers)
-            {
-                Console.WriteLine(e);
-            }
-            // Reverse()
-            Array.Reverse(numbers);
-            foreach (var e in numbers)
-            {
-                Console.WriteLine(e);
-            }
-            */
-
-
-        }
-
-    }
+// Length
+Console.WriteLine("Length: " + numbers.Length);
+// IndexOf()
+int index = Array.IndexOf(numbers, 3);
+Console.WriteLine("Index of 3 is: " + index);
+// Clear()
+//Array.Clear(numbers, 0, 3);
+// iterate with foreach to display elements
+//foreach (var e in numbers)
+// {
+   // Console.WriteLine(e);
+//  }
+// Copy()
+var array2 = new int[] { 9, 8, 7 };
+Array.Copy(numbers, array2, 3);
+foreach (var e in array2)
+{
+    Console.WriteLine(e);
 }
+// Sort()
+Array.Sort(numbers);
+foreach (var e in numbers)
+{
+    Console.WriteLine(e);
+}
+// Reverse()
+Array.Reverse(numbers);
+foreach (var e in numbers)
+{
+    Console.WriteLine(e);
+}
+*/
 /*
             // Control Flow Exercises
 
