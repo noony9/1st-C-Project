@@ -14,6 +14,63 @@ namespace C_Sharp_Practice
 
         static void Main()
         {
+
+            // Working with Dates & Times and TimeSpan
+            // DateTime, defined in the system namespace
+            var dateTime = new DateTime(2019, 12, 1); // has a bunch of different constructor overloads
+            // get current DateTime
+            var now = DateTime.Now; // now is a static property of DateTime structure
+            var today = DateTime.Today; // today's date irrespective of time.
+            // example
+            Console.WriteLine("Hour: " + now.Hour); // or now.Minute for example
+            // DateTime objects are immutable (cannot change).
+            // All start with 'now"
+            // tomorrow, current time
+            var tomorrow = now.AddDays(1);
+            // formatting to a string.  Bunch of methods for formatting DateTime to strings
+            Console.WriteLine(now.ToLongDateString());
+            Console.WriteLine(now.ToShortDateString());
+            Console.WriteLine(now.ToLongTimeString());
+            Console.WriteLine(now.ToShortTimeString());
+            // Display both date and time!  use ToString method
+            Console.WriteLine(now.ToString("yyyy-MM-dd")); // can us other format specifiers "yy-MM-DD HH:mm" etc.  C# DateTime format specifiers on google
+
+            // TimeSpan
+            // Creating
+            var timeSpan = new TimeSpan(1, 2, 3); // overload: hours, minutes, seconds. There are many other overloads
+
+            var timeSpan1 = new TimeSpan(1, 0, 0); // looking at it, it's not obvious what the parameters represent
+            var timeSpan2 = TimeSpan.FromHours(1); // a more readable way to create the object is to use static methods on the TimeSpan structure (all start with 'From')
+
+            // another way to get a time span is to subtract an end from a start
+            var start = DateTime.Now;
+            var end = DateTime.Now.AddMinutes(2);
+            var duration = end - start;
+            Console.WriteLine($"Duration: {duration}");
+
+                // Once we have a TimeSpan object, we can read it's properties very easily
+                // Each TimeSpan has a number of properties that come in pairs (TotalDays, TotalHours etc.)
+            // Properties
+            Console.WriteLine($"Minutes: {timeSpan.Minutes} "); // returns the minutes component of the TimeSpan object
+            Console.WriteLine($"Total Minutes: {timeSpan.TotalMinutes}"); // converts that TimeSpan object to minutes (hours to minutes etc.)
+
+            // Add
+            Console.WriteLine($"Add Example: {timeSpan.Add(TimeSpan.FromMinutes(8))}");
+
+            // Conversion to and From Strings
+
+            // ToString
+            Console.WriteLine($"ToString {timeSpan.ToString()}"); // don't have to explicitly call ToString while using Console.WriteLine as it already does
+
+            // now conversion from a string.  Use Parse
+            Console.WriteLine($"Parse: {TimeSpan.Parse("01:02:03")}");
+
+
+        }
+
+    }
+}
+/*
             // Array Exercises
 
             // 5- Write a program and ask the user to supply a list of comma separated numbers (e.g 5, 1, 9, 2, 10). If the list
@@ -63,122 +120,118 @@ namespace C_Sharp_Practice
             {
                 Console.WriteLine(n);
             }
-
-            /*
-            // Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
-            // include duplicates. Display the unique numbers that the user has entered.
-            var numbers = new List<int>();
-            Console.WriteLine("Continuously enter numbers or type \"Quit\" to exit: ");
-                // loop to continuously ask user to enter a number
-            while (true)
-            {
-                var number = Console.ReadLine(); // get input, convert to int32
-                if (number.ToLower() == "quit") // if user enters "Quit" exit the loop
-                {
-                    break;
-                }
-                // convert user inputs to int and add to numbers list
-                numbers.Add(Convert.ToInt32(number));
-            }
-            // create new list to store unique user inputs
-            var uniques = new List<int>();
-            // iterate through numbers list
-            foreach (var number in numbers)
-            {
-                if(!uniques.Contains(number)) // if unique, add to uniques list
-                {
-                    uniques.Add(number);
-                }
-            }
-            Console.WriteLine($"Unique numbers entered are: ");
-            foreach (var n in uniques)
-            {
-                Console.WriteLine(n);
-            }
-            Console.ReadLine();
             */
-
-            /*
-            // 3- Write a program and ask the user to enter 5 numbers. If a number has been previously entered, display an error 
-            // message and ask the user to re-try. Once the user successfully enters 5 unique numbers, sort them and display the 
-            // result on the console.
-            var numbers = new List<int>();
-            Console.WriteLine("Enter 5 numbers: ");
-            while (numbers.Count < 5)
-            {
-                var number = Convert.ToInt32(Console.ReadLine());
-                if (numbers.Contains(number))
-                {
-                    Console.WriteLine("You've already entered that number, please enter another: ");
-                    continue;
-                }
-                numbers.Add(number);
-            }
-            numbers.Sort();
-            Console.WriteLine("You entered: ");
-            foreach (var n in numbers)
-            {
-                Console.Write($"{ n}, ");
-            }
-            */
-            /*
-            // 2- Write a program and ask the user to enter their name. Use an array to reverse the name and then store the 
-            // result in a new string. Display the reversed name on the console.
-            Console.WriteLine("Please enter your name: ");
-            var name = Console.ReadLine();
-            var nameArray = new char[name.Length];
-            for (int i = nameArray.Length; i > 0; i--)
-            {
-                nameArray[name.Length - i] = name[i - 1];
-            }
-            var reversed = new string(nameArray);
-            Console.WriteLine("Reversed name is: " + reversed);
-            */
-
-            /*
-            1- When you post a message on Facebook, depending on the number of people who like your post, Facebook displays 
-            different information.
-            If no one likes your post, it doesn't display anything.
-            If only one person likes your post, it displays: [Friend's Name] likes your post.
-            If two people like your post, it displays: [Friend 1] and[Friend 2] like your post.
-            If more than two people like your post, it displays: [Friend 1], [Friend 2] and[Number of Other People] others 
-            like your post.
-            Write a program and continuously ask the user to enter different names, until the user presses Enter 
-            (without supplying a name). Depending on the number of names provided, display a message based on the above 
-            pattern.
-            
-            var friendLikes = new List<string>();
-            while (true)
-            {
-                Console.WriteLine("Type a name or hit enter to quit: ");
-                var input = Console.ReadLine();
-                if (String.IsNullOrWhiteSpace(input))
-                {
-                    break;
-                }
-                friendLikes.Add(input);
-            }
-            if (friendLikes.Count == 1)
-            {
-                Console.WriteLine($"{friendLikes[0]} likes your post");
-            }
-            else if (friendLikes.Count == 2)
-            {
-                Console.WriteLine($"{friendLikes[0]} & {friendLikes[1]} like your post");
-            }
-            else if (friendLikes.Count > 2)
-            {
-                Console.WriteLine($"{friendLikes.Count} people like your post!");
-            }
-            else
-            {
-                Console.ReadLine();
-            }
-            */
-        }
-
+/*
+// Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
+// include duplicates. Display the unique numbers that the user has entered.
+var numbers = new List<int>();
+Console.WriteLine("Continuously enter numbers or type \"Quit\" to exit: ");
+    // loop to continuously ask user to enter a number
+while (true)
+{
+    var number = Console.ReadLine(); // get input, convert to int32
+    if (number.ToLower() == "quit") // if user enters "Quit" exit the loop
+    {
+        break;
+    }
+    // convert user inputs to int and add to numbers list
+    numbers.Add(Convert.ToInt32(number));
+}
+// create new list to store unique user inputs
+var uniques = new List<int>();
+// iterate through numbers list
+foreach (var number in numbers)
+{
+    if(!uniques.Contains(number)) // if unique, add to uniques list
+    {
+        uniques.Add(number);
     }
 }
+Console.WriteLine($"Unique numbers entered are: ");
+foreach (var n in uniques)
+{
+    Console.WriteLine(n);
+}
+Console.ReadLine();
+*/
+
+/*
+// 3- Write a program and ask the user to enter 5 numbers. If a number has been previously entered, display an error 
+// message and ask the user to re-try. Once the user successfully enters 5 unique numbers, sort them and display the 
+// result on the console.
+var numbers = new List<int>();
+Console.WriteLine("Enter 5 numbers: ");
+while (numbers.Count < 5)
+{
+    var number = Convert.ToInt32(Console.ReadLine());
+    if (numbers.Contains(number))
+    {
+        Console.WriteLine("You've already entered that number, please enter another: ");
+        continue;
+    }
+    numbers.Add(number);
+}
+numbers.Sort();
+Console.WriteLine("You entered: ");
+foreach (var n in numbers)
+{
+    Console.Write($"{ n}, ");
+}
+*/
+/*
+// 2- Write a program and ask the user to enter their name. Use an array to reverse the name and then store the 
+// result in a new string. Display the reversed name on the console.
+Console.WriteLine("Please enter your name: ");
+var name = Console.ReadLine();
+var nameArray = new char[name.Length];
+for (int i = nameArray.Length; i > 0; i--)
+{
+    nameArray[name.Length - i] = name[i - 1];
+}
+var reversed = new string(nameArray);
+Console.WriteLine("Reversed name is: " + reversed);
+*/
+
+/*
+1- When you post a message on Facebook, depending on the number of people who like your post, Facebook displays 
+different information.
+If no one likes your post, it doesn't display anything.
+If only one person likes your post, it displays: [Friend's Name] likes your post.
+If two people like your post, it displays: [Friend 1] and[Friend 2] like your post.
+If more than two people like your post, it displays: [Friend 1], [Friend 2] and[Number of Other People] others 
+like your post.
+Write a program and continuously ask the user to enter different names, until the user presses Enter 
+(without supplying a name). Depending on the number of names provided, display a message based on the above 
+pattern.
+
+var friendLikes = new List<string>();
+while (true)
+{
+    Console.WriteLine("Type a name or hit enter to quit: ");
+    var input = Console.ReadLine();
+    if (String.IsNullOrWhiteSpace(input))
+    {
+        break;
+    }
+    friendLikes.Add(input);
+}
+if (friendLikes.Count == 1)
+{
+    Console.WriteLine($"{friendLikes[0]} likes your post");
+}
+else if (friendLikes.Count == 2)
+{
+    Console.WriteLine($"{friendLikes[0]} & {friendLikes[1]} like your post");
+}
+else if (friendLikes.Count > 2)
+{
+    Console.WriteLine($"{friendLikes.Count} people like your post!");
+}
+else
+{
+    Console.ReadLine();
+}
+*/
 /*
             // Arrays and Lists
 
