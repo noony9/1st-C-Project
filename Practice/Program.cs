@@ -12,64 +12,216 @@ namespace C_Sharp_Practice
     class Program
     {
 
+        public static string SummarizeText(string text) // could also allow the caller to specify the maxLength by making a second parameter
+                                                        // and setting a default value = 20, in case they don't want to specify            
+        {
+            // MUCH BETTER coding practice write a Constant (more expressive) instead of hardcoding a value all in the code
+            const int maxLength = 20;
+            if (text.Length < maxLength)
+            {
+                // Console.WriteLine(text);
+                return text;
+            }
+            // now to summarize the "poor way" then the "right way"
+            
+            // May cutoff a word doing it with this kind of substringing
+            // text.Substring(0, maxLength); 
+            // how do we count the number of words that roughly fit around 20 characters
+            var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
+            // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
+            var totalCharacters = 0;
+            var summaryWords = new List<string>();
+            foreach (var word in words)
+            {
+                summaryWords.Add(word);
+                totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
+                if (totalCharacters > maxLength)
+                    break;
+            }
+            // now, the summaryWords has all the words that need to go into the summary
+            // need to create a string and 'join' all these words using 'whitespace'
+            // var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
+            //Console.WriteLine(summary); <--- Now that we are using it as a method, need to "return summary"
+            // return summary; <---- cleaning up code (see also var summary declaration)
+            return String.Join(" ", summaryWords) + "...";
+        }
+
         static void Main()
         {
+            // Working with text: Closer look at C# Strings part 1
+            var scentence = "This is a super, duper, incredibly long scentence, so it should be summarized. ";
+            Console.WriteLine($"{SummarizeText(scentence)}"); 
 
-            // Working with Dates & Times and TimeSpan
-            // DateTime, defined in the system namespace
-            var dateTime = new DateTime(2019, 12, 1); // has a bunch of different constructor overloads
-            // get current DateTime
-            var now = DateTime.Now; // now is a static property of DateTime structure
-            var today = DateTime.Today; // today's date irrespective of time.
-            // example
-            Console.WriteLine("Hour: " + now.Hour); // or now.Minute for example
-            // DateTime objects are immutable (cannot change).
-            // All start with 'now"
-            // tomorrow, current time
-            var tomorrow = now.AddDays(1);
-            // formatting to a string.  Bunch of methods for formatting DateTime to strings
-            Console.WriteLine(now.ToLongDateString());
-            Console.WriteLine(now.ToShortDateString());
-            Console.WriteLine(now.ToLongTimeString());
-            Console.WriteLine(now.ToShortTimeString());
-            // Display both date and time!  use ToString method
-            Console.WriteLine(now.ToString("yyyy-MM-dd")); // can us other format specifiers "yy-MM-DD HH:mm" etc.  C# DateTime format specifiers on google
+            /*
+             *
+            // Summarizing Text ...
+            var text = "This is a long, long, long, long, long, long, long scentence.";
+            // summarize it
+            // check if length of scentence is beyond a given threshold, otherwise display it
+            if (text.Length < 20)
+            {
+                Console.WriteLine(text);
+            }
+            // MUCH BETTER coding practice is to get rid of the '20' (magic number) and write a Constant (more expressive)
+            const int maxLength = 20;
+            if (text.Length < maxLength)
+            {
+                Console.WriteLine(text);
+            }
+            // now to summarize the "poor way" then the "right way"
+            else
+            {
+                // May cutoff a word doing it with this kind of substringing
+                // text.Substring(0, maxLength); 
+                // how do we count the number of words that roughly fit around 20 characters
+                var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
+                // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
+                var totalCharacters = 0;
+                var summaryWords = new List<string>();
+                foreach (var word in words)
+                {
+                    summaryWords.Add(word);
+                    totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
+                    if (totalCharacters > maxLength)
+                        break;
+                }
+                // now, the summaryWords has all the words that need to go into the summary
+                // need to create a string and 'join' all these words using 'whitespace'
+                var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
+                Console.WriteLine(summary);
+            }
+            */
+            /*
+            // Strings are a class and are immutable
+            // Formatting:  
+            // ToLower "hello world"
+            // ToUpper "HELLO WORLD"
+            // Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
+            // Searching:
+            // IndexOf('a')
+            // LastIndexOf("Hello")
+            // Substrings: --create a substring from a given string
+            // Substring(startIndex) retreives all the characters from that point to the end
+            // Substring(startIndex, length)
+            // Replacing: -- replace a given character or substring
+            // Replace('a', '!')
+            // Replace("hellow", "hello")
+            // Null checking: -- common way to compare a string against null, empty or whitespace
+            // String.IsNullOrEmpty(str)
+            // String.IsNullOrWhiteSpace(str)
+            // Splitting
+            // str.Split(' ') -- splitting strings by delimenator
+            // Converting Strings to Numbers
+            // string s = "1234";
+            // int i = int.Parse(s);
+            // int j = Convert.ToInt32(s); // preferred.  If null or empty, returns default integer "0" / safer
+            // Converting Numbers to Strings
+            // int i = 1234;
+            // string s = i.ToString(); = "1234"
+            // string t = i.ToString("C"); = "$1,234.00" // "C" is a format string and that is short for currency.  by default when formatting a number by currency, contains 2 decimal points.
+            // string t = i.ToString("C0"); = "$1,234" // C with zero decimal points.
 
-            // TimeSpan
-            // Creating
-            var timeSpan = new TimeSpan(1, 2, 3); // overload: hours, minutes, seconds. There are many other overloads
+            // Practice
+            /*
+            var fullName = "Daniel Jacobs    ";
+            // trim
+            fullName.Trim();
+            Console.WriteLine(fullName);
+            // ToUpper
+            Console.WriteLine(fullName.ToUpper());
+            Console.WriteLine(fullName); // note that it did not change the original string reference (immutable)
+            // break name up into two parts by delimiter
+            var index = fullName.IndexOf(' '); // can provide a character or a string here
+            // split the string
+            var firstName = fullName.Substring(0, index); // start of the string to index, which is the beginning of the space
+            var lastName = fullName.Substring(index + 1); // using the first overload (one parameter) from index + 1 all the way to the end of the string
+            Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}");
+            // easier way to do it, using Split method
+            string[] names = fullName.Split(' '); // if supply whitespace character, return type is a String Array
+            Console.WriteLine($"First Name: {names[0]} Last Name: {names[1]}");
+            // Replace method
+            fullName.Replace("Daniel", "Jacobs");
+            fullName.Replace("a", "z");
+            Console.WriteLine($"Name with replacements: {fullName}"); // remember....  immutable.......
+            Console.WriteLine($"Name with replacements, take two: {fullName.Replace("a", "z")}");
+            // String Validation
+            if (String.IsNullOrEmpty(" ")) // null or "" evaluates to true, but " " does not, but should if you were
+                                          // evaluating a credit card number string for instance.  Requires a work-around
+            {
+                Console.WriteLine("Invalid");
+            }
+            if (String.IsNullOrEmpty(" ".Trim())) // trim the string first, OR in later versions, now has IsNullOrWhitespace
+            {
 
-            var timeSpan1 = new TimeSpan(1, 0, 0); // looking at it, it's not obvious what the parameters represent
-            var timeSpan2 = TimeSpan.FromHours(1); // a more readable way to create the object is to use static methods on the TimeSpan structure (all start with 'From')
-
-            // another way to get a time span is to subtract an end from a start
-            var start = DateTime.Now;
-            var end = DateTime.Now.AddMinutes(2);
-            var duration = end - start;
-            Console.WriteLine($"Duration: {duration}");
-
-                // Once we have a TimeSpan object, we can read it's properties very easily
-                // Each TimeSpan has a number of properties that come in pairs (TotalDays, TotalHours etc.)
-            // Properties
-            Console.WriteLine($"Minutes: {timeSpan.Minutes} "); // returns the minutes component of the TimeSpan object
-            Console.WriteLine($"Total Minutes: {timeSpan.TotalMinutes}"); // converts that TimeSpan object to minutes (hours to minutes etc.)
-
-            // Add
-            Console.WriteLine($"Add Example: {timeSpan.Add(TimeSpan.FromMinutes(8))}");
-
-            // Conversion to and From Strings
-
-            // ToString
-            Console.WriteLine($"ToString {timeSpan.ToString()}"); // don't have to explicitly call ToString while using Console.WriteLine as it already does
-
-            // now conversion from a string.  Use Parse
-            Console.WriteLine($"Parse: {TimeSpan.Parse("01:02:03")}");
-
+            }
+            if (String.IsNullOrWhiteSpace(" "))
+            {
+                Console.WriteLine("Invalid");
+            }
+            // we receive a number from a user, if building web, desktop or mobile applications (THEY ALWAYS COME IN STRINGS)
+            // conversion
+            var str = "25";
+            var age = Convert.ToInt32(str); // immutable once again, have to place the modified string into a new object to store it.
+            float price = 10.95f;
+            price.ToString("C"); // EVERY OBJECT IN .NET HAS A ToString method (will cover later)
+            Console.WriteLine($"{price}");
+            */
 
         }
 
     }
 }
+/*
+           // Working with Dates & Times and TimeSpan (Both these types are structures and are immutable)
+           // DateTime, defined in the system namespace
+           var dateTime = new DateTime(2019, 12, 1); // has a bunch of different constructor overloads
+           // get current DateTime
+           var now = DateTime.Now; // now is a static property of DateTime structure
+           var today = DateTime.Today; // today's date irrespective of time.
+           // example
+           Console.WriteLine("Hour: " + now.Hour); // or now.Minute for example
+           // DateTime objects are immutable (cannot change).
+           // All start with 'now"
+           // tomorrow, current time
+           var tomorrow = now.AddDays(1);
+           // formatting to a string.  Bunch of methods for formatting DateTime to strings
+           Console.WriteLine(now.ToLongDateString());
+           Console.WriteLine(now.ToShortDateString());
+           Console.WriteLine(now.ToLongTimeString());
+           Console.WriteLine(now.ToShortTimeString());
+           // Display both date and time!  use ToString method
+           Console.WriteLine(now.ToString("yyyy-MM-dd")); // can us other format specifiers "yy-MM-DD HH:mm" etc.  C# DateTime format specifiers on google
+
+           // TimeSpan
+           // Creating
+           var timeSpan = new TimeSpan(1, 2, 3); // overload: hours, minutes, seconds. There are many other overloads
+
+           var timeSpan1 = new TimeSpan(1, 0, 0); // looking at it, it's not obvious what the parameters represent
+           var timeSpan2 = TimeSpan.FromHours(1); // a more readable way to create the object is to use static methods on the TimeSpan structure (all start with 'From')
+
+           // another way to get a time span is to subtract an end from a start
+           var start = DateTime.Now;
+           var end = DateTime.Now.AddMinutes(2);
+           var duration = end - start;
+           Console.WriteLine($"Duration: {duration}");
+
+               // Once we have a TimeSpan object, we can read it's properties very easily
+               // Each TimeSpan has a number of properties that come in pairs (TotalDays, TotalHours etc.)
+           // Properties
+           Console.WriteLine($"Minutes: {timeSpan.Minutes} "); // returns the minutes component of the TimeSpan object
+           Console.WriteLine($"Total Minutes: {timeSpan.TotalMinutes}"); // converts that TimeSpan object to minutes (hours to minutes etc.)
+
+           // Add
+           Console.WriteLine($"Add Example: {timeSpan.Add(TimeSpan.FromMinutes(8))}");
+
+           // Conversion to and From Strings
+
+           // ToString
+           Console.WriteLine($"ToString {timeSpan.ToString()}"); // don't have to explicitly call ToString while using Console.WriteLine as it already does
+
+           // now conversion from a string.  Use Parse
+           Console.WriteLine($"Parse: {TimeSpan.Parse("01:02:03")}");
+           */
 /*
             // Array Exercises
 
