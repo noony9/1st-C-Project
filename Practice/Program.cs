@@ -14,7 +14,36 @@ namespace C_Sharp_Practice
 
         static void Main()
         {
+            // Exercises
+            // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
+            // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
+            // message: "Consecutive"; otherwise, display "Not Consecutive".
 
+            const string hasSpace = " ";
+            // get input, place it in a string
+            while (true)
+            { 
+                Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+                string input = Console.ReadLine();
+                if (!input.Contains(" "))
+                {
+                    Console.WriteLine("Consecutive");
+                    Console.ReadLine();
+                    break;
+                }  
+                else
+                {
+                    Console.WriteLine("Not Consecutive");
+                }
+
+            }
+
+            
+        }
+
+    }
+}
+/*
             // Working with text: Closer look at C# Strings part 2
             // StringBuilder
             // A class that is defined in System.Text 
@@ -38,11 +67,8 @@ namespace C_Sharp_Practice
             builder
                 .Append(" " + "as" + " fast" + " as" + " you" + " can")
                 .Remove(0, 20);
-            Console.WriteLine(builder);
-        }
-
-    }
-}
+            Console.WriteLine(builder); 
+            */
 /*
              *  /*
         public static string SummarizeText(string text) // could also allow the caller to specify the maxLength by making a second parameter
