@@ -15,31 +15,68 @@ namespace C_Sharp_Practice
         static void Main()
         {
             // Exercises
-            // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
-            // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
-            // message: "Consecutive"; otherwise, display "Not Consecutive".
 
-            const string hasSpace = " ";
-            // get input, place it in a string
-            while (true)
-            { 
+            // 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
+            // presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
+            // duplicates. If so, display "Duplicate" on the console.
+
+            var inputList = new List<string>();
+            
                 Console.WriteLine("Enter a few numbers separated with a hyphen: ");
                 string input = Console.ReadLine();
-                if (!input.Contains(" "))
+                inputList.Add(input);
+                if (String.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Consecutive");
-                    Console.ReadLine();
-                    break;
-                }  
-                else
+                    return;
+                }
+                var numbers = new List<int>();
+                foreach (var n in input.Split('-'))
                 {
-                    Console.WriteLine("Not Consecutive");
+                    numbers.Add(Convert.ToInt32(n));
                 }
 
-            }
-
+                var uniques = new List<int>();
+                var includesDuplicates = false;
+                foreach (var n in numbers)
+                {
+                    if (!uniques.Contains(n))
+                    {
+                        uniques.Add(n);
+                    }
+                    else
+                    {
+                        includesDuplicates = true;
+                        break;
+                    }
+                }
+                if (includesDuplicates)
+                    Console.WriteLine("Dulicate");
             
-        }
+                /*
+                // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
+                // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
+                // message: "Consecutive"; otherwise, display "Not Consecutive".
+
+                // get input, place it in a string
+                while (true)
+                { 
+                    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+                    string input = Console.ReadLine();
+                    // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
+                    if (!input.Contains(" "))
+                    {
+                        Console.WriteLine("Consecutive");
+                        Console.ReadLine();
+                        break;
+                    }  
+                    else
+                    {
+                        Console.WriteLine("Not Consecutive");
+                    }
+                }
+                */
+
+            }
 
     }
 }
@@ -156,6 +193,7 @@ namespace C_Sharp_Practice
 // ToUpper "HELLO WORLD"
 // Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
 // Searching:
+// Contains(" ")
 // IndexOf('a')
 // LastIndexOf("Hello")
 // Substrings: --create a substring from a given string
