@@ -12,6 +12,39 @@ namespace C_Sharp_Practice
     class Program
     {
 
+        static void Main()
+        {
+
+            // Working with text: Closer look at C# Strings part 2
+            // StringBuilder
+            // A class that is defined in System.Text 
+            // Provides a number of different String Manipulation Methods
+            // Append(), Insert(), Remove(), Replace(), Clear()
+            var builder = new StringBuilder();
+            // append
+            builder.Append('-', 10); // dash character, repeated 10 times
+            Console.WriteLine(builder);
+            builder.AppendLine();
+            Console.WriteLine(builder);
+            builder.Append("Build");
+            Console.WriteLine(builder);
+            builder.Append(" " + "a" + " " + "Bridge");
+            Console.WriteLine(builder);
+            // builder.Replace('-', '+');
+            Console.WriteLine(builder);
+            builder.Insert(0, new string('!', 10));
+            Console.WriteLine(builder);
+            // *** Can chain them together, because they 'return' a StringBuilder
+            builder
+                .Append(" " + "as" + " fast" + " as" + " you" + " can")
+                .Remove(0, 20);
+            Console.WriteLine(builder);
+        }
+
+    }
+}
+/*
+             *  /*
         public static string SummarizeText(string text) // could also allow the caller to specify the maxLength by making a second parameter
                                                         // and setting a default value = 20, in case they don't want to specify            
         {
@@ -45,132 +78,126 @@ namespace C_Sharp_Practice
             // return summary; <---- cleaning up code (see also var summary declaration)
             return String.Join(" ", summaryWords) + "...";
         }
+        */
+/*
+    // Working with text: Closer look at C# Strings part 1
+    var scentence = "This is a super, duper, incredibly long scentence, so it should be summarized. ";
+    Console.WriteLine($"{SummarizeText(scentence)}"); 
 
-        static void Main()
-        {
-            // Working with text: Closer look at C# Strings part 1
-            var scentence = "This is a super, duper, incredibly long scentence, so it should be summarized. ";
-            Console.WriteLine($"{SummarizeText(scentence)}"); 
-
-            /*
-             *
-            // Summarizing Text ...
-            var text = "This is a long, long, long, long, long, long, long scentence.";
-            // summarize it
-            // check if length of scentence is beyond a given threshold, otherwise display it
-            if (text.Length < 20)
-            {
-                Console.WriteLine(text);
-            }
-            // MUCH BETTER coding practice is to get rid of the '20' (magic number) and write a Constant (more expressive)
-            const int maxLength = 20;
-            if (text.Length < maxLength)
-            {
-                Console.WriteLine(text);
-            }
-            // now to summarize the "poor way" then the "right way"
-            else
-            {
-                // May cutoff a word doing it with this kind of substringing
-                // text.Substring(0, maxLength); 
-                // how do we count the number of words that roughly fit around 20 characters
-                var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
-                // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
-                var totalCharacters = 0;
-                var summaryWords = new List<string>();
-                foreach (var word in words)
-                {
-                    summaryWords.Add(word);
-                    totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
-                    if (totalCharacters > maxLength)
-                        break;
-                }
-                // now, the summaryWords has all the words that need to go into the summary
-                // need to create a string and 'join' all these words using 'whitespace'
-                var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
-                Console.WriteLine(summary);
-            }
-            */
-            /*
-            // Strings are a class and are immutable
-            // Formatting:  
-            // ToLower "hello world"
-            // ToUpper "HELLO WORLD"
-            // Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
-            // Searching:
-            // IndexOf('a')
-            // LastIndexOf("Hello")
-            // Substrings: --create a substring from a given string
-            // Substring(startIndex) retreives all the characters from that point to the end
-            // Substring(startIndex, length)
-            // Replacing: -- replace a given character or substring
-            // Replace('a', '!')
-            // Replace("hellow", "hello")
-            // Null checking: -- common way to compare a string against null, empty or whitespace
-            // String.IsNullOrEmpty(str)
-            // String.IsNullOrWhiteSpace(str)
-            // Splitting
-            // str.Split(' ') -- splitting strings by delimenator
-            // Converting Strings to Numbers
-            // string s = "1234";
-            // int i = int.Parse(s);
-            // int j = Convert.ToInt32(s); // preferred.  If null or empty, returns default integer "0" / safer
-            // Converting Numbers to Strings
-            // int i = 1234;
-            // string s = i.ToString(); = "1234"
-            // string t = i.ToString("C"); = "$1,234.00" // "C" is a format string and that is short for currency.  by default when formatting a number by currency, contains 2 decimal points.
-            // string t = i.ToString("C0"); = "$1,234" // C with zero decimal points.
-
-            // Practice
-            /*
-            var fullName = "Daniel Jacobs    ";
-            // trim
-            fullName.Trim();
-            Console.WriteLine(fullName);
-            // ToUpper
-            Console.WriteLine(fullName.ToUpper());
-            Console.WriteLine(fullName); // note that it did not change the original string reference (immutable)
-            // break name up into two parts by delimiter
-            var index = fullName.IndexOf(' '); // can provide a character or a string here
-            // split the string
-            var firstName = fullName.Substring(0, index); // start of the string to index, which is the beginning of the space
-            var lastName = fullName.Substring(index + 1); // using the first overload (one parameter) from index + 1 all the way to the end of the string
-            Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}");
-            // easier way to do it, using Split method
-            string[] names = fullName.Split(' '); // if supply whitespace character, return type is a String Array
-            Console.WriteLine($"First Name: {names[0]} Last Name: {names[1]}");
-            // Replace method
-            fullName.Replace("Daniel", "Jacobs");
-            fullName.Replace("a", "z");
-            Console.WriteLine($"Name with replacements: {fullName}"); // remember....  immutable.......
-            Console.WriteLine($"Name with replacements, take two: {fullName.Replace("a", "z")}");
-            // String Validation
-            if (String.IsNullOrEmpty(" ")) // null or "" evaluates to true, but " " does not, but should if you were
-                                          // evaluating a credit card number string for instance.  Requires a work-around
-            {
-                Console.WriteLine("Invalid");
-            }
-            if (String.IsNullOrEmpty(" ".Trim())) // trim the string first, OR in later versions, now has IsNullOrWhitespace
-            {
-
-            }
-            if (String.IsNullOrWhiteSpace(" "))
-            {
-                Console.WriteLine("Invalid");
-            }
-            // we receive a number from a user, if building web, desktop or mobile applications (THEY ALWAYS COME IN STRINGS)
-            // conversion
-            var str = "25";
-            var age = Convert.ToInt32(str); // immutable once again, have to place the modified string into a new object to store it.
-            float price = 10.95f;
-            price.ToString("C"); // EVERY OBJECT IN .NET HAS A ToString method (will cover later)
-            Console.WriteLine($"{price}");
-            */
-
-        }
-
+    /*
+     *
+    // Summarizing Text ...
+    var text = "This is a long, long, long, long, long, long, long scentence.";
+    // summarize it
+    // check if length of scentence is beyond a given threshold, otherwise display it
+    if (text.Length < 20)
+    {
+        Console.WriteLine(text);
     }
+    // MUCH BETTER coding practice is to get rid of the '20' (magic number) and write a Constant (more expressive)
+    const int maxLength = 20;
+    if (text.Length < maxLength)
+    {
+        Console.WriteLine(text);
+    }
+    // now to summarize the "poor way" then the "right way"
+    else
+    {
+        // May cutoff a word doing it with this kind of substringing
+        // text.Substring(0, maxLength); 
+        // how do we count the number of words that roughly fit around 20 characters
+        var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
+        // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
+        var totalCharacters = 0;
+        var summaryWords = new List<string>();
+        foreach (var word in words)
+        {
+            summaryWords.Add(word);
+            totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
+            if (totalCharacters > maxLength)
+                break;
+        }
+        // now, the summaryWords has all the words that need to go into the summary
+        // need to create a string and 'join' all these words using 'whitespace'
+        var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
+        Console.WriteLine(summary);
+    }
+    */
+/*
+// Strings are a class and are immutable
+// Formatting:  
+// ToLower "hello world"
+// ToUpper "HELLO WORLD"
+// Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
+// Searching:
+// IndexOf('a')
+// LastIndexOf("Hello")
+// Substrings: --create a substring from a given string
+// Substring(startIndex) retreives all the characters from that point to the end
+// Substring(startIndex, length)
+// Replacing: -- replace a given character or substring
+// Replace('a', '!')
+// Replace("hellow", "hello")
+// Null checking: -- common way to compare a string against null, empty or whitespace
+// String.IsNullOrEmpty(str)
+// String.IsNullOrWhiteSpace(str)
+// Splitting
+// str.Split(' ') -- splitting strings by delimenator
+// Converting Strings to Numbers
+// string s = "1234";
+// int i = int.Parse(s);
+// int j = Convert.ToInt32(s); // preferred.  If null or empty, returns default integer "0" / safer
+// Converting Numbers to Strings
+// int i = 1234;
+// string s = i.ToString(); = "1234"
+// string t = i.ToString("C"); = "$1,234.00" // "C" is a format string and that is short for currency.  by default when formatting a number by currency, contains 2 decimal points.
+// string t = i.ToString("C0"); = "$1,234" // C with zero decimal points.
+
+// Practice
+/*
+var fullName = "Daniel Jacobs    ";
+// trim
+fullName.Trim();
+Console.WriteLine(fullName);
+// ToUpper
+Console.WriteLine(fullName.ToUpper());
+Console.WriteLine(fullName); // note that it did not change the original string reference (immutable)
+// break name up into two parts by delimiter
+var index = fullName.IndexOf(' '); // can provide a character or a string here
+// split the string
+var firstName = fullName.Substring(0, index); // start of the string to index, which is the beginning of the space
+var lastName = fullName.Substring(index + 1); // using the first overload (one parameter) from index + 1 all the way to the end of the string
+Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}");
+// easier way to do it, using Split method
+string[] names = fullName.Split(' '); // if supply whitespace character, return type is a String Array
+Console.WriteLine($"First Name: {names[0]} Last Name: {names[1]}");
+// Replace method
+fullName.Replace("Daniel", "Jacobs");
+fullName.Replace("a", "z");
+Console.WriteLine($"Name with replacements: {fullName}"); // remember....  immutable.......
+Console.WriteLine($"Name with replacements, take two: {fullName.Replace("a", "z")}");
+// String Validation
+if (String.IsNullOrEmpty(" ")) // null or "" evaluates to true, but " " does not, but should if you were
+                              // evaluating a credit card number string for instance.  Requires a work-around
+{
+    Console.WriteLine("Invalid");
 }
+if (String.IsNullOrEmpty(" ".Trim())) // trim the string first, OR in later versions, now has IsNullOrWhitespace
+{
+
+}
+if (String.IsNullOrWhiteSpace(" "))
+{
+    Console.WriteLine("Invalid");
+}
+// we receive a number from a user, if building web, desktop or mobile applications (THEY ALWAYS COME IN STRINGS)
+// conversion
+var str = "25";
+var age = Convert.ToInt32(str); // immutable once again, have to place the modified string into a new object to store it.
+float price = 10.95f;
+price.ToString("C"); // EVERY OBJECT IN .NET HAS A ToString method (will cover later)
+Console.WriteLine($"{price}");
+*/
 /*
            // Working with Dates & Times and TimeSpan (Both these types are structures and are immutable)
            // DateTime, defined in the system namespace
