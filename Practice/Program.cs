@@ -3,15 +3,105 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using C_Sharp_Practice.Calculations;
 using C_Sharp_Practice.People;
 
 namespace C_Sharp_Practice
 {
-    
+
     class Program
     {
+        static void Main()
+        {
+            // Working with files and directories
+            // System.IO
+            // File, FileInfo
+            // Both provide methods for creating, copying, deleting and moving files
+            // File: provides static methods
+            // FileInfo: provides instance methods
+            // Why we need different classes for files: The difference is, if you are going to have a small
+            // number of operations, it's more conveienent to access the static methods of the file class,
+            // everytime you call static methods, some security checking is done by the operating system
+            // to ensure the user has access to these.  This can slow a program down with larger operations.
+            // With larger operations, use FileInfo as security checking is done once during creation of a FileInfo object.
+            // Some of the useful methods:
+            // Create() -create a file
+            // Copy()
+            // Delete()
+            // Exists() - check if a file exists
+            // GetAttributes() - returns the attributes of a given file
+            // Move()
+            // ReadAllText() - reads all text within a file          
+            // Directory, DirectoryInfo
+            // Very similar to File and FileInfo
+            // Directory provides static methods
+            // DirectoryInfo: provides instance methods
+            // Some of the useful methods:
+            // CreateDirectory()
+            // Delete()
+            // Exists()
+            // GetCurrentDirectory() -returns where the application is currently sitting
+            // GetFiles() -get files within a directory
+            // Move()
+            // GetLogicalDrives() -c-drive, d-drive etc.
+            // Path
+            // useful methods
+            // GetDirectoryname()
+            // GetFileName()
+            // GetExtension()
+            // GetTempPath() - returns the path of the current user's temp folder
+            /*
+            var path = @"c:\somefile.jpg"; // @ is verbatim symbol
+            File.Copy("c\\temp\\myfile.jpg", "d:\\temp\\myfile.jpg", true);
+            File.Delete(path);
+            if (File.Exists(path))
+            {
+                // something
+            }
+            var content = File.ReadAllText(path); // returns a string
+            var fileInfo = new FileInfo(path);
+            fileInfo.CopyTo("...");// copy the file
+            fileInfo.Delete();// delete it
+            if (fileInfo.Exists)
+            {
+                // something
+            }
+            // FileInfo does not have a ReadAllText method, only available as a static method in the File class
+            */
+            // Directory and Directory Info classes
+            Directory.CreateDirectory(@"c:\users\drjac\documents\github\files_practice\folder1");
+            var files = Directory.GetFiles(@"c:\users\drjac\documents\github\files_practice", "*.txt", SearchOption.AllDirectories); // has 3 overloads
+            foreach (var file in files)
+            {
+                Console.WriteLine(file);
+            }
 
+            var directories = Directory.GetDirectories(@"c:\users\drjac\documents\github\files_practice");
+
+            var directoryInfo = new DirectoryInfo("...");
+            directoryInfo.GetFiles();
+            directoryInfo.GetDirectories();
+            
+            // Path class
+            // provides a lot of methods to make it easy to work with a string that represents a path and extract different parts of that path
+            // so we don't have to do the string processing ourselves
+            // Example
+            var path = @"c: \users\drjac\documents\github\files_practice\files_text.txt";
+            // poor way to extract the extension using low level string processing
+            var dotIndex = path.IndexOf('.'); // search for index of .
+            var extension = path.Substring(dotIndex); // return extension
+            // use path class instead
+            Console.WriteLine("Extension: " + Path.GetExtension(path)); // get extension
+            Console.WriteLine("File Name: " + Path.GetFileName(path)); // get file name
+            Console.WriteLine($"File Name without Extension: {Path.GetFileNameWithoutExtension(path)}");
+            // get directory name
+            Console.WriteLine($"Directory Name: {Path.GetDirectoryName(path)}");
+
+        }
+    }
+}
+/*
         static void Main()
         {
             // Procedural Programming
@@ -38,9 +128,7 @@ namespace C_Sharp_Practice
             // ---------------- Reusable code 
                  // method is purely responsible for reversing the name
         }
-
-    }
-}
+        */
 /*
             // Exercises
             // Working with Text: exercise 3
