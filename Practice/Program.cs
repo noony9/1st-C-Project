@@ -16,6 +16,46 @@ namespace C_Sharp_Practice
         {
             // Exercises
 
+            // 3- Write a program and ask the user to enter a time value in the 24-hour time format (e.g. 19:00). 
+            // A valid time should be between 00:00 and 23:59. If the time is valid, display "Ok"; otherwise, display
+            // "Invalid Time". If the user doesn't provide any values, consider it as invalid time.
+
+            Console.WriteLine("Enter a time value in the 24-hour time format (e.g. 17:00): ");
+            var input = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Invalid Time");
+                return;
+            }
+
+            var components = input.Split(':');
+            if (components.Length != 2)
+            {
+                Console.WriteLine("Invalid Time");
+                return;
+            }
+
+            try
+            {
+                var hour = Convert.ToInt32(components[0]);
+                var minute = Convert.ToInt32(components[1]);
+
+                if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59)
+                {
+                    Console.WriteLine("Ok");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Time");
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Time");
+            }
+        
+            /*
             // 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
             // presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
             // duplicates. If so, display "Duplicate" on the console.
@@ -51,33 +91,32 @@ namespace C_Sharp_Practice
                 }
                 if (includesDuplicates)
                     Console.WriteLine("Dulicate");
-            
-                /*
-                // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
-                // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
-                // message: "Consecutive"; otherwise, display "Not Consecutive".
-
-                // get input, place it in a string
-                while (true)
-                { 
-                    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
-                    string input = Console.ReadLine();
-                    // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
-                    if (!input.Contains(" "))
-                    {
-                        Console.WriteLine("Consecutive");
-                        Console.ReadLine();
-                        break;
-                    }  
-                    else
-                    {
-                        Console.WriteLine("Not Consecutive");
-                    }
-                }
                 */
+            /*
+            // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
+            // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
+            // message: "Consecutive"; otherwise, display "Not Consecutive".
 
+            // get input, place it in a string
+            while (true)
+            { 
+                Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+                string input = Console.ReadLine();
+                // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
+                if (!input.Contains(" "))
+                {
+                    Console.WriteLine("Consecutive");
+                    Console.ReadLine();
+                    break;
+                }  
+                else
+                {
+                    Console.WriteLine("Not Consecutive");
+                }
             }
+            */
 
+        }
     }
 }
 /*
