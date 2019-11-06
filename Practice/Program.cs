@@ -14,8 +14,36 @@ namespace C_Sharp_Practice
 
         static void Main()
         {
-            // Exercises
+            // Procedural Programming
+            // You should always seperate the code that works with the console from code that implements logic
+            // With the many different types of applications, will want to be able to reuse code that is not part of the console
+            // Exercise
+            Console.WriteLine("What's your name? "); // console code
+            var name = Console.ReadLine(); // console code
+            var reversed = ReverseName(name);
+            Console.WriteLine("Reversed name: " + reversed); // console code
+                 // the console is purely responsible for getting user input and displaying it
+        }
+        // extract the reusable code into a seperate method
+        public static string ReverseName(string name)// Need it public, in order to call it from main method (which is static) need it to be static, and need to return a string.  Method needs to be expressive in that others know what the method will do without looking at the code
+        {
+            // --------------- Reusable code
+            var array = new char[name.Length];
+            for (var i = name.Length; i > 0; i--)
+            {
+                array[name.Length - i] = name[i - 1];
+            }
 
+            return new string(array);
+            // ---------------- Reusable code 
+                 // method is purely responsible for reversing the name
+        }
+
+    }
+}
+/*
+            // Exercises
+            // Working with Text: exercise 3
             // 3- Write a program and ask the user to enter a time value in the 24-hour time format (e.g. 19:00). 
             // A valid time should be between 00:00 and 23:59. If the time is valid, display "Ok"; otherwise, display
             // "Invalid Time". If the user doesn't provide any values, consider it as invalid time.
@@ -54,71 +82,67 @@ namespace C_Sharp_Practice
             {
                 Console.WriteLine("Invalid Time");
             }
-        
-            /*
-            // 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
-            // presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
-            // duplicates. If so, display "Duplicate" on the console.
-
-            var inputList = new List<string>();
-            
-                Console.WriteLine("Enter a few numbers separated with a hyphen: ");
-                string input = Console.ReadLine();
-                inputList.Add(input);
-                if (String.IsNullOrEmpty(input))
-                {
-                    return;
-                }
-                var numbers = new List<int>();
-                foreach (var n in input.Split('-'))
-                {
-                    numbers.Add(Convert.ToInt32(n));
-                }
-
-                var uniques = new List<int>();
-                var includesDuplicates = false;
-                foreach (var n in numbers)
-                {
-                    if (!uniques.Contains(n))
-                    {
-                        uniques.Add(n);
-                    }
-                    else
-                    {
-                        includesDuplicates = true;
-                        break;
-                    }
-                }
-                if (includesDuplicates)
-                    Console.WriteLine("Dulicate");
-                */
-            /*
-            // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
-            // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
-            // message: "Consecutive"; otherwise, display "Not Consecutive".
-
-            // get input, place it in a string
-            while (true)
-            { 
-                Console.WriteLine("Enter a few numbers separated with a hyphen: ");
-                string input = Console.ReadLine();
-                // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
-                if (!input.Contains(" "))
-                {
-                    Console.WriteLine("Consecutive");
-                    Console.ReadLine();
-                    break;
-                }  
-                else
-                {
-                    Console.WriteLine("Not Consecutive");
-                }
-            }
             */
+/*
+// 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
+// presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
+// duplicates. If so, display "Duplicate" on the console.
 
+var inputList = new List<string>();
+
+    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+    string input = Console.ReadLine();
+    inputList.Add(input);
+    if (String.IsNullOrEmpty(input))
+    {
+        return;
+    }
+    var numbers = new List<int>();
+    foreach (var n in input.Split('-'))
+    {
+        numbers.Add(Convert.ToInt32(n));
+    }
+
+    var uniques = new List<int>();
+    var includesDuplicates = false;
+    foreach (var n in numbers)
+    {
+        if (!uniques.Contains(n))
+        {
+            uniques.Add(n);
+        }
+        else
+        {
+            includesDuplicates = true;
+            break;
         }
     }
+    if (includesDuplicates)
+        Console.WriteLine("Dulicate");
+    */
+/*
+// 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
+// numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
+// message: "Consecutive"; otherwise, display "Not Consecutive".
+
+// get input, place it in a string
+while (true)
+{ 
+    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+    string input = Console.ReadLine();
+    // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
+    if (!input.Contains(" "))
+    {
+        Console.WriteLine("Consecutive");
+        Console.ReadLine();
+        break;
+    }  
+    else
+    {
+        Console.WriteLine("Not Consecutive");
+    }
 }
+*/
 /*
             // Working with text: Closer look at C# Strings part 2
             // StringBuilder
