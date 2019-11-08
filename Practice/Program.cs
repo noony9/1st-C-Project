@@ -14,6 +14,53 @@ namespace C_Sharp_Practice
     {
         static void Main()
         {
+            // Debugging Applications
+            // Debugging tools in Visual Studio
+            // How debugging works: 
+                // First you need to put 1 or more breakpoints in your application
+                // Run in debug mode.  Execution stops at your breakpoints.  There you can inspect the values of your
+                // variables to ensure they are holding the right value.  If not, you can change your code.
+                // Can insert a breakpoint by pressing 'F9' or remove it by pressing 'F9' again.
+                // F5 run in debug & Ctrl + F5 run without debug mode.
+                // F10 is step over, to move to the next line of code.
+                // F11 is step into
+
+            var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var smallests = GetSmallests(numbers, 3);
+
+            foreach (var number in smallests)
+            {
+                Console.WriteLine(number);
+            }
+        }
+        public static List<int> GetSmallests(List<int> list, int count)
+        {
+            var smallests = new List<int>();
+            while (smallests.Count < count)
+            {
+                var min = GetSmallest(list);
+                smallests.Add(min);
+                list.Remove(min);
+            }
+            return smallests;
+        }
+        public static int GetSmallest(List<int> list)
+        {
+            // Assume the first number is the smallest
+            var min = list[0];
+            // Iterate over the list starting with index 1 through count
+            for (var i = 1; i < list.Count; i++)
+            {
+                if (list[i] > min)
+                {
+                    min = list[i];
+                }
+                return min;
+            }
+        }
+    }
+}
+/*
             // Working with files and directories
             // System.IO
             // File, FileInfo
@@ -69,38 +116,36 @@ namespace C_Sharp_Practice
             }
             // FileInfo does not have a ReadAllText method, only available as a static method in the File class
             */
-            // Directory and Directory Info classes
-            Directory.CreateDirectory(@"c:\users\drjac\documents\github\files_practice\folder1");
-            var files = Directory.GetFiles(@"c:\users\drjac\documents\github\files_practice", "*.txt", SearchOption.AllDirectories); // has 3 overloads
-            foreach (var file in files)
-            {
-                Console.WriteLine(file);
-            }
-
-            var directories = Directory.GetDirectories(@"c:\users\drjac\documents\github\files_practice");
-
-            var directoryInfo = new DirectoryInfo("...");
-            directoryInfo.GetFiles();
-            directoryInfo.GetDirectories();
-            
-            // Path class
-            // provides a lot of methods to make it easy to work with a string that represents a path and extract different parts of that path
-            // so we don't have to do the string processing ourselves
-            // Example
-            var path = @"c: \users\drjac\documents\github\files_practice\files_text.txt";
-            // poor way to extract the extension using low level string processing
-            var dotIndex = path.IndexOf('.'); // search for index of .
-            var extension = path.Substring(dotIndex); // return extension
-            // use path class instead
-            Console.WriteLine("Extension: " + Path.GetExtension(path)); // get extension
-            Console.WriteLine("File Name: " + Path.GetFileName(path)); // get file name
-            Console.WriteLine($"File Name without Extension: {Path.GetFileNameWithoutExtension(path)}");
-            // get directory name
-            Console.WriteLine($"Directory Name: {Path.GetDirectoryName(path)}");
-
-        }
-    }
+// Directory and Directory Info classes
+/*
+Directory.CreateDirectory(@"c:\users\drjac\documents\github\files_practice\folder1");
+var files = Directory.GetFiles(@"c:\users\drjac\documents\github\files_practice", "*.txt", SearchOption.AllDirectories); // has 3 overloads
+foreach (var file in files)
+{
+    Console.WriteLine(file);
 }
+
+var directories = Directory.GetDirectories(@"c:\users\drjac\documents\github\files_practice");
+
+var directoryInfo = new DirectoryInfo("...");
+directoryInfo.GetFiles();
+directoryInfo.GetDirectories();
+
+// Path class
+// provides a lot of methods to make it easy to work with a string that represents a path and extract different parts of that path
+// so we don't have to do the string processing ourselves
+// Example
+var path = @"c: \users\drjac\documents\github\files_practice\files_text.txt";
+// poor way to extract the extension using low level string processing
+var dotIndex = path.IndexOf('.'); // search for index of .
+var extension = path.Substring(dotIndex); // return extension
+// use path class instead
+Console.WriteLine("Extension: " + Path.GetExtension(path)); // get extension
+Console.WriteLine("File Name: " + Path.GetFileName(path)); // get file name
+Console.WriteLine($"File Name without Extension: {Path.GetFileNameWithoutExtension(path)}");
+// get directory name
+Console.WriteLine($"Directory Name: {Path.GetDirectoryName(path)}");
+*/
 /*
         static void Main()
         {
