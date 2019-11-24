@@ -8,6 +8,18 @@ using C_Sharp_Practice;
 
 namespace C_Sharp_Practice
 {
+    partial class Program
+    {
+        static void Main(string[] args)
+        {
+            // Lesson:  Indexers
+            var cookie = new HttpCookie();
+            cookie["name"] = "Daniel";
+            Console.WriteLine(cookie["name"]);
+        }
+    }
+}
+/*
     public class Person 
     {
         // shortcut:  prop then tab
@@ -43,7 +55,7 @@ namespace C_Sharp_Practice
             Console.WriteLine(person.Birthdate);
         }
     }
-}
+
 /*
     public class Customer
     {
