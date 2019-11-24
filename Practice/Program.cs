@@ -9,73 +9,150 @@ using C_Sharp_Practice;
 namespace C_Sharp_Practice
 {
 
-    public class Order
+    public class Point
     {
-      
-    }
-    public class Customer
-    {
-        public int Id; // Remember, in Real World Applications we do not declare fields with public access modifiers...
-        public string Name;
-        public List<Order> orders; 
-        public Customer() // as a best practice, when using a class and that class has a list of objects of any type, always initiaize that list an empty list
+        public int X;
+        public int Y;
+
+        public Point(int x, int y)
         {
-            orders = new List<Order>();       
+            this.X = x;
+            this.Y = y;
+        }
+        public void Move(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
         }
 
-        public Customer(int id) 
-            : this() // When this constructor is called, first it will call the default constructor (Best practice to ensure the list gets initialized), instead of copying and pasting a bunch of code 
+        public void Move(Point newLocation)
         {
-            this.Id = id;
-        }
+            // to ensure to avoid exception if null value is entered
+            if (newLocation == null)
+                throw new ArgumentException("newLocation");
 
-        public Customer(int id, string name) // snippet = ctor(tab)
-            : this(id) // When this constructor is called, first it will call the (int id) overload constructor
-        {
-            this.Name = name;
-        }
-    }
-
-    class Program
-    {
-
-        static void Main()
-        {
-            // Constructors
-            // Do not have a return type, not even void
-            // Parameterless or "default" constructor.  If you do not define one, C# compiler creates one for it
-            // Example
-            /* 
-             * public class Customer
-             * {
-             *      public string Name;
-             *      public Customer(string name) 
-             *      {
-             *      this.Name name; // this references the current object.  
-             *      }
-             * }
-             */
-            // Constructor Overloading
-            // Same name, different signatures (return type, its name & types/numbers of it's parameters
-            // the names do not matter but the data types and order of parameters matter
-            // Why?  To make the initialization of the class easier.  Sometimes you may only know the name
-            // sometimes you may know only the ID, etc.
-            // Practice
-            var customer = new Customer();
-            Console.WriteLine(customer.Id);
-            Console.WriteLine(customer.Name);
-
-            customer.Name = "Phil";
-            customer.Id = 8675309;
-            Console.WriteLine(customer.Id);
-            Console.WriteLine(customer.Name);
-
-            customer.Id = 555;
-            Console.WriteLine(customer.Id);
-
+            // better way to implement this method
+            Move(newLocation.X, newLocation.Y);
+            /*
+            this.X = newLocation.X;
+            this.Y = newLocation.Y;
+            */
         }
     }
+    public class Calculator
+    {
+        public int Add(params int[] numbers)
+        {
+            var sum = 0;
+            foreach (var number in numbers)
+            {
+                sum += number;
+            }
+            return sum;
+        }
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            // Lesson: Methods
+            var calculator = new Calculator();
+            Console.WriteLine();
+            Console.WriteLine(calculator.Add(1, 2));
+            Console.WriteLine(calculator.Add(1, 2, 3, 4));
+            Console.WriteLine(calculator.Add(new int[] { 1, 2, 3, 4, 5, 6, 7 }));
+
+        }
+        static void UsePoints()
+        {
+            try
+            {
+                var point = new Point(10, 20);
+                //point.Move(new Point(50, 100));
+                point.Move(null);
+                Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
+
+                point.Move(200, 400);
+                Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("An unexpected error occured.");
+            }
+        }
+    }
+    
 }
+/*
+ public class Order
+ {
+
+ }
+ public class Customer
+ {
+     public int Id; // Remember, in Real World Applications we do not declare fields with public access modifiers...
+     public string Name;
+     public List<Order> orders; 
+     public Customer() // as a best practice, when using a class and that class has a list of objects of any type, always initiaize that list an empty list
+     {
+         orders = new List<Order>();       
+     }
+
+     public Customer(int id) 
+         : this() // When this constructor is called, first it will call the default constructor (Best practice to ensure the list gets initialized), instead of copying and pasting a bunch of code 
+     {
+         this.Id = id;
+     }
+
+     public Customer(int id, string name) // snippet = ctor(tab)
+         : this(id) // When this constructor is called, first it will call the (int id) overload constructor
+     {
+         this.Name = name;
+     }
+ }
+
+ class Program
+ {
+
+     static void Main()
+     {
+         // Constructors
+         // Do not have a return type, not even void
+         // Parameterless or "default" constructor.  If you do not define one, C# compiler creates one for it
+         // Example
+         /* 
+          * public class Customer
+          * {
+          *      public string Name;
+          *      public Customer(string name) 
+          *      {
+          *      this.Name name; // this references the current object.  
+          *      }
+          * }
+          */
+// Constructor Overloading
+// Same name, different signatures (return type, its name & types/numbers of it's parameters
+// the names do not matter but the data types and order of parameters matter
+// Why?  To make the initialization of the class easier.  Sometimes you may only know the name
+// sometimes you may know only the ID, etc.
+// Practice
+/*
+var customer = new Customer();
+Console.WriteLine(customer.Id);
+Console.WriteLine(customer.Name);
+
+customer.Name = "Phil";
+customer.Id = 8675309;
+Console.WriteLine(customer.Id);
+Console.WriteLine(customer.Name);
+
+customer.Id = 555;
+Console.WriteLine(customer.Id);
+
+}
+}
+*/
 /*
    public class Person
    {
