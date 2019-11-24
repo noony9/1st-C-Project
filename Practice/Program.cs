@@ -9,764 +9,808 @@ using C_Sharp_Practice;
 namespace C_Sharp_Practice
 {
 
-    public class Point
+    public class Customer
     {
-        public int X;
-        public int Y;
+        public int Id;
+        public string Name;
+        public readonly List<Order> Orders = new List<Order>();
 
-        public Point(int x, int y)
+        public Customer(int id)
         {
-            this.X = x;
-            this.Y = y;
-        }
-        public void Move(int x, int y)
-        {
-            this.X = x;
-            this.Y = y;
+            this.Id = id;
         }
 
-        public void Move(Point newLocation)
+        public Customer(int id, string name)
+            : this(id)
         {
-            // to ensure to avoid exception if null value is entered
-            if (newLocation == null)
-                throw new ArgumentException("newLocation");
+            this.Name = name;
+        }
 
-            // better way to implement this method
-            Move(newLocation.X, newLocation.Y);
-            /*
-            this.X = newLocation.X;
-            this.Y = newLocation.Y;
-            */
+        public void Promote()
+        {
+            this.Name += " is a Legend";
         }
     }
-    public class Calculator
+    public class Order
     {
-        public int Add(params int[] numbers)
-        {
-            var sum = 0;
-            foreach (var number in numbers)
-            {
-                sum += number;
-            }
-            return sum;
-        }
+
     }
-    public class Program
+
+    class Program 
     {
         static void Main(string[] args)
         {
-            // Lesson: Methods
-            var calculator = new Calculator();
-            Console.WriteLine();
-            Console.WriteLine(calculator.Add(1, 2));
-            Console.WriteLine(calculator.Add(1, 2, 3, 4));
-            Console.WriteLine(calculator.Add(new int[] { 1, 2, 3, 4, 5, 6, 7 }));
-
-        }
-        static void UsePoints()
-        {
-            try
-            {
-                var point = new Point(10, 20);
-                //point.Move(new Point(50, 100));
-                point.Move(null);
-                Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
-
-                point.Move(200, 400);
-                Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("An unexpected error occured.");
-            }
+            // Lesson: Fields
+            var customer = new Customer(27);
+            customer.Name = "Trevor";
+            customer.Orders.Add(new Order());
+            customer.Orders.Add(new Order());
+            Console.WriteLine(customer.Orders.Count);
+            customer.Promote();
+            Console.WriteLine("Customer's info: ID = {0}, Name = {1}", customer.Id, customer.Name);
         }
     }
-    
+  
 }
 /*
- public class Order
- {
+public class Point
+{
+    public int X;
+    public int Y;
 
- }
- public class Customer
- {
-     public int Id; // Remember, in Real World Applications we do not declare fields with public access modifiers...
-     public string Name;
-     public List<Order> orders; 
-     public Customer() // as a best practice, when using a class and that class has a list of objects of any type, always initiaize that list an empty list
-     {
-         orders = new List<Order>();       
-     }
+    public Point(int x, int y)
+    {
+        this.X = x;
+        this.Y = y;
+    }
+    public void Move(int x, int y)
+    {
+        this.X = x;
+        this.Y = y;
+    }
 
-     public Customer(int id) 
-         : this() // When this constructor is called, first it will call the default constructor (Best practice to ensure the list gets initialized), instead of copying and pasting a bunch of code 
-     {
-         this.Id = id;
-     }
+    public void Move(Point newLocation)
+    {
+        // to ensure to avoid exception if null value is entered
+        if (newLocation == null)
+            throw new ArgumentException("newLocation");
 
-     public Customer(int id, string name) // snippet = ctor(tab)
-         : this(id) // When this constructor is called, first it will call the (int id) overload constructor
-     {
-         this.Name = name;
-     }
- }
-
- class Program
- {
-
-     static void Main()
-     {
-         // Constructors
-         // Do not have a return type, not even void
-         // Parameterless or "default" constructor.  If you do not define one, C# compiler creates one for it
-         // Example
-         /* 
-          * public class Customer
-          * {
-          *      public string Name;
-          *      public Customer(string name) 
-          *      {
-          *      this.Name name; // this references the current object.  
-          *      }
-          * }
-          */
-// Constructor Overloading
-// Same name, different signatures (return type, its name & types/numbers of it's parameters
-// the names do not matter but the data types and order of parameters matter
-// Why?  To make the initialization of the class easier.  Sometimes you may only know the name
-// sometimes you may know only the ID, etc.
-// Practice
-/*
-var customer = new Customer();
-Console.WriteLine(customer.Id);
-Console.WriteLine(customer.Name);
-
-customer.Name = "Phil";
-customer.Id = 8675309;
-Console.WriteLine(customer.Id);
-Console.WriteLine(customer.Name);
-
-customer.Id = 555;
-Console.WriteLine(customer.Id);
-
+        // better way to implement this method
+        Move(newLocation.X, newLocation.Y);
+        /*
+        this.X = newLocation.X;
+        this.Y = newLocation.Y;
+        */ /*
+    }
 }
+
+public class Calculator
+{
+    public int Add(params int[] numbers)
+    {
+        var sum = 0;
+        foreach (var number in numbers)
+        {
+            sum += number;
+        }
+        return sum;
+    }
+}
+public class Program
+{
+    static void Main(string[] args)
+    {
+        // Lesson: Methods
+        var calculator = new Calculator();
+        Console.WriteLine();
+        Console.WriteLine(calculator.Add(1, 2));
+        Console.WriteLine(calculator.Add(1, 2, 3, 4));
+        Console.WriteLine(calculator.Add(new int[] { 1, 2, 3, 4, 5, 6, 7 }));
+
+    }
+    static void UsePoints()
+    {
+        try
+        {
+            var point = new Point(10, 20);
+            //point.Move(new Point(50, 100));
+            point.Move(null);
+            Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
+
+            point.Move(200, 400);
+            Console.WriteLine("Point is at ({0}, {1})", point.X, point.Y);
+        }
+        catch (Exception)
+        {
+
+            Console.WriteLine("An unexpected error occured.");
+        }
+    }
 }
 */
-/*
-   public class Person
-   {
-       public string Name;
-       public void Introduce(string to)
-       {
-           Console.WriteLine("Hi {0}, I am {1}", to, Name);
-       }
-
-       // create a parse method
-       // have to use it on an object because it's an instance method
-       public static Person Parse(string str) // take a string and return a person object
-       {
-           var person = new Person();
-           person.Name = str;
-           return person;
-       }
-   }
-   class Program
-   {
-      static void Main()
-       {
-           // Intro to classes
-           var person = new Person();
-           person.Name = "Daniel";
-           person.Introduce("Jimmy");
-           var p = Person.Parse("PurplePeopleEater");
-           Console.WriteLine(p.Name);
-
-       }
-   }
-   */
-/*
-static void Main()
-{
-
-           // Debugging Applications
-           // Debugging tools in Visual Studio
-           // How debugging works: 
-               // First you need to put 1 or more breakpoints in your application
-               // Run in debug mode.  Execution stops at your breakpoints.  There you can inspect the values of your
-               // variables to ensure they are holding the right value.  If not, you can change your code.
-               // Can insert a breakpoint by pressing 'F9' or remove it by pressing 'F9' again.
-               // F5 run in debug & Ctrl + F5 run without debug mode.
-               // F10 is step over, to move to the next line of code.
-               // F11 is step into
-
-           var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-           var smallests = GetSmallests(numbers, 3);
-
-           foreach (var number in smallests)
-           {
-               Console.WriteLine(number);
-           }
-       }
-       public static List<int> GetSmallests(List<int> list, int count)
-       {
-           var smallests = new List<int>();
-           while (smallests.Count < count)
-           {
-               var min = GetSmallest(list);
-               smallests.Add(min);
-               list.Remove(min);
-           }
-           return smallests;
-       }
-       public static int GetSmallest(List<int> list)
-       {
-           // Assume the first number is the smallest
-           var min = list[0];
-           // Iterate over the list starting with index 1 through count
-           for (var i = 1; i < list.Count; i++)
-           {
-               if (list[i] > min)
-               {
-                   min = list[i];
-               }
-               return min;
-           }
-       }
-       */
-/*
-            // Working with files and directories
-            // System.IO
-            // File, FileInfo
-            // Both provide methods for creating, copying, deleting and moving files
-            // File: provides static methods
-            // FileInfo: provides instance methods
-            // Why we need different classes for files: The difference is, if you are going to have a small
-            // number of operations, it's more conveienent to access the static methods of the file class,
-            // everytime you call static methods, some security checking is done by the operating system
-            // to ensure the user has access to these.  This can slow a program down with larger operations.
-            // With larger operations, use FileInfo as security checking is done once during creation of a FileInfo object.
-            // Some of the useful methods:
-            // Create() -create a file
-            // Copy()
-            // Delete()
-            // Exists() - check if a file exists
-            // GetAttributes() - returns the attributes of a given file
-            // Move()
-            // ReadAllText() - reads all text within a file          
-            // Directory, DirectoryInfo
-            // Very similar to File and FileInfo
-            // Directory provides static methods
-            // DirectoryInfo: provides instance methods
-            // Some of the useful methods:
-            // CreateDirectory()
-            // Delete()
-            // Exists()
-            // GetCurrentDirectory() -returns where the application is currently sitting
-            // GetFiles() -get files within a directory
-            // Move()
-            // GetLogicalDrives() -c-drive, d-drive etc.
-            // Path
-            // useful methods
-            // GetDirectoryname()
-            // GetFileName()
-            // GetExtension()
-            // GetTempPath() - returns the path of the current user's temp folder
-            /*
-            var path = @"c:\somefile.jpg"; // @ is verbatim symbol
-            File.Copy("c\\temp\\myfile.jpg", "d:\\temp\\myfile.jpg", true);
-            File.Delete(path);
-            if (File.Exists(path))
+           /*
+            public class Order
             {
-                // something
+
             }
-            var content = File.ReadAllText(path); // returns a string
-            var fileInfo = new FileInfo(path);
-            fileInfo.CopyTo("...");// copy the file
-            fileInfo.Delete();// delete it
-            if (fileInfo.Exists)
+            public class Customer
             {
-                // something
-            }
-            // FileInfo does not have a ReadAllText method, only available as a static method in the File class
-            */
-// Directory and Directory Info classes
-/*
-Directory.CreateDirectory(@"c:\users\drjac\documents\github\files_practice\folder1");
-var files = Directory.GetFiles(@"c:\users\drjac\documents\github\files_practice", "*.txt", SearchOption.AllDirectories); // has 3 overloads
-foreach (var file in files)
-{
-    Console.WriteLine(file);
-}
-
-var directories = Directory.GetDirectories(@"c:\users\drjac\documents\github\files_practice");
-
-var directoryInfo = new DirectoryInfo("...");
-directoryInfo.GetFiles();
-directoryInfo.GetDirectories();
-
-// Path class
-// provides a lot of methods to make it easy to work with a string that represents a path and extract different parts of that path
-// so we don't have to do the string processing ourselves
-// Example
-var path = @"c: \users\drjac\documents\github\files_practice\files_text.txt";
-// poor way to extract the extension using low level string processing
-var dotIndex = path.IndexOf('.'); // search for index of .
-var extension = path.Substring(dotIndex); // return extension
-// use path class instead
-Console.WriteLine("Extension: " + Path.GetExtension(path)); // get extension
-Console.WriteLine("File Name: " + Path.GetFileName(path)); // get file name
-Console.WriteLine($"File Name without Extension: {Path.GetFileNameWithoutExtension(path)}");
-// get directory name
-Console.WriteLine($"Directory Name: {Path.GetDirectoryName(path)}");
-*/
-/*
-        static void Main()
-        {
-            // Procedural Programming
-            // You should always seperate the code that works with the console from code that implements logic
-            // With the many different types of applications, will want to be able to reuse code that is not part of the console
-            // Exercise
-            Console.WriteLine("What's your name? "); // console code
-            var name = Console.ReadLine(); // console code
-            var reversed = ReverseName(name);
-            Console.WriteLine("Reversed name: " + reversed); // console code
-                 // the console is purely responsible for getting user input and displaying it
-        }
-        // extract the reusable code into a seperate method
-        public static string ReverseName(string name)// Need it public, in order to call it from main method (which is static) need it to be static, and need to return a string.  Method needs to be expressive in that others know what the method will do without looking at the code
-        {
-            // --------------- Reusable code
-            var array = new char[name.Length];
-            for (var i = name.Length; i > 0; i--)
-            {
-                array[name.Length - i] = name[i - 1];
-            }
-
-            return new string(array);
-            // ---------------- Reusable code 
-                 // method is purely responsible for reversing the name
-        }
-        */
-/*
-            // Exercises
-            // Working with Text: exercise 3
-            // 3- Write a program and ask the user to enter a time value in the 24-hour time format (e.g. 19:00). 
-            // A valid time should be between 00:00 and 23:59. If the time is valid, display "Ok"; otherwise, display
-            // "Invalid Time". If the user doesn't provide any values, consider it as invalid time.
-
-            Console.WriteLine("Enter a time value in the 24-hour time format (e.g. 17:00): ");
-            var input = Console.ReadLine();
-
-            if (String.IsNullOrWhiteSpace(input))
-            {
-                Console.WriteLine("Invalid Time");
-                return;
-            }
-
-            var components = input.Split(':');
-            if (components.Length != 2)
-            {
-                Console.WriteLine("Invalid Time");
-                return;
-            }
-
-            try
-            {
-                var hour = Convert.ToInt32(components[0]);
-                var minute = Convert.ToInt32(components[1]);
-
-                if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59)
+                public int Id; // Remember, in Real World Applications we do not declare fields with public access modifiers...
+                public string Name;
+                public List<Order> orders; 
+                public Customer() // as a best practice, when using a class and that class has a list of objects of any type, always initiaize that list an empty list
                 {
-                    Console.WriteLine("Ok");
+                    orders = new List<Order>();       
                 }
-                else
+
+                public Customer(int id) 
+                    : this() // When this constructor is called, first it will call the default constructor (Best practice to ensure the list gets initialized), instead of copying and pasting a bunch of code 
                 {
-                    Console.WriteLine("Invalid Time");
+                    this.Id = id;
+                }
+
+                public Customer(int id, string name) // snippet = ctor(tab)
+                    : this(id) // When this constructor is called, first it will call the (int id) overload constructor
+                {
+                    this.Name = name;
                 }
             }
-            catch (Exception)
+
+            class Program
             {
-                Console.WriteLine("Invalid Time");
-            }
-            */
-/*
-// 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
-// presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
-// duplicates. If so, display "Duplicate" on the console.
 
-var inputList = new List<string>();
+                static void Main()
+                {
+                    // Constructors
+                    // Do not have a return type, not even void
+                    // Parameterless or "default" constructor.  If you do not define one, C# compiler creates one for it
+                    // Example
+                    /* 
+                     * public class Customer
+                     * {
+                     *      public string Name;
+                     *      public Customer(string name) 
+                     *      {
+                     *      this.Name name; // this references the current object.  
+                     *      }
+                     * }
+                     */
+           // Constructor Overloading
+           // Same name, different signatures (return type, its name & types/numbers of it's parameters
+           // the names do not matter but the data types and order of parameters matter
+           // Why?  To make the initialization of the class easier.  Sometimes you may only know the name
+           // sometimes you may know only the ID, etc.
+           // Practice
+           /*
+           var customer = new Customer();
+           Console.WriteLine(customer.Id);
+           Console.WriteLine(customer.Name);
 
-    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
-    string input = Console.ReadLine();
-    inputList.Add(input);
-    if (String.IsNullOrEmpty(input))
-    {
-        return;
-    }
-    var numbers = new List<int>();
-    foreach (var n in input.Split('-'))
-    {
-        numbers.Add(Convert.ToInt32(n));
-    }
+           customer.Name = "Phil";
+           customer.Id = 8675309;
+           Console.WriteLine(customer.Id);
+           Console.WriteLine(customer.Name);
 
-    var uniques = new List<int>();
-    var includesDuplicates = false;
-    foreach (var n in numbers)
-    {
-        if (!uniques.Contains(n))
-        {
-            uniques.Add(n);
-        }
-        else
-        {
-            includesDuplicates = true;
-            break;
-        }
-    }
-    if (includesDuplicates)
-        Console.WriteLine("Dulicate");
-    */
-/*
-// 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
-// numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
-// message: "Consecutive"; otherwise, display "Not Consecutive".
+           customer.Id = 555;
+           Console.WriteLine(customer.Id);
 
-// get input, place it in a string
-while (true)
-{ 
-    Console.WriteLine("Enter a few numbers separated with a hyphen: ");
-    string input = Console.ReadLine();
-    // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
-    if (!input.Contains(" "))
-    {
-        Console.WriteLine("Consecutive");
-        Console.ReadLine();
-        break;
-    }  
-    else
-    {
-        Console.WriteLine("Not Consecutive");
-    }
-}
-*/
-/*
-            // Working with text: Closer look at C# Strings part 2
-            // StringBuilder
-            // A class that is defined in System.Text 
-            // Provides a number of different String Manipulation Methods
-            // Append(), Insert(), Remove(), Replace(), Clear()
-            var builder = new StringBuilder();
-            // append
-            builder.Append('-', 10); // dash character, repeated 10 times
-            Console.WriteLine(builder);
-            builder.AppendLine();
-            Console.WriteLine(builder);
-            builder.Append("Build");
-            Console.WriteLine(builder);
-            builder.Append(" " + "a" + " " + "Bridge");
-            Console.WriteLine(builder);
-            // builder.Replace('-', '+');
-            Console.WriteLine(builder);
-            builder.Insert(0, new string('!', 10));
-            Console.WriteLine(builder);
-            // *** Can chain them together, because they 'return' a StringBuilder
-            builder
-                .Append(" " + "as" + " fast" + " as" + " you" + " can")
-                .Remove(0, 20);
-            Console.WriteLine(builder); 
-            */
-/*
-             *  /*
-        public static string SummarizeText(string text) // could also allow the caller to specify the maxLength by making a second parameter
-                                                        // and setting a default value = 20, in case they don't want to specify            
-        {
-            // MUCH BETTER coding practice write a Constant (more expressive) instead of hardcoding a value all in the code
-            const int maxLength = 20;
-            if (text.Length < maxLength)
-            {
-                // Console.WriteLine(text);
-                return text;
-            }
-            // now to summarize the "poor way" then the "right way"
-            
-            // May cutoff a word doing it with this kind of substringing
-            // text.Substring(0, maxLength); 
-            // how do we count the number of words that roughly fit around 20 characters
-            var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
-            // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
-            var totalCharacters = 0;
-            var summaryWords = new List<string>();
-            foreach (var word in words)
-            {
-                summaryWords.Add(word);
-                totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
-                if (totalCharacters > maxLength)
-                    break;
-            }
-            // now, the summaryWords has all the words that need to go into the summary
-            // need to create a string and 'join' all these words using 'whitespace'
-            // var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
-            //Console.WriteLine(summary); <--- Now that we are using it as a method, need to "return summary"
-            // return summary; <---- cleaning up code (see also var summary declaration)
-            return String.Join(" ", summaryWords) + "...";
-        }
-        */
-/*
-    // Working with text: Closer look at C# Strings part 1
-    var scentence = "This is a super, duper, incredibly long scentence, so it should be summarized. ";
-    Console.WriteLine($"{SummarizeText(scentence)}"); 
-
-    /*
-     *
-    // Summarizing Text ...
-    var text = "This is a long, long, long, long, long, long, long scentence.";
-    // summarize it
-    // check if length of scentence is beyond a given threshold, otherwise display it
-    if (text.Length < 20)
-    {
-        Console.WriteLine(text);
-    }
-    // MUCH BETTER coding practice is to get rid of the '20' (magic number) and write a Constant (more expressive)
-    const int maxLength = 20;
-    if (text.Length < maxLength)
-    {
-        Console.WriteLine(text);
-    }
-    // now to summarize the "poor way" then the "right way"
-    else
-    {
-        // May cutoff a word doing it with this kind of substringing
-        // text.Substring(0, maxLength); 
-        // how do we count the number of words that roughly fit around 20 characters
-        var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
-        // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
-        var totalCharacters = 0;
-        var summaryWords = new List<string>();
-        foreach (var word in words)
-        {
-            summaryWords.Add(word);
-            totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
-            if (totalCharacters > maxLength)
-                break;
-        }
-        // now, the summaryWords has all the words that need to go into the summary
-        // need to create a string and 'join' all these words using 'whitespace'
-        var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
-        Console.WriteLine(summary);
-    }
-    */
-/*
-// Strings are a class and are immutable
-// Formatting:  
-// ToLower "hello world"
-// ToUpper "HELLO WORLD"
-// Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
-// Searching:
-// Contains(" ")
-// IndexOf('a')
-// LastIndexOf("Hello")
-// Substrings: --create a substring from a given string
-// Substring(startIndex) retreives all the characters from that point to the end
-// Substring(startIndex, length)
-// Replacing: -- replace a given character or substring
-// Replace('a', '!')
-// Replace("hellow", "hello")
-// Null checking: -- common way to compare a string against null, empty or whitespace
-// String.IsNullOrEmpty(str)
-// String.IsNullOrWhiteSpace(str)
-// Splitting
-// str.Split(' ') -- splitting strings by delimenator
-// Converting Strings to Numbers
-// string s = "1234";
-// int i = int.Parse(s);
-// int j = Convert.ToInt32(s); // preferred.  If null or empty, returns default integer "0" / safer
-// Converting Numbers to Strings
-// int i = 1234;
-// string s = i.ToString(); = "1234"
-// string t = i.ToString("C"); = "$1,234.00" // "C" is a format string and that is short for currency.  by default when formatting a number by currency, contains 2 decimal points.
-// string t = i.ToString("C0"); = "$1,234" // C with zero decimal points.
-
-// Practice
-/*
-var fullName = "Daniel Jacobs    ";
-// trim
-fullName.Trim();
-Console.WriteLine(fullName);
-// ToUpper
-Console.WriteLine(fullName.ToUpper());
-Console.WriteLine(fullName); // note that it did not change the original string reference (immutable)
-// break name up into two parts by delimiter
-var index = fullName.IndexOf(' '); // can provide a character or a string here
-// split the string
-var firstName = fullName.Substring(0, index); // start of the string to index, which is the beginning of the space
-var lastName = fullName.Substring(index + 1); // using the first overload (one parameter) from index + 1 all the way to the end of the string
-Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}");
-// easier way to do it, using Split method
-string[] names = fullName.Split(' '); // if supply whitespace character, return type is a String Array
-Console.WriteLine($"First Name: {names[0]} Last Name: {names[1]}");
-// Replace method
-fullName.Replace("Daniel", "Jacobs");
-fullName.Replace("a", "z");
-Console.WriteLine($"Name with replacements: {fullName}"); // remember....  immutable.......
-Console.WriteLine($"Name with replacements, take two: {fullName.Replace("a", "z")}");
-// String Validation
-if (String.IsNullOrEmpty(" ")) // null or "" evaluates to true, but " " does not, but should if you were
-                              // evaluating a credit card number string for instance.  Requires a work-around
-{
-    Console.WriteLine("Invalid");
-}
-if (String.IsNullOrEmpty(" ".Trim())) // trim the string first, OR in later versions, now has IsNullOrWhitespace
-{
-
-}
-if (String.IsNullOrWhiteSpace(" "))
-{
-    Console.WriteLine("Invalid");
-}
-// we receive a number from a user, if building web, desktop or mobile applications (THEY ALWAYS COME IN STRINGS)
-// conversion
-var str = "25";
-var age = Convert.ToInt32(str); // immutable once again, have to place the modified string into a new object to store it.
-float price = 10.95f;
-price.ToString("C"); // EVERY OBJECT IN .NET HAS A ToString method (will cover later)
-Console.WriteLine($"{price}");
-*/
-/*
-           // Working with Dates & Times and TimeSpan (Both these types are structures and are immutable)
-           // DateTime, defined in the system namespace
-           var dateTime = new DateTime(2019, 12, 1); // has a bunch of different constructor overloads
-           // get current DateTime
-           var now = DateTime.Now; // now is a static property of DateTime structure
-           var today = DateTime.Today; // today's date irrespective of time.
-           // example
-           Console.WriteLine("Hour: " + now.Hour); // or now.Minute for example
-           // DateTime objects are immutable (cannot change).
-           // All start with 'now"
-           // tomorrow, current time
-           var tomorrow = now.AddDays(1);
-           // formatting to a string.  Bunch of methods for formatting DateTime to strings
-           Console.WriteLine(now.ToLongDateString());
-           Console.WriteLine(now.ToShortDateString());
-           Console.WriteLine(now.ToLongTimeString());
-           Console.WriteLine(now.ToShortTimeString());
-           // Display both date and time!  use ToString method
-           Console.WriteLine(now.ToString("yyyy-MM-dd")); // can us other format specifiers "yy-MM-DD HH:mm" etc.  C# DateTime format specifiers on google
-
-           // TimeSpan
-           // Creating
-           var timeSpan = new TimeSpan(1, 2, 3); // overload: hours, minutes, seconds. There are many other overloads
-
-           var timeSpan1 = new TimeSpan(1, 0, 0); // looking at it, it's not obvious what the parameters represent
-           var timeSpan2 = TimeSpan.FromHours(1); // a more readable way to create the object is to use static methods on the TimeSpan structure (all start with 'From')
-
-           // another way to get a time span is to subtract an end from a start
-           var start = DateTime.Now;
-           var end = DateTime.Now.AddMinutes(2);
-           var duration = end - start;
-           Console.WriteLine($"Duration: {duration}");
-
-               // Once we have a TimeSpan object, we can read it's properties very easily
-               // Each TimeSpan has a number of properties that come in pairs (TotalDays, TotalHours etc.)
-           // Properties
-           Console.WriteLine($"Minutes: {timeSpan.Minutes} "); // returns the minutes component of the TimeSpan object
-           Console.WriteLine($"Total Minutes: {timeSpan.TotalMinutes}"); // converts that TimeSpan object to minutes (hours to minutes etc.)
-
-           // Add
-           Console.WriteLine($"Add Example: {timeSpan.Add(TimeSpan.FromMinutes(8))}");
-
-           // Conversion to and From Strings
-
-           // ToString
-           Console.WriteLine($"ToString {timeSpan.ToString()}"); // don't have to explicitly call ToString while using Console.WriteLine as it already does
-
-           // now conversion from a string.  Use Parse
-           Console.WriteLine($"Parse: {TimeSpan.Parse("01:02:03")}");
+           }
+           }
            */
-/*
-            // Array Exercises
+           /*
+              public class Person
+              {
+                  public string Name;
+                  public void Introduce(string to)
+                  {
+                      Console.WriteLine("Hi {0}, I am {1}", to, Name);
+                  }
 
-            // 5- Write a program and ask the user to supply a list of comma separated numbers (e.g 5, 1, 9, 2, 10). If the list
-            // is empty or includes less than 5 numbers, display "Invalid List" and ask the user to re-try; otherwise, display 
-            // the 3 smallest numbers in the list.
-                // declare a list to hold user entered strings
-            string[] numbers;
-                // prompt user
-            Console.WriteLine("Please enter a list of comma separated numbers and press \"Enter\" to exit: ");
-            // keep the loop going until user exits
-            while (true)
-            {
-                var entry = Console.ReadLine();
+                  // create a parse method
+                  // have to use it on an object because it's an instance method
+                  public static Person Parse(string str) // take a string and return a person object
+                  {
+                      var person = new Person();
+                      person.Name = str;
+                      return person;
+                  }
+              }
+              class Program
+              {
+                 static void Main()
+                  {
+                      // Intro to classes
+                      var person = new Person();
+                      person.Name = "Daniel";
+                      person.Introduce("Jimmy");
+                      var p = Person.Parse("PurplePeopleEater");
+                      Console.WriteLine(p.Name);
 
-                if (!String.IsNullOrWhiteSpace(entry))
-                {
-                    numbers = entry.Split(',');
-                    if (numbers.Length >= 5)
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Invalid List");
-            }
-            var numberList = new List<int>();
-            foreach (var n in numbers)
-            {
-                numberList.Add(Convert.ToInt32(n));
-            }
-            var smalliest = new List<int>();
+                  }
+              }
+              */
+           /*
+           static void Main()
+           {
 
-            while (smalliest.Count < 3)
-            {
-                var min = numberList[0];
-                foreach (var n in numberList)
-                {
-                    if (n < min)
-                    {
-                        min = n;
-                    }
-                }
-                smalliest.Add(min);
-                numberList.Remove(min);
-            }
-            Console.WriteLine("The three smallest numbers are: ");
-            foreach (var n in smalliest)
-            {
-                Console.WriteLine(n);
-            }
-            */
-/*
-// Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
-// include duplicates. Display the unique numbers that the user has entered.
-var numbers = new List<int>();
-Console.WriteLine("Continuously enter numbers or type \"Quit\" to exit: ");
-    // loop to continuously ask user to enter a number
-while (true)
-{
-    var number = Console.ReadLine(); // get input, convert to int32
-    if (number.ToLower() == "quit") // if user enters "Quit" exit the loop
-    {
-        break;
-    }
-    // convert user inputs to int and add to numbers list
-    numbers.Add(Convert.ToInt32(number));
-}
-// create new list to store unique user inputs
-var uniques = new List<int>();
-// iterate through numbers list
-foreach (var number in numbers)
-{
-    if(!uniques.Contains(number)) // if unique, add to uniques list
-    {
-        uniques.Add(number);
-    }
-}
-Console.WriteLine($"Unique numbers entered are: ");
-foreach (var n in uniques)
-{
-    Console.WriteLine(n);
-}
-Console.ReadLine();
-*/
+                      // Debugging Applications
+                      // Debugging tools in Visual Studio
+                      // How debugging works: 
+                          // First you need to put 1 or more breakpoints in your application
+                          // Run in debug mode.  Execution stops at your breakpoints.  There you can inspect the values of your
+                          // variables to ensure they are holding the right value.  If not, you can change your code.
+                          // Can insert a breakpoint by pressing 'F9' or remove it by pressing 'F9' again.
+                          // F5 run in debug & Ctrl + F5 run without debug mode.
+                          // F10 is step over, to move to the next line of code.
+                          // F11 is step into
+
+                      var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+                      var smallests = GetSmallests(numbers, 3);
+
+                      foreach (var number in smallests)
+                      {
+                          Console.WriteLine(number);
+                      }
+                  }
+                  public static List<int> GetSmallests(List<int> list, int count)
+                  {
+                      var smallests = new List<int>();
+                      while (smallests.Count < count)
+                      {
+                          var min = GetSmallest(list);
+                          smallests.Add(min);
+                          list.Remove(min);
+                      }
+                      return smallests;
+                  }
+                  public static int GetSmallest(List<int> list)
+                  {
+                      // Assume the first number is the smallest
+                      var min = list[0];
+                      // Iterate over the list starting with index 1 through count
+                      for (var i = 1; i < list.Count; i++)
+                      {
+                          if (list[i] > min)
+                          {
+                              min = list[i];
+                          }
+                          return min;
+                      }
+                  }
+                  */
+           /*
+                       // Working with files and directories
+                       // System.IO
+                       // File, FileInfo
+                       // Both provide methods for creating, copying, deleting and moving files
+                       // File: provides static methods
+                       // FileInfo: provides instance methods
+                       // Why we need different classes for files: The difference is, if you are going to have a small
+                       // number of operations, it's more conveienent to access the static methods of the file class,
+                       // everytime you call static methods, some security checking is done by the operating system
+                       // to ensure the user has access to these.  This can slow a program down with larger operations.
+                       // With larger operations, use FileInfo as security checking is done once during creation of a FileInfo object.
+                       // Some of the useful methods:
+                       // Create() -create a file
+                       // Copy()
+                       // Delete()
+                       // Exists() - check if a file exists
+                       // GetAttributes() - returns the attributes of a given file
+                       // Move()
+                       // ReadAllText() - reads all text within a file          
+                       // Directory, DirectoryInfo
+                       // Very similar to File and FileInfo
+                       // Directory provides static methods
+                       // DirectoryInfo: provides instance methods
+                       // Some of the useful methods:
+                       // CreateDirectory()
+                       // Delete()
+                       // Exists()
+                       // GetCurrentDirectory() -returns where the application is currently sitting
+                       // GetFiles() -get files within a directory
+                       // Move()
+                       // GetLogicalDrives() -c-drive, d-drive etc.
+                       // Path
+                       // useful methods
+                       // GetDirectoryname()
+                       // GetFileName()
+                       // GetExtension()
+                       // GetTempPath() - returns the path of the current user's temp folder
+                       /*
+                       var path = @"c:\somefile.jpg"; // @ is verbatim symbol
+                       File.Copy("c\\temp\\myfile.jpg", "d:\\temp\\myfile.jpg", true);
+                       File.Delete(path);
+                       if (File.Exists(path))
+                       {
+                           // something
+                       }
+                       var content = File.ReadAllText(path); // returns a string
+                       var fileInfo = new FileInfo(path);
+                       fileInfo.CopyTo("...");// copy the file
+                       fileInfo.Delete();// delete it
+                       if (fileInfo.Exists)
+                       {
+                           // something
+                       }
+                       // FileInfo does not have a ReadAllText method, only available as a static method in the File class
+                       */
+           // Directory and Directory Info classes
+           /*
+           Directory.CreateDirectory(@"c:\users\drjac\documents\github\files_practice\folder1");
+           var files = Directory.GetFiles(@"c:\users\drjac\documents\github\files_practice", "*.txt", SearchOption.AllDirectories); // has 3 overloads
+           foreach (var file in files)
+           {
+               Console.WriteLine(file);
+           }
+
+           var directories = Directory.GetDirectories(@"c:\users\drjac\documents\github\files_practice");
+
+           var directoryInfo = new DirectoryInfo("...");
+           directoryInfo.GetFiles();
+           directoryInfo.GetDirectories();
+
+           // Path class
+           // provides a lot of methods to make it easy to work with a string that represents a path and extract different parts of that path
+           // so we don't have to do the string processing ourselves
+           // Example
+           var path = @"c: \users\drjac\documents\github\files_practice\files_text.txt";
+           // poor way to extract the extension using low level string processing
+           var dotIndex = path.IndexOf('.'); // search for index of .
+           var extension = path.Substring(dotIndex); // return extension
+           // use path class instead
+           Console.WriteLine("Extension: " + Path.GetExtension(path)); // get extension
+           Console.WriteLine("File Name: " + Path.GetFileName(path)); // get file name
+           Console.WriteLine($"File Name without Extension: {Path.GetFileNameWithoutExtension(path)}");
+           // get directory name
+           Console.WriteLine($"Directory Name: {Path.GetDirectoryName(path)}");
+           */
+           /*
+                   static void Main()
+                   {
+                       // Procedural Programming
+                       // You should always seperate the code that works with the console from code that implements logic
+                       // With the many different types of applications, will want to be able to reuse code that is not part of the console
+                       // Exercise
+                       Console.WriteLine("What's your name? "); // console code
+                       var name = Console.ReadLine(); // console code
+                       var reversed = ReverseName(name);
+                       Console.WriteLine("Reversed name: " + reversed); // console code
+                            // the console is purely responsible for getting user input and displaying it
+                   }
+                   // extract the reusable code into a seperate method
+                   public static string ReverseName(string name)// Need it public, in order to call it from main method (which is static) need it to be static, and need to return a string.  Method needs to be expressive in that others know what the method will do without looking at the code
+                   {
+                       // --------------- Reusable code
+                       var array = new char[name.Length];
+                       for (var i = name.Length; i > 0; i--)
+                       {
+                           array[name.Length - i] = name[i - 1];
+                       }
+
+                       return new string(array);
+                       // ---------------- Reusable code 
+                            // method is purely responsible for reversing the name
+                   }
+                   */
+           /*
+                       // Exercises
+                       // Working with Text: exercise 3
+                       // 3- Write a program and ask the user to enter a time value in the 24-hour time format (e.g. 19:00). 
+                       // A valid time should be between 00:00 and 23:59. If the time is valid, display "Ok"; otherwise, display
+                       // "Invalid Time". If the user doesn't provide any values, consider it as invalid time.
+
+                       Console.WriteLine("Enter a time value in the 24-hour time format (e.g. 17:00): ");
+                       var input = Console.ReadLine();
+
+                       if (String.IsNullOrWhiteSpace(input))
+                       {
+                           Console.WriteLine("Invalid Time");
+                           return;
+                       }
+
+                       var components = input.Split(':');
+                       if (components.Length != 2)
+                       {
+                           Console.WriteLine("Invalid Time");
+                           return;
+                       }
+
+                       try
+                       {
+                           var hour = Convert.ToInt32(components[0]);
+                           var minute = Convert.ToInt32(components[1]);
+
+                           if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59)
+                           {
+                               Console.WriteLine("Ok");
+                           }
+                           else
+                           {
+                               Console.WriteLine("Invalid Time");
+                           }
+                       }
+                       catch (Exception)
+                       {
+                           Console.WriteLine("Invalid Time");
+                       }
+                       */
+           /*
+           // 2- Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
+           // presses Enter, without supplying an input, exit immediately; otherwise, check to see if there are 
+           // duplicates. If so, display "Duplicate" on the console.
+
+           var inputList = new List<string>();
+
+               Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+               string input = Console.ReadLine();
+               inputList.Add(input);
+               if (String.IsNullOrEmpty(input))
+               {
+                   return;
+               }
+               var numbers = new List<int>();
+               foreach (var n in input.Split('-'))
+               {
+                   numbers.Add(Convert.ToInt32(n));
+               }
+
+               var uniques = new List<int>();
+               var includesDuplicates = false;
+               foreach (var n in numbers)
+               {
+                   if (!uniques.Contains(n))
+                   {
+                       uniques.Add(n);
+                   }
+                   else
+                   {
+                       includesDuplicates = true;
+                       break;
+                   }
+               }
+               if (includesDuplicates)
+                   Console.WriteLine("Dulicate");
+               */
+           /*
+           // 1- Write a program and ask the user to enter a few numbers separated by a hyphen. Work out if the 
+           // numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a 
+           // message: "Consecutive"; otherwise, display "Not Consecutive".
+
+           // get input, place it in a string
+           while (true)
+           { 
+               Console.WriteLine("Enter a few numbers separated with a hyphen: ");
+               string input = Console.ReadLine();
+               // check if string input is consecutive, if consecutive, output "Consecutive" then break loop.
+               if (!input.Contains(" "))
+               {
+                   Console.WriteLine("Consecutive");
+                   Console.ReadLine();
+                   break;
+               }  
+               else
+               {
+                   Console.WriteLine("Not Consecutive");
+               }
+           }
+           */
+           /*
+                       // Working with text: Closer look at C# Strings part 2
+                       // StringBuilder
+                       // A class that is defined in System.Text 
+                       // Provides a number of different String Manipulation Methods
+                       // Append(), Insert(), Remove(), Replace(), Clear()
+                       var builder = new StringBuilder();
+                       // append
+                       builder.Append('-', 10); // dash character, repeated 10 times
+                       Console.WriteLine(builder);
+                       builder.AppendLine();
+                       Console.WriteLine(builder);
+                       builder.Append("Build");
+                       Console.WriteLine(builder);
+                       builder.Append(" " + "a" + " " + "Bridge");
+                       Console.WriteLine(builder);
+                       // builder.Replace('-', '+');
+                       Console.WriteLine(builder);
+                       builder.Insert(0, new string('!', 10));
+                       Console.WriteLine(builder);
+                       // *** Can chain them together, because they 'return' a StringBuilder
+                       builder
+                           .Append(" " + "as" + " fast" + " as" + " you" + " can")
+                           .Remove(0, 20);
+                       Console.WriteLine(builder); 
+                       */
+           /*
+                        *  /*
+                   public static string SummarizeText(string text) // could also allow the caller to specify the maxLength by making a second parameter
+                                                                   // and setting a default value = 20, in case they don't want to specify            
+                   {
+                       // MUCH BETTER coding practice write a Constant (more expressive) instead of hardcoding a value all in the code
+                       const int maxLength = 20;
+                       if (text.Length < maxLength)
+                       {
+                           // Console.WriteLine(text);
+                           return text;
+                       }
+                       // now to summarize the "poor way" then the "right way"
+
+                       // May cutoff a word doing it with this kind of substringing
+                       // text.Substring(0, maxLength); 
+                       // how do we count the number of words that roughly fit around 20 characters
+                       var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
+                       // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
+                       var totalCharacters = 0;
+                       var summaryWords = new List<string>();
+                       foreach (var word in words)
+                       {
+                           summaryWords.Add(word);
+                           totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
+                           if (totalCharacters > maxLength)
+                               break;
+                       }
+                       // now, the summaryWords has all the words that need to go into the summary
+                       // need to create a string and 'join' all these words using 'whitespace'
+                       // var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
+                       //Console.WriteLine(summary); <--- Now that we are using it as a method, need to "return summary"
+                       // return summary; <---- cleaning up code (see also var summary declaration)
+                       return String.Join(" ", summaryWords) + "...";
+                   }
+                   */
+           /*
+               // Working with text: Closer look at C# Strings part 1
+               var scentence = "This is a super, duper, incredibly long scentence, so it should be summarized. ";
+               Console.WriteLine($"{SummarizeText(scentence)}"); 
+
+               /*
+                *
+               // Summarizing Text ...
+               var text = "This is a long, long, long, long, long, long, long scentence.";
+               // summarize it
+               // check if length of scentence is beyond a given threshold, otherwise display it
+               if (text.Length < 20)
+               {
+                   Console.WriteLine(text);
+               }
+               // MUCH BETTER coding practice is to get rid of the '20' (magic number) and write a Constant (more expressive)
+               const int maxLength = 20;
+               if (text.Length < maxLength)
+               {
+                   Console.WriteLine(text);
+               }
+               // now to summarize the "poor way" then the "right way"
+               else
+               {
+                   // May cutoff a word doing it with this kind of substringing
+                   // text.Substring(0, maxLength); 
+                   // how do we count the number of words that roughly fit around 20 characters
+                   var words = text.Split(' '); // with whitespace as seperator, now we have a string array of words
+                   // can iterate over the array, for each word, we count the length of the word, add them all together, if we get around 20 we should have a boundry
+                   var totalCharacters = 0;
+                   var summaryWords = new List<string>();
+                   foreach (var word in words)
+                   {
+                       summaryWords.Add(word);
+                       totalCharacters += word.Length + 1; // for each word, we need to get it's total characters + 1 for the space
+                       if (totalCharacters > maxLength)
+                           break;
+                   }
+                   // now, the summaryWords has all the words that need to go into the summary
+                   // need to create a string and 'join' all these words using 'whitespace'
+                   var summary = String.Join(" ", summaryWords) + "..."; // First argument is a seperator, can pass summaryWords list and append "..." which will be the summary
+                   Console.WriteLine(summary);
+               }
+               */
+           /*
+           // Strings are a class and are immutable
+           // Formatting:  
+           // ToLower "hello world"
+           // ToUpper "HELLO WORLD"
+           // Trim() --very useful in eliminating the whitespaces around the string for user inputs in web forms or windows forms (ONLY from the end)
+           // Searching:
+           // Contains(" ")
+           // IndexOf('a')
+           // LastIndexOf("Hello")
+           // Substrings: --create a substring from a given string
+           // Substring(startIndex) retreives all the characters from that point to the end
+           // Substring(startIndex, length)
+           // Replacing: -- replace a given character or substring
+           // Replace('a', '!')
+           // Replace("hellow", "hello")
+           // Null checking: -- common way to compare a string against null, empty or whitespace
+           // String.IsNullOrEmpty(str)
+           // String.IsNullOrWhiteSpace(str)
+           // Splitting
+           // str.Split(' ') -- splitting strings by delimenator
+           // Converting Strings to Numbers
+           // string s = "1234";
+           // int i = int.Parse(s);
+           // int j = Convert.ToInt32(s); // preferred.  If null or empty, returns default integer "0" / safer
+           // Converting Numbers to Strings
+           // int i = 1234;
+           // string s = i.ToString(); = "1234"
+           // string t = i.ToString("C"); = "$1,234.00" // "C" is a format string and that is short for currency.  by default when formatting a number by currency, contains 2 decimal points.
+           // string t = i.ToString("C0"); = "$1,234" // C with zero decimal points.
+
+           // Practice
+           /*
+           var fullName = "Daniel Jacobs    ";
+           // trim
+           fullName.Trim();
+           Console.WriteLine(fullName);
+           // ToUpper
+           Console.WriteLine(fullName.ToUpper());
+           Console.WriteLine(fullName); // note that it did not change the original string reference (immutable)
+           // break name up into two parts by delimiter
+           var index = fullName.IndexOf(' '); // can provide a character or a string here
+           // split the string
+           var firstName = fullName.Substring(0, index); // start of the string to index, which is the beginning of the space
+           var lastName = fullName.Substring(index + 1); // using the first overload (one parameter) from index + 1 all the way to the end of the string
+           Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}");
+           // easier way to do it, using Split method
+           string[] names = fullName.Split(' '); // if supply whitespace character, return type is a String Array
+           Console.WriteLine($"First Name: {names[0]} Last Name: {names[1]}");
+           // Replace method
+           fullName.Replace("Daniel", "Jacobs");
+           fullName.Replace("a", "z");
+           Console.WriteLine($"Name with replacements: {fullName}"); // remember....  immutable.......
+           Console.WriteLine($"Name with replacements, take two: {fullName.Replace("a", "z")}");
+           // String Validation
+           if (String.IsNullOrEmpty(" ")) // null or "" evaluates to true, but " " does not, but should if you were
+                                         // evaluating a credit card number string for instance.  Requires a work-around
+           {
+               Console.WriteLine("Invalid");
+           }
+           if (String.IsNullOrEmpty(" ".Trim())) // trim the string first, OR in later versions, now has IsNullOrWhitespace
+           {
+
+           }
+           if (String.IsNullOrWhiteSpace(" "))
+           {
+               Console.WriteLine("Invalid");
+           }
+           // we receive a number from a user, if building web, desktop or mobile applications (THEY ALWAYS COME IN STRINGS)
+           // conversion
+           var str = "25";
+           var age = Convert.ToInt32(str); // immutable once again, have to place the modified string into a new object to store it.
+           float price = 10.95f;
+           price.ToString("C"); // EVERY OBJECT IN .NET HAS A ToString method (will cover later)
+           Console.WriteLine($"{price}");
+           */
+           /*
+                      // Working with Dates & Times and TimeSpan (Both these types are structures and are immutable)
+                      // DateTime, defined in the system namespace
+                      var dateTime = new DateTime(2019, 12, 1); // has a bunch of different constructor overloads
+                      // get current DateTime
+                      var now = DateTime.Now; // now is a static property of DateTime structure
+                      var today = DateTime.Today; // today's date irrespective of time.
+                      // example
+                      Console.WriteLine("Hour: " + now.Hour); // or now.Minute for example
+                      // DateTime objects are immutable (cannot change).
+                      // All start with 'now"
+                      // tomorrow, current time
+                      var tomorrow = now.AddDays(1);
+                      // formatting to a string.  Bunch of methods for formatting DateTime to strings
+                      Console.WriteLine(now.ToLongDateString());
+                      Console.WriteLine(now.ToShortDateString());
+                      Console.WriteLine(now.ToLongTimeString());
+                      Console.WriteLine(now.ToShortTimeString());
+                      // Display both date and time!  use ToString method
+                      Console.WriteLine(now.ToString("yyyy-MM-dd")); // can us other format specifiers "yy-MM-DD HH:mm" etc.  C# DateTime format specifiers on google
+
+                      // TimeSpan
+                      // Creating
+                      var timeSpan = new TimeSpan(1, 2, 3); // overload: hours, minutes, seconds. There are many other overloads
+
+                      var timeSpan1 = new TimeSpan(1, 0, 0); // looking at it, it's not obvious what the parameters represent
+                      var timeSpan2 = TimeSpan.FromHours(1); // a more readable way to create the object is to use static methods on the TimeSpan structure (all start with 'From')
+
+                      // another way to get a time span is to subtract an end from a start
+                      var start = DateTime.Now;
+                      var end = DateTime.Now.AddMinutes(2);
+                      var duration = end - start;
+                      Console.WriteLine($"Duration: {duration}");
+
+                          // Once we have a TimeSpan object, we can read it's properties very easily
+                          // Each TimeSpan has a number of properties that come in pairs (TotalDays, TotalHours etc.)
+                      // Properties
+                      Console.WriteLine($"Minutes: {timeSpan.Minutes} "); // returns the minutes component of the TimeSpan object
+                      Console.WriteLine($"Total Minutes: {timeSpan.TotalMinutes}"); // converts that TimeSpan object to minutes (hours to minutes etc.)
+
+                      // Add
+                      Console.WriteLine($"Add Example: {timeSpan.Add(TimeSpan.FromMinutes(8))}");
+
+                      // Conversion to and From Strings
+
+                      // ToString
+                      Console.WriteLine($"ToString {timeSpan.ToString()}"); // don't have to explicitly call ToString while using Console.WriteLine as it already does
+
+                      // now conversion from a string.  Use Parse
+                      Console.WriteLine($"Parse: {TimeSpan.Parse("01:02:03")}");
+                      */
+           /*
+                       // Array Exercises
+
+                       // 5- Write a program and ask the user to supply a list of comma separated numbers (e.g 5, 1, 9, 2, 10). If the list
+                       // is empty or includes less than 5 numbers, display "Invalid List" and ask the user to re-try; otherwise, display 
+                       // the 3 smallest numbers in the list.
+                           // declare a list to hold user entered strings
+                       string[] numbers;
+                           // prompt user
+                       Console.WriteLine("Please enter a list of comma separated numbers and press \"Enter\" to exit: ");
+                       // keep the loop going until user exits
+                       while (true)
+                       {
+                           var entry = Console.ReadLine();
+
+                           if (!String.IsNullOrWhiteSpace(entry))
+                           {
+                               numbers = entry.Split(',');
+                               if (numbers.Length >= 5)
+                               {
+                                   break;
+                               }
+                           }
+                           Console.WriteLine("Invalid List");
+                       }
+                       var numberList = new List<int>();
+                       foreach (var n in numbers)
+                       {
+                           numberList.Add(Convert.ToInt32(n));
+                       }
+                       var smalliest = new List<int>();
+
+                       while (smalliest.Count < 3)
+                       {
+                           var min = numberList[0];
+                           foreach (var n in numberList)
+                           {
+                               if (n < min)
+                               {
+                                   min = n;
+                               }
+                           }
+                           smalliest.Add(min);
+                           numberList.Remove(min);
+                       }
+                       Console.WriteLine("The three smallest numbers are: ");
+                       foreach (var n in smalliest)
+                       {
+                           Console.WriteLine(n);
+                       }
+                       */
+           /*
+           // Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
+           // include duplicates. Display the unique numbers that the user has entered.
+           var numbers = new List<int>();
+           Console.WriteLine("Continuously enter numbers or type \"Quit\" to exit: ");
+               // loop to continuously ask user to enter a number
+           while (true)
+           {
+               var number = Console.ReadLine(); // get input, convert to int32
+               if (number.ToLower() == "quit") // if user enters "Quit" exit the loop
+               {
+                   break;
+               }
+               // convert user inputs to int and add to numbers list
+               numbers.Add(Convert.ToInt32(number));
+           }
+           // create new list to store unique user inputs
+           var uniques = new List<int>();
+           // iterate through numbers list
+           foreach (var number in numbers)
+           {
+               if(!uniques.Contains(number)) // if unique, add to uniques list
+               {
+                   uniques.Add(number);
+               }
+           }
+           Console.WriteLine($"Unique numbers entered are: ");
+           foreach (var n in uniques)
+           {
+               Console.WriteLine(n);
+           }
+           Console.ReadLine();
+           */
 
 /*
 // 3- Write a program and ask the user to enter 5 numbers. If a number has been previously entered, display an error 
