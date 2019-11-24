@@ -4,62 +4,159 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using C_Sharp_Practice.Calculations;
-using C_Sharp_Practice.People;
+using C_Sharp_Practice;
 
 namespace C_Sharp_Practice
 {
 
+    public class Order
+    {
+      
+    }
+    public class Customer
+    {
+        public int Id; // Remember, in Real World Applications we do not declare fields with public access modifiers...
+        public string Name;
+        public List<Order> orders; 
+        public Customer() // as a best practice, when using a class and that class has a list of objects of any type, always initiaize that list an empty list
+        {
+            orders = new List<Order>();       
+        }
+
+        public Customer(int id) 
+            : this() // When this constructor is called, first it will call the default constructor (Best practice to ensure the list gets initialized), instead of copying and pasting a bunch of code 
+        {
+            this.Id = id;
+        }
+
+        public Customer(int id, string name) // snippet = ctor(tab)
+            : this(id) // When this constructor is called, first it will call the (int id) overload constructor
+        {
+            this.Name = name;
+        }
+    }
+
     class Program
     {
+
         static void Main()
         {
-            // Debugging Applications
-            // Debugging tools in Visual Studio
-            // How debugging works: 
-                // First you need to put 1 or more breakpoints in your application
-                // Run in debug mode.  Execution stops at your breakpoints.  There you can inspect the values of your
-                // variables to ensure they are holding the right value.  If not, you can change your code.
-                // Can insert a breakpoint by pressing 'F9' or remove it by pressing 'F9' again.
-                // F5 run in debug & Ctrl + F5 run without debug mode.
-                // F10 is step over, to move to the next line of code.
-                // F11 is step into
+            // Constructors
+            // Do not have a return type, not even void
+            // Parameterless or "default" constructor.  If you do not define one, C# compiler creates one for it
+            // Example
+            /* 
+             * public class Customer
+             * {
+             *      public string Name;
+             *      public Customer(string name) 
+             *      {
+             *      this.Name name; // this references the current object.  
+             *      }
+             * }
+             */
+            // Constructor Overloading
+            // Same name, different signatures (return type, its name & types/numbers of it's parameters
+            // the names do not matter but the data types and order of parameters matter
+            // Why?  To make the initialization of the class easier.  Sometimes you may only know the name
+            // sometimes you may know only the ID, etc.
+            // Practice
+            var customer = new Customer();
+            Console.WriteLine(customer.Id);
+            Console.WriteLine(customer.Name);
 
-            var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-            var smallests = GetSmallests(numbers, 3);
+            customer.Name = "Phil";
+            customer.Id = 8675309;
+            Console.WriteLine(customer.Id);
+            Console.WriteLine(customer.Name);
 
-            foreach (var number in smallests)
-            {
-                Console.WriteLine(number);
-            }
-        }
-        public static List<int> GetSmallests(List<int> list, int count)
-        {
-            var smallests = new List<int>();
-            while (smallests.Count < count)
-            {
-                var min = GetSmallest(list);
-                smallests.Add(min);
-                list.Remove(min);
-            }
-            return smallests;
-        }
-        public static int GetSmallest(List<int> list)
-        {
-            // Assume the first number is the smallest
-            var min = list[0];
-            // Iterate over the list starting with index 1 through count
-            for (var i = 1; i < list.Count; i++)
-            {
-                if (list[i] > min)
-                {
-                    min = list[i];
-                }
-                return min;
-            }
+            customer.Id = 555;
+            Console.WriteLine(customer.Id);
+
         }
     }
 }
+/*
+   public class Person
+   {
+       public string Name;
+       public void Introduce(string to)
+       {
+           Console.WriteLine("Hi {0}, I am {1}", to, Name);
+       }
+
+       // create a parse method
+       // have to use it on an object because it's an instance method
+       public static Person Parse(string str) // take a string and return a person object
+       {
+           var person = new Person();
+           person.Name = str;
+           return person;
+       }
+   }
+   class Program
+   {
+      static void Main()
+       {
+           // Intro to classes
+           var person = new Person();
+           person.Name = "Daniel";
+           person.Introduce("Jimmy");
+           var p = Person.Parse("PurplePeopleEater");
+           Console.WriteLine(p.Name);
+
+       }
+   }
+   */
+/*
+static void Main()
+{
+
+           // Debugging Applications
+           // Debugging tools in Visual Studio
+           // How debugging works: 
+               // First you need to put 1 or more breakpoints in your application
+               // Run in debug mode.  Execution stops at your breakpoints.  There you can inspect the values of your
+               // variables to ensure they are holding the right value.  If not, you can change your code.
+               // Can insert a breakpoint by pressing 'F9' or remove it by pressing 'F9' again.
+               // F5 run in debug & Ctrl + F5 run without debug mode.
+               // F10 is step over, to move to the next line of code.
+               // F11 is step into
+
+           var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+           var smallests = GetSmallests(numbers, 3);
+
+           foreach (var number in smallests)
+           {
+               Console.WriteLine(number);
+           }
+       }
+       public static List<int> GetSmallests(List<int> list, int count)
+       {
+           var smallests = new List<int>();
+           while (smallests.Count < count)
+           {
+               var min = GetSmallest(list);
+               smallests.Add(min);
+               list.Remove(min);
+           }
+           return smallests;
+       }
+       public static int GetSmallest(List<int> list)
+       {
+           // Assume the first number is the smallest
+           var min = list[0];
+           // Iterate over the list starting with index 1 through count
+           for (var i = 1; i < list.Count; i++)
+           {
+               if (list[i] > min)
+               {
+                   min = list[i];
+               }
+               return min;
+           }
+       }
+       */
 /*
             // Working with files and directories
             // System.IO

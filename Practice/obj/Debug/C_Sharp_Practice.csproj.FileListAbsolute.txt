@@ -1,4 +1,3 @@
-C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.csproj.CoreCompileInputs.cache
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\C_Sharp_Practice.exe.config
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\C_Sharp_Practice.exe
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\C_Sharp_Practice.pdb
