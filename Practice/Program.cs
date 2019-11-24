@@ -8,31 +8,39 @@ using C_Sharp_Practice;
 
 namespace C_Sharp_Practice
 {
-
-    public class Person
+    public class Person 
     {
-        // Always declare fields as private.  Convention in naming fields is camelcase prefix with underscore between words
-        private DateTime _birthdate;
-
-        public void SetBirthdate(DateTime birthdate)
+        // shortcut:  prop then tab
+        public string Name { get; set; }
+        public string Username { get; set; }
+        public DateTime Birthdate { get; private set; } // note access modifier added to set, which is readonly (set in the constructor instead)
+        public Person(DateTime birthdate)
         {
-            _birthdate = birthdate;
+            Birthdate = birthdate;
         }
+        // auto implemented property
 
-        public DateTime GetBirthdate()
+        public int Age
         {
-            return _birthdate;
+            get
+            {
+                var timeSpan = DateTime.Today - Birthdate;
+                var years = timeSpan.Days / 365;
+
+                return years;
+            }
         }
     }
+    
     class Program
     {
         static void Main(string[] args)
         {
-            // Lesson: Encapsulation
-            // In practice: define fields as private & provide getter/setter methods as public
-            var person = new Person();
-            person.SetBirthdate(new DateTime(1982, 8, 16));
-            Console.WriteLine(person.GetBirthdate());
+            // Lesson: Properties
+            // Writing setter and getter methods for every field would be time consuming and inefficient
+            // Make sure your classes are in a valid state, never in a false state.
+            var person = new Person(new DateTime(1982, 8, 16));
+            Console.WriteLine(person.Birthdate);
         }
     }
 }
