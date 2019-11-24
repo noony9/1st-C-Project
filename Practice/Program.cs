@@ -9,6 +9,34 @@ using C_Sharp_Practice;
 namespace C_Sharp_Practice
 {
 
+    public class Person
+    {
+        // Always declare fields as private.  Convention in naming fields is camelcase prefix with underscore between words
+        private DateTime _birthdate;
+
+        public void SetBirthdate(DateTime birthdate)
+        {
+            _birthdate = birthdate;
+        }
+
+        public DateTime GetBirthdate()
+        {
+            return _birthdate;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Lesson: Encapsulation
+            // In practice: define fields as private & provide getter/setter methods as public
+            var person = new Person();
+            person.SetBirthdate(new DateTime(1982, 8, 16));
+            Console.WriteLine(person.GetBirthdate());
+        }
+    }
+}
+/*
     public class Customer
     {
         public int Id;
@@ -50,8 +78,6 @@ namespace C_Sharp_Practice
             Console.WriteLine("Customer's info: ID = {0}, Name = {1}", customer.Id, customer.Name);
         }
     }
-  
-}
 /*
 public class Point
 {
