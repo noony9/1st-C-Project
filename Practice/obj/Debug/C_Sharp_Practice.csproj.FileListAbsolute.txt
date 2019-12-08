@@ -4,3 +4,5 @@ C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\bin\Debug\C_Sharp_Prac
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.exe
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.pdb
 C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.csprojAssemblyReference.cache
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.Form1.resources
+C:\Users\drjac\Documents\GITHUB\C_Sharp_Practice\Practice\obj\Debug\C_Sharp_Practice.csproj.GenerateResource.cache

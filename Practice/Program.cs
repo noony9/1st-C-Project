@@ -4,21 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using C_Sharp_Practice;
+using System.Windows.Forms;
 
 namespace C_Sharp_Practice
 {
-    partial class Program
+    public partial class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            // Lesson:  Indexers
-            var cookie = new HttpCookie();
-            cookie["name"] = "Daniel";
-            Console.WriteLine(cookie["name"]);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
+
     }
 }
+/*
+// Lesson:  Indexers
+var cookie = new HttpCookie();
+cookie["name"] = "Daniel";
+Console.WriteLine(cookie["name"]);
+*/
+/*
+        public class HttpCookie
+        {
+            private readonly Dictionary<string, string> _dictionary;  // generic class with generic parameters (key with type string and value string), with the name _dictionary
+
+            public HttpCookie()
+            {
+                _dictionary = new Dictionary<string, string>();
+            }
+            
+            public string this[string key] // index syntax
+            {
+                get { return _dictionary[key]; }
+                set { _dictionary[key] = value; }
+            }
+        }
+        */
 /*
     public class Person 
     {
